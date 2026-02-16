@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Webspanner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: "#0a0a0a",
+                        primary: "#7c3aed",
+                        secondary: "#3b82f6",
+                        accent: "#10b981",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: white;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans pt-24">
+    <header class="fixed top-0 w-full z-50 glass border-b border-white/10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold flex items-center gap-2">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Webspanner</span>
+            </a>
+            <div class="hidden md:flex gap-8 items-center text-sm font-medium">
+                <a href="index.html" class="text-white/70 hover:text-white">O nas</a>
+                <a href="portfolio.html" class="text-white">Portfolio</a>
+                <a href="cennik.html" class="text-white/70 hover:text-white">Cennik</a>
+                <a href="baza-wiedzy.html" class="text-white/70 hover:text-white">Baza Wiedzy</a>
+                <a href="ai-agent.html"
+                    class="px-5 py-2 rounded-full bg-primary text-white hover:bg-primary/80 transition-all">Rozpocznij
+                    projekt</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="text-center mb-20 fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Nasze Realizacje</h1>
+            <p class="text-xl text-white/50">Projekty, które zdefiniowały naszą jakość.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Rapdach -->
+            <div class="group relative glass rounded-3xl p-8 hover:border-primary/50 transition-all cursor-pointer overflow-hidden fade-in"
+                style="animation-delay: 0.1s">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-2 group-hover:text-primary transition-colors">Rapdach</h3>
+                        <p class="text-white/60 mb-4">System balustrad i nowoczesny sklep internetowy.</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-white/40">Szkło</span>
+                    <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-white/40">Stal</span>
+                    <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-white/40">E-commerce</span>
+                </div>
+                <div class="border-t border-white/5 pt-6 mt-auto">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest text-white/30 mb-1">Silnik</p>
+                            <p class="text-sm font-semibold">WordPress/WooCommerce</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest text-white/30 mb-1">Optymalizacja</p>
+                            <p class="text-sm font-semibold text-accent">Custom Code & AI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fundacja -->
+            <div class="group relative glass rounded-3xl p-8 hover:border-primary/50 transition-all cursor-pointer overflow-hidden fade-in"
+                style="animation-delay: 0.2s">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-2 group-hover:text-primary transition-colors">Fundacja</h3>
+                        <p class="text-white/60 mb-4">Platforma informacyjna i system dotacji.</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-white/40">Społeczność</span>
+                    <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-white/40">Zaufanie</span>
+                </div>
+                <div class="border-t border-white/5 pt-6 mt-auto">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest text-white/30 mb-1">Silnik</p>
+                            <p class="text-sm font-semibold">WordPress</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest text-white/30 mb-1">Optymalizacja</p>
+                            <p class="text-sm font-semibold text-accent">Custom Code & AI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sandey -->
+            <div class="group relative glass rounded-3xl p-8 hover:border-primary/50 transition-all cursor-pointer overflow-hidden fade-in"
+                style="animation-delay: 0.3s">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-2 group-hover:text-primary transition-colors">Sandey</h3>
+                        <p class="text-white/60 mb-4">Elegancka prezentacja marki i produktów.</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-white/40">Design</span>
+                    <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-white/40">Minimalizm</span>
+                </div>
+                <div class="border-t border-white/5 pt-6 mt-auto">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest text-white/30 mb-1">Silnik</p>
+                            <p class="text-sm font-semibold">WordPress</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest text-white/30 mb-1">Optymalizacja</p>
+                            <p class="text-sm font-semibold text-accent">Custom Code & AI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wildhome -->
+            <div class="group relative glass rounded-3xl p-8 hover:border-primary/50 transition-all cursor-pointer overflow-hidden fade-in"
+                style="animation-delay: 0.4s">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-2 group-hover:text-primary transition-colors">Wildhome</h3>
+                        <p class="text-white/60 mb-4">Sklep z akcesoriami do wnętrz.</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-white/40">Lifestyle</span>
+                    <span class="px-3 py-1 rounded-full bg-white/5 text-xs text-white/40">E-commerce</span>
+                </div>
+                <div class="border-t border-white/5 pt-6 mt-auto">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest text-white/30 mb-1">Silnik</p>
+                            <p class="text-sm font-semibold">WordPress/WooCommerce</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest text-white/30 mb-1">Optymalizacja</p>
+                            <p class="text-sm font-semibold text-accent">Custom Code & AI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 glass mt-20">
+        <div class="container mx-auto px-6 text-center text-white/30 text-xs">
+            © 2026 Webspanner. Wszystkie prawa zastrzeżone.
+        </div>
+    </footer>
+</body>
+
+</html>

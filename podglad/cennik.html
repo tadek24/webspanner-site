@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cennik | Webspanner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: "#0a0a0a",
+                        primary: "#7c3aed",
+                        secondary: "#3b82f6",
+                        accent: "#10b981",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: white;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans pt-24">
+    <header class="fixed top-0 w-full z-50 glass border-b border-white/10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold flex items-center gap-2">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Webspanner</span>
+            </a>
+            <div class="hidden md:flex gap-8 items-center text-sm font-medium">
+                <a href="index.html" class="text-white/70 hover:text-white">O nas</a>
+                <a href="portfolio.html" class="text-white/70 hover:text-white">Portfolio</a>
+                <a href="cennik.html" class="text-white">Cennik</a>
+                <a href="baza-wiedzy.html" class="text-white/70 hover:text-white">Baza Wiedzy</a>
+                <a href="ai-agent.html"
+                    class="px-5 py-2 rounded-full bg-primary text-white hover:bg-primary/80 transition-all">Rozpocznij
+                    projekt</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="text-center mb-20 fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Cennik & Oferta</h1>
+            <p class="text-xl text-white/50 max-w-2xl mx-auto">
+                Wybierz model współpracy, który najlepiej odpowiada Twoim potrzebom.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Standard -->
+            <div class="flex flex-col glass rounded-3xl p-8 border border-white/10 fade-in"
+                style="animation-delay: 0.1s">
+                <div class="mb-8">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 text-2xl">🛡️
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Standard WordPress</h3>
+                    <p class="text-white/50 text-sm mb-6">Solidna baza dla Twojego biznesu.</p>
+                    <div class="text-4xl font-black">Od 1500 zł</div>
+                </div>
+                <ul class="space-y-4 mb-10 flex-grow text-sm text-white/70">
+                    <li class="flex gap-2"><span>✅</span> Instalacja WordPress</li>
+                    <li class="flex gap-2"><span>✅</span> Gotowy szablon Premium</li>
+                    <li class="flex gap-2"><span>✅</span> Podstawowe SEO</li>
+                    <li class="flex gap-2"><span>✅</span> Certyfikat SSL</li>
+                </ul>
+                <button
+                    class="w-full py-4 rounded-xl font-bold bg-white/5 hover:bg-white/10 border border-white/10 transition-all">Wybierz
+                    pakiet</button>
+            </div>
+
+            <!-- AI-Speed -->
+            <div class="flex flex-col glass rounded-3xl p-8 border-primary ring-2 ring-primary/50 shadow-[0_0_30px_rgba(124,58,237,0.3)] relative fade-in"
+                style="animation-delay: 0.2s">
+                <div
+                    class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary rounded-full text-[10px] font-bold uppercase tracking-widest">
+                    Najpopularniejszy</div>
+                <div class="mb-8">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 text-2xl">⚡</div>
+                    <h3 class="text-2xl font-bold mb-2">AI-Speed Start</h3>
+                    <p class="text-white/50 text-sm mb-6">Błyskawiczne wdrożenie z Agentem AI.</p>
+                    <div class="text-4xl font-black">300 zł</div>
+                </div>
+                <ul class="space-y-4 mb-10 flex-grow text-sm text-white/70">
+                    <li class="flex gap-2"><span>✅</span> Wywiad z Agentem AI</li>
+                    <li class="flex gap-2"><span>✅</span> Struktura strony w 24h</li>
+                    <li class="flex gap-2"><span>✅</span> Wdrożenie na Twój panel</li>
+                    <li class="flex gap-2"><span>✅</span> Idealne na start</li>
+                </ul>
+                <button class="w-full py-4 rounded-xl font-bold bg-primary hover:bg-primary/80 transition-all">Wybierz
+                    pakiet</button>
+            </div>
+
+            <!-- Custom -->
+            <div class="flex flex-col glass rounded-3xl p-8 border border-white/10 fade-in"
+                style="animation-delay: 0.3s">
+                <div class="mb-8">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 text-2xl">👑</div>
+                    <h3 class="text-2xl font-bold mb-2">Custom Next.js & AI</h3>
+                    <p class="text-white/50 text-sm mb-6">Dedykowane aplikacje wysokiej klasy.</p>
+                    <div class="text-4xl font-black">Indywidualnie</div>
+                </div>
+                <ul class="space-y-4 mb-10 flex-grow text-sm text-white/70">
+                    <li class="flex gap-2"><span>✅</span> Technologia Next.js (React)</li>
+                    <li class="flex gap-2"><span>✅</span> Pełen Custom Design</li>
+                    <li class="flex gap-2"><span>✅</span> Zaawansowane funkcje AI</li>
+                    <li class="flex gap-2"><span>✅</span> 100/100 PageSpeed</li>
+                </ul>
+                <button
+                    class="w-full py-4 rounded-xl font-bold bg-white/5 hover:bg-white/10 border border-white/10 transition-all">Wybierz
+                    pakiet</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 glass mt-20">
+        <div class="container mx-auto px-6 text-center text-white/30 text-xs">
+            © 2026 Webspanner. Wszystkie prawa zastrzeżone.
+        </div>
+    </footer>
+</body>
+
+</html>

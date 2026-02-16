@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webspanner | Przyszłość Web Developmentu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: "#0a0a0a",
+                        primary: "#7c3aed",
+                        secondary: "#3b82f6",
+                        accent: "#10b981",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: white;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+    <header class="fixed top-0 w-full z-50 glass border-b border-white/10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold flex items-center gap-2">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Webspanner</span>
+            </a>
+            <div class="hidden md:flex gap-8 items-center text-sm font-medium">
+                <a href="index.html" class="text-white/70 hover:text-white">O nas</a>
+                <a href="portfolio.html" class="text-white/70 hover:text-white">Portfolio</a>
+                <a href="cennik.html" class="text-white/70 hover:text-white">Cennik</a>
+                <a href="baza-wiedzy.html" class="text-white/70 hover:text-white">Baza Wiedzy</a>
+                <a href="ai-agent.html"
+                    class="px-5 py-2 rounded-full bg-primary text-white hover:bg-primary/80 transition-all">Rozpocznij
+                    projekt</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative h-[90vh] flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div
+                    class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px] animate-pulse-slow">
+                </div>
+                <div
+                    class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[128px] animate-pulse-slow">
+                </div>
+            </div>
+            <div class="container mx-auto px-6 text-center relative z-10 fade-in">
+                <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter">
+                    Przyszłość Web Developmentu:<br>
+                    <span
+                        class="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent">AI-Driven,
+                        WordPress-Powered</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto mb-10 leading-relaxed">
+                    Budujemy strony szybciej dzięki AI, zachowując pełną elastyczność i kontrolę, którą daje WordPress.
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <a href="ai-agent.html"
+                        class="px-10 py-4 bg-primary rounded-xl font-bold text-lg hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] transition-all">Rozpocznij
+                        z Agentem AI</a>
+                    <a href="portfolio.html"
+                        class="px-10 py-4 glass rounded-xl font-bold text-lg hover:bg-white/10 transition-all">Zobacz
+                        Portfolio</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section class="py-24 bg-dark">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="fade-in">
+                        <h2 class="text-4xl md:text-6xl font-bold mb-8">Nasza Filozofia</h2>
+                        <p class="text-lg text-white/60 mb-8 leading-relaxed">
+                            W Webspanner wierzymy, że przyszłość tworzenia stron to symbioza ludzkiej kreatywności,
+                            sztucznej inteligencji i sprawdzonych fundamentów.
+                        </p>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                                    🚀</div>
+                                <div>
+                                    <h4 class="font-bold text-xl mb-1">Szybkość AI</h4>
+                                    <p class="text-white/50">Błyskawiczne projektowanie struktury i treści.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+                                    🛡️</div>
+                                <div>
+                                    <h4 class="font-bold text-xl mb-1">Elastyczność WordPress</h4>
+                                    <p class="text-white/50">Pełna własność i bezpieczeństwo Twoich danych.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aspect-square glass rounded-3xl p-8 flex items-center justify-center relative overflow-hidden fade-in"
+                        style="animation-delay: 0.2s">
+                        <div class="text-center p-6 glass rounded-2xl relative z-10">
+                            <p
+                                class="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                                AI + WP</p>
+                            <p class="text-sm uppercase tracking-widest text-white/40">Hybrid Solution</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 glass mt-20">
+        <div class="container mx-auto px-6 text-center text-white/30 text-xs">
+            © 2026 Webspanner. Wszystkie prawa zastrzeżone.
+        </div>
+    </footer>
+</body>
+
+</html>

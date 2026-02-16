@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baza Wiedzy | Webspanner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: "#0a0a0a",
+                        primary: "#7c3aed",
+                        secondary: "#3b82f6",
+                        accent: "#10b981",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: white;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans pt-24">
+    <header class="fixed top-0 w-full z-50 glass border-b border-white/10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold flex items-center gap-2">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Webspanner</span>
+            </a>
+            <div class="hidden md:flex gap-8 items-center text-sm font-medium">
+                <a href="index.html" class="text-white/70 hover:text-white">O nas</a>
+                <a href="portfolio.html" class="text-white/70 hover:text-white">Portfolio</a>
+                <a href="cennik.html" class="text-white/70 hover:text-white">Cennik</a>
+                <a href="baza-wiedzy.html" class="text-white">Baza Wiedzy</a>
+                <a href="ai-agent.html"
+                    class="px-5 py-2 rounded-full bg-primary text-white hover:bg-primary/80 transition-all">Rozpocznij
+                    projekt</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="text-center mb-20 fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Baza Wiedzy</h1>
+            <p class="text-xl text-white/50 max-w-2xl mx-auto">
+                Edukacja to klucz do sukcesu. Dowiedz się więcej o nowoczesnym web developmencie.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Article 1 -->
+            <div class="glass p-8 rounded-3xl hover:border-primary/50 transition-all group cursor-pointer fade-in"
+                style="animation-delay: 0.1s">
+                <div class="flex gap-6">
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors text-2xl">
+                        📚</div>
+                    <div>
+                        <span
+                            class="text-[10px] uppercase tracking-widest text-primary font-bold mb-2 block">Filozofia</span>
+                        <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">Dlaczego łączymy
+                            AI z Wordpressem?</h3>
+                        <p class="text-white/50 leading-relaxed mb-6 text-sm">Automatyzacja AI przyspiesza development,
+                            a WordPress gwarantuje stabilność.</p>
+                        <button class="text-white text-sm font-bold inline-flex items-center gap-2">Czytaj więcej <span
+                                class="text-primary">→</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="glass p-8 rounded-3xl hover:border-primary/50 transition-all group cursor-pointer fade-in"
+                style="animation-delay: 0.2s">
+                <div class="flex gap-6">
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors text-2xl">
+                        🛒</div>
+                    <div>
+                        <span
+                            class="text-[10px] uppercase tracking-widest text-primary font-bold mb-2 block">Poradnik</span>
+                        <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">Zarządzanie
+                            sklepem WooCommerce z AI</h3>
+                        <p class="text-white/50 leading-relaxed mb-6 text-sm">Optymalizacja opisów produktów i obsługa
+                            klienta dzięki AI.</p>
+                        <button class="text-white text-sm font-bold inline-flex items-center gap-2">Czytaj więcej <span
+                                class="text-primary">→</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 3 -->
+            <div class="glass p-8 rounded-3xl hover:border-primary/50 transition-all group cursor-pointer fade-in"
+                style="animation-delay: 0.3s">
+                <div class="flex gap-6">
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors text-2xl">
+                        💻</div>
+                    <div>
+                        <span
+                            class="text-[10px] uppercase tracking-widest text-primary font-bold mb-2 block">Technologia</span>
+                        <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">Zalety Headless
+                            WordPress</h3>
+                        <p class="text-white/50 leading-relaxed mb-6 text-sm">Kiedy warto oddzielić warstwę wizualną od
+                            panelu zarządzania.</p>
+                        <button class="text-white text-sm font-bold inline-flex items-center gap-2">Czytaj więcej <span
+                                class="text-primary">→</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 4 -->
+            <div class="glass p-8 rounded-3xl hover:border-primary/50 transition-all group cursor-pointer fade-in"
+                style="animation-delay: 0.4s">
+                <div class="flex gap-6">
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors text-2xl">
+                        🔒</div>
+                    <div>
+                        <span
+                            class="text-[10px] uppercase tracking-widest text-primary font-bold mb-2 block">Bezpieczeństwo</span>
+                        <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">Bezpieczeństwo
+                            Twojej strony</h3>
+                        <p class="text-white/50 leading-relaxed mb-6 text-sm">Jak WordPress i Supabase chronią Twoje
+                            dane i dlaczego to najlepszy wybór.</p>
+                        <button class="text-white text-sm font-bold inline-flex items-center gap-2">Czytaj więcej <span
+                                class="text-primary">→</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 glass mt-20">
+        <div class="container mx-auto px-6 text-center text-white/30 text-xs">
+            © 2026 Webspanner. Wszystkie prawa zastrzeżone.
+        </div>
+    </footer>
+</body>
+
+</html>
