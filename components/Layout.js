@@ -8,7 +8,7 @@ export default function Layout({ children }) {
 
     const navLinks = [
         { name: 'O nas', href: '/' },
-        { name: 'Portfolio', href: '/#portfolio' },
+        { name: 'Portfolio', href: '/portfolio' },
         { name: 'Cennik', href: '/cennik' },
         { name: 'Baza Wiedzy', href: '/baza-wiedzy' },
         { name: 'AI Agent', href: '/ai-agent' },

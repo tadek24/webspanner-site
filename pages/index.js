@@ -1,6 +1,7 @@
 import Layout from '../components/Layout'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Rocket, Shield, Cpu, ExternalLink } from 'lucide-react'
+import { Rocket, Shield, Cpu, ExternalLink, Zap } from 'lucide-react'
 
 export default function Home() {
     const portfolioItems = [
@@ -44,137 +45,123 @@ export default function Home() {
     return (
         <Layout>
             {/* Hero Section */}
-            <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#050512]">
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px] animate-pulse" />
-                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[128px] animate-pulse delay-1000" />
+                    <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[128px] animate-pulse" />
+                    <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[128px] animate-pulse delay-1000" />
                 </div>
 
                 <div className="container mx-auto px-6 text-center relative z-10">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter">
-                            Przyszłość Web Developmentu:<br />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent">
-                                AI-Driven, WordPress-Powered
+                        <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-tight">
+                            Twój Sklep,<br />
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-[#a855f7]">
+                                Nasza Inteligentna Dominacja
                             </span>
                         </h1>
-                        <p className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto mb-10 leading-relaxed">
-                            Budujemy strony szybciej dzięki AI, zachowując pełną elastyczność i kontrolę, którą daje WordPress. Hybrydowe podejście dla Twojego biznesu.
+                        <p className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
+                            Łączymy potęgę WordPressa z precyzją sztucznej inteligencji. Tworzymy ekosystemy sprzedażowe, które wyprzedzają konkurencję.
                         </p>
-                        <div className="flex flex-col md:flex-row gap-4 justify-center">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-10 py-4 bg-primary rounded-xl font-bold text-lg hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] transition-all"
-                            >
-                                Rozpocznij z Agentem AI
-                            </motion.button>
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-10 py-4 glass rounded-xl font-bold text-lg hover:bg-white/10 transition-all"
-                            >
-                                Zobacz Portfolio
-                            </motion.button>
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                            <Link href="/ai-agent">
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="px-12 py-5 bg-primary rounded-2xl font-bold text-xl hover:shadow-[0_0_40px_rgba(124,58,237,0.6)] transition-all flex items-center justify-center gap-3 w-full sm:w-auto"
+                                >
+                                    <Rocket size={24} /> Rozpocznij Projekt
+                                </motion.button>
+                            </Link>
+                            <Link href="/portfolio">
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="px-12 py-5 glass rounded-2xl font-bold text-xl hover:bg-white/10 transition-all border border-white/10 w-full sm:w-auto"
+                                >
+                                    Nasze Projekty
+                                </motion.button>
+                            </Link>
                         </div>
                     </motion.div>
                 </div>
             </section>
 
-            {/* Philosophy Section */}
-            <section className="py-24 bg-dark relative">
+            {/* Why Us Section */}
+            <section className="py-32 bg-[#050512] relative">
                 <div className="container mx-auto px-6">
-                    <div className="grid md:grid-cols-2 gap-16 items-center">
-                        <motion.div {...fadeInUp}>
-                            <h2 className="text-4xl md:text-6xl font-bold mb-8">Nasza Filozofia</h2>
-                            <p className="text-lg text-white/60 mb-8 leading-relaxed">
-                                W Webspanner wierzymy, że przyszłość tworzenia stron to symbioza ludzkiej kreatywności, sztucznej inteligencji i sprawdzonych fundamentów.
-                            </p>
-                            <div className="space-y-6">
-                                <div className="flex gap-4">
-                                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                                        <Rocket size={24} />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-xl mb-1">Szybkość AI</h4>
-                                        <p className="text-white/50">Używamy autorskich narzędzi AI do błyskawicznego projektowania struktury i treści.</p>
-                                    </div>
-                                </div>
-                                <div className="flex gap-4">
-                                    <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
-                                        <Shield size={24} />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-xl mb-1">Elastyczność WordPress</h4>
-                                        <p className="text-white/50">Twoja strona oparta jest na najpopularniejszym CMS świata, dając Ci 100% własności i bezpieczeństwa.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                        <motion.div
-                            {...fadeInUp}
-                            className="relative aspect-square glass rounded-3xl p-8 flex items-center justify-center overflow-hidden"
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 opacity-50" />
-                            <Cpu size={200} className="text-white/10 animate-pulse" />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="text-center p-6 glass rounded-2xl">
-                                    <p className="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">AI + WP</p>
-                                    <p className="text-sm uppercase tracking-widest text-white/40">Hybrid Solution</p>
-                                </div>
-                            </div>
-                        </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-24"
+                    >
+                        <h2 className="text-4xl md:text-6xl font-bold mb-6">Dlaczego Webspanner?</h2>
+                        <p className="text-xl text-white/40 max-w-2xl mx-auto">Nowoczesne technologie w służbie Twojego sukcesu.</p>
+                    </motion.div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {[
+                            {
+                                icon: <Zap className="text-[#a855f7]" size={40} />,
+                                title: "Ekstremalna Szybkość",
+                                desc: "Optymalizacja pod kątem 100/100 w Google PageSpeed Insights. Twoja strona ładuje się w mgnieniu oka."
+                            },
+                            {
+                                icon: <Cpu className="text-primary" size={40} />,
+                                title: "Integracja AI",
+                                desc: "Wykorzystujemy zaawansowane modele językowe do generowania treści, obsługi klienta i analizy danych."
+                            },
+                            {
+                                icon: <Rocket className="text-secondary" size={40} />,
+                                title: "Design 2026",
+                                desc: "Futurystyczny interfejs użytkownika, który buduje zaufanie i wyróżnia Cię na tle standardowych szablonów."
+                            }
+                        ].map((item, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.2 }}
+                                className="glass p-10 rounded-[32px] border border-white/5 hover:border-primary/30 transition-all group"
+                            >
+                                <div className="mb-6 group-hover:scale-110 transition-transform">{item.icon}</div>
+                                <h3 className="text-2xl font-extrabold mb-4">{item.title}</h3>
+                                <p className="text-white/50 leading-relaxed">{item.desc}</p>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* Portfolio Section */}
-            <section id="portfolio" className="py-24 relative overflow-hidden">
-                <div className="container mx-auto px-6">
-                    <motion.div {...fadeInUp} className="text-center mb-20">
-                        <h2 className="text-4xl md:text-6xl font-bold mb-6">Realizacje</h2>
-                        <p className="text-xl text-white/50">Projekty, które zdefiniowały naszą jakość.</p>
-                    </motion.div>
-
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {portfolioItems.map((item, index) => (
-                            <motion.div
-                                key={item.title}
-                                {...fadeInUp}
-                                transition={{ delay: index * 0.1 }}
-                                className="group relative glass rounded-3xl p-8 hover:border-primary/50 transition-all cursor-pointer overflow-hidden"
+            {/* CTA Section */}
+            <section className="py-32 relative overflow-hidden">
+                <div className="container mx-auto px-6 relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        className="glass p-16 md:p-24 rounded-[48px] border border-primary/20 text-center relative overflow-hidden"
+                    >
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
+                        <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
+                            Gotowy na <span className="text-primary">Cyfrową Rewolucję</span>?
+                        </h2>
+                        <p className="text-xl text-white/60 max-w-2xl mx-auto mb-12">
+                            Nasz AI Agent czeka, aby omówić Twój projekt. Bez kolejek, bez czekania - zacznij rozmowę teraz.
+                        </p>
+                        <Link href="/ai-agent">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                className="px-12 py-5 bg-white text-black rounded-2xl font-bold text-xl hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] transition-all"
                             >
-                                <div className="flex justify-between items-start mb-6">
-                                    <div>
-                                        <h3 className="text-3xl font-bold mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
-                                        <p className="text-white/60 mb-4">{item.desc}</p>
-                                    </div>
-                                    <ExternalLink className="text-white/20 group-hover:text-primary" />
-                                </div>
-                                <div className="flex flex-wrap gap-2 mb-8">
-                                    {item.tags.map(tag => (
-                                        <span key={tag} className="px-3 py-1 rounded-full bg-white/5 text-xs text-white/40">{tag}</span>
-                                    ))}
-                                </div>
-                                <div className="border-t border-white/5 pt-6 mt-auto">
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <p className="text-[10px] uppercase tracking-widest text-white/30 mb-1">Silnik</p>
-                                            <p className="text-sm font-semibold">{item.tech}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-[10px] uppercase tracking-widest text-white/30 mb-1">Optymalizacja</p>
-                                            <p className="text-sm font-semibold text-accent">{item.optim}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                                Porozmawiaj z Agentem AI
+                            </motion.button>
+                        </Link>
+                    </motion.div>
                 </div>
             </section>
         </Layout>
