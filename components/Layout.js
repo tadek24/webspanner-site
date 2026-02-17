@@ -7,7 +7,7 @@ export default function Layout({ children }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     const navLinks = [
-        { name: 'O nas', href: '/' },
+        { name: 'O nas', href: '/o-nas' },
         { name: 'Portfolio', href: '/portfolio' },
         { name: 'Cennik', href: '/cennik' },
         { name: 'Baza Wiedzy', href: '/baza-wiedzy' },
@@ -15,12 +15,12 @@ export default function Layout({ children }) {
     ]
 
     return (
-        <div className="min-h-screen flex flex-col">
-            <header className="fixed top-0 w-full z-50 glass border-b border-white/10">
+        <div className="min-h-screen flex flex-col bg-[#0D0221]">
+            <header className="fixed top-0 w-full z-50 bg-[#050512]/80 backdrop-blur-md border-b border-white/10">
                 <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-                    <Link href="/" className="text-2xl font-bold flex items-center gap-2 group">
-                        <Cpu className="text-primary group-hover:rotate-12 transition-transform" />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                    <Link href="/" className="text-2xl font-black flex items-center gap-2 group">
+                        <Cpu className="text-blue-500 group-hover:rotate-12 transition-transform" />
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
                             Webspanner
                         </span>
                     </Link>
@@ -30,14 +30,14 @@ export default function Layout({ children }) {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-sm font-medium text-white/70 hover:text-white transition-colors"
+                                className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
                             >
                                 {link.name}
                             </Link>
                         ))}
                         <Link
                             href="/ai-agent"
-                            className="px-5 py-2 rounded-full bg-primary text-white text-sm font-semibold hover:bg-primary/80 transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.5)]"
+                            className="px-5 py-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-bold hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] transition-all"
                         >
                             Rozpocznij projekt
                         </Link>

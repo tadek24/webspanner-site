@@ -57,21 +57,21 @@ export default function Home() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-tight">
-                            Twój Sklep,<br />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-[#a855f7]">
-                                Nasza Inteligentna Dominacja
+                        <h1 className="text-6xl md:text-9xl font-black mb-8 tracking-tighter leading-tight italic">
+                            Twój Sklep Śpi.<br />
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+                                Nasze AI Sprzedaje.
                             </span>
                         </h1>
-                        <p className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-                            Łączymy potęgę WordPressa z precyzją sztucznej inteligencji. Tworzymy ekosystemy sprzedażowe, które wyprzedzają konkurencję.
+                        <p className="text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
+                            Odzyskaj 20h tygodniowo dzięki automatyzacji. Wdrażamy "Cyfrowych Pracowników" do Twojego WordPressa.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6 justify-center">
                             <Link href="/ai-agent">
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="px-12 py-5 bg-primary rounded-2xl font-bold text-xl hover:shadow-[0_0_40px_rgba(124,58,237,0.6)] transition-all flex items-center justify-center gap-3 w-full sm:w-auto"
+                                    className="px-12 py-5 bg-gradient-to-r from-blue-600 to-purple-700 rounded-2xl font-black text-xl hover:shadow-[0_0_40px_rgba(37,99,235,0.4)] transition-all flex items-center justify-center gap-3 w-full sm:w-auto text-white"
                                 >
                                     <Rocket size={24} /> Rozpocznij Projekt
                                 </motion.button>
@@ -80,9 +80,9 @@ export default function Home() {
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="px-12 py-5 glass rounded-2xl font-bold text-xl hover:bg-white/10 transition-all border border-white/10 w-full sm:w-auto"
+                                    className="px-12 py-5 glass rounded-2xl font-black text-xl hover:bg-white/10 transition-all border border-white/10 w-full sm:w-auto text-white italic"
                                 >
-                                    Nasze Projekty
+                                    Nasze Realizacje
                                 </motion.button>
                             </Link>
                         </div>
@@ -91,7 +91,7 @@ export default function Home() {
             </section>
 
             {/* Why Us Section */}
-            <section className="py-32 bg-[#050512] relative">
+            <section className="py-32 relative">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -99,26 +99,26 @@ export default function Home() {
                         viewport={{ once: true }}
                         className="text-center mb-24"
                     >
-                        <h2 className="text-4xl md:text-6xl font-bold mb-6">Dlaczego Webspanner?</h2>
-                        <p className="text-xl text-white/40 max-w-2xl mx-auto">Nowoczesne technologie w służbie Twojego sukcesu.</p>
+                        <h2 className="text-4xl md:text-7xl font-black mb-6 italic">Dlaczego Webspanner?</h2>
+                        <p className="text-xl text-white/30 max-w-2xl mx-auto font-light">Nowoczesne technologie w służbie Twojego sukcesu.</p>
                     </motion.div>
 
                     <div className="grid md:grid-cols-3 gap-8">
                         {[
                             {
-                                icon: <Zap className="text-[#a855f7]" size={40} />,
-                                title: "Ekstremalna Szybkość",
-                                desc: "Optymalizacja pod kątem 100/100 w Google PageSpeed Insights. Twoja strona ładuje się w mgnieniu oka."
+                                icon: <Zap className="text-blue-400" size={40} />,
+                                title: "Zero-Click Commerce",
+                                desc: "Boty prowadzą klienta od pytania do zakupu. Twoja rola ogranicza się do wysyłki towaru."
                             },
                             {
-                                icon: <Cpu className="text-primary" size={40} />,
-                                title: "Integracja AI",
-                                desc: "Wykorzystujemy zaawansowane modele językowe do generowania treści, obsługi klienta i analizy danych."
+                                icon: <Cpu className="text-purple-500" size={40} />,
+                                title: "WooCommerce na Sterydach",
+                                desc: "Skalowalność bez zatrudniania nowych pracowników. AI obsługuje nieograniczoną liczbę klientów."
                             },
                             {
-                                icon: <Rocket className="text-secondary" size={40} />,
-                                title: "Design 2026",
-                                desc: "Futurystyczny interfejs użytkownika, który buduje zaufanie i wyróżnia Cię na tle standardowych szablonów."
+                                icon: <Rocket className="text-blue-600" size={40} />,
+                                title: "Hybrydowa Moc",
+                                desc: "Stabilność WordPressa + Inteligencja LLM. Sprawdzone rozwiązania doprawione wizją jutra."
                             }
                         ].map((item, index) => (
                             <motion.div
@@ -127,11 +127,11 @@ export default function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.2 }}
-                                className="glass p-10 rounded-[32px] border border-white/5 hover:border-primary/30 transition-all group"
+                                className="glass p-12 rounded-[48px] border border-white/5 hover:border-blue-500/30 transition-all group"
                             >
                                 <div className="mb-6 group-hover:scale-110 transition-transform">{item.icon}</div>
-                                <h3 className="text-2xl font-extrabold mb-4">{item.title}</h3>
-                                <p className="text-white/50 leading-relaxed">{item.desc}</p>
+                                <h3 className="text-2xl font-black mb-4">{item.title}</h3>
+                                <p className="text-white/40 leading-relaxed font-light">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
