@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
-import { Check, Zap, Shield, Crown } from 'lucide-react'
+import { Check, Zap, Shield, Crown, Sparkles } from 'lucide-react'
 
 export default function Pricing() {
     const plans = [
@@ -114,3 +114,4 @@ export default function Pricing() {
         </Layout>
     )
 }
+
