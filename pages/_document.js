@@ -10,10 +10,11 @@ export default function Document() {
                 />
             </Head>
             {/* Zmieniamy bg-dark na konkretny odcień #050512 (bardzo głęboki granat/czerń) */}
-            <body className="bg-[#050512] text-white selection:bg-[#7c3aed]/30 selection:text-white antialiased">
+            <body className="bg-[#0D0221] text-white selection:bg-[#7c3aed]/30 selection:text-white antialiased">
                 <Main />
                 <NextScript />
             </body>
         </Html>
     )
 }
+
