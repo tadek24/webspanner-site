@@ -52,8 +52,8 @@ export default function AIAgent() {
 
     return (
         <Layout>
-            <section className="py-12 h-[80vh] flex flex-col">
-                <div className="container mx-auto px-6 flex-grow flex flex-col max-w-4xl">
+            <section className="py-12 min-h-[calc(100vh-80px)] flex flex-col">
+                <div className="container mx-auto px-6 h-full flex flex-col max-w-6xl">
                     <div className="text-center mb-16">
                         <h1 className="text-5xl md:text-8xl font-black mb-8 leading-tight">
                             Twój Wirtualny <br />
@@ -92,7 +92,7 @@ export default function AIAgent() {
                         <motion.div
                             initial={{ opacity: 0, x: 30 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="glass rounded-[48px] border border-white/5 overflow-hidden flex flex-col h-[700px] relative shadow-2xl"
+                            className="glass rounded-[48px] border border-white/5 overflow-hidden flex flex-col h-[70vh] lg:h-[750px] relative shadow-2xl"
                         >
                             <div className="p-8 border-b border-white/5 bg-[#050512]/50 flex items-center gap-4">
                                 <div className="flex gap-2">

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Menu, X, Cpu, Code, Zap } from 'lucide-react'
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function Layout({ children }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -18,11 +19,14 @@ export default function Layout({ children }) {
         <div className="min-h-screen flex flex-col bg-[#0D0221]">
             <header className="fixed top-0 w-full z-50 bg-[#050512]/80 backdrop-blur-md border-b border-white/10">
                 <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-                    <Link href="/" className="text-2xl font-black flex items-center gap-2 group">
-                        <Cpu className="text-blue-500 group-hover:rotate-12 transition-transform" />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
-                            Webspanner
-                        </span>
+                    <Link href="/" className="group">
+                        <Image
+                            src="/logo.png"
+                            alt="WebSpanner Logo"
+                            width={140}
+                            height={40}
+                            className="w-32 h-auto"
+                        />
                     </Link>
 
                     <div className="hidden md:flex gap-8 items-center">
@@ -86,12 +90,15 @@ export default function Layout({ children }) {
             <footer className="py-12 glass mt-20">
                 <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
                     <div>
-                        <div className="text-2xl font-bold flex items-center gap-2 mb-4">
-                            <Cpu className="text-primary" />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                                Webspanner
-                            </span>
-                        </div>
+                        <Link href="/" className="block mb-4">
+                            <Image
+                                src="/logo.png"
+                                alt="WebSpanner Logo"
+                                width={120}
+                                height={35}
+                                className="w-28 h-auto"
+                            />
+                        </Link>
                         <p className="text-white/50 text-sm leading-relaxed">
                             Nowoczesna agencja interaktywna. Łączymy szybkość sztucznej inteligencji z niezawodnością platform WordPress i WooCommerce.
                         </p>
