@@ -9,7 +9,8 @@ export default function Document() {
                     rel="stylesheet"
                 />
             </Head>
-            <body className="bg-dark text-white selection:bg-primary selection:text-white">
+            {/* Zmieniamy bg-dark na konkretny odcień #050512 (bardzo głęboki granat/czerń) */}
+            <body className="bg-[#050512] text-white selection:bg-[#7c3aed]/30 selection:text-white antialiased">
                 <Main />
                 <NextScript />
             </body>
