@@ -21,7 +21,10 @@
     "clsx": "latest",
     "tailwind-merge": "latest",
     "@tailwindcss/postcss": "^4.0.0",
-    "@google/generative-ai": "^0.21.0"
+    "@google/generative-ai": "^0.21.0",
+    "three": "^0.160.0",
+    "@react-three/fiber": "^8.15.0",
+    "@react-three/drei": "^9.96.0"
   },
   "devDependencies": {
     "autoprefixer": "latest",
