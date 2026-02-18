@@ -45,7 +45,7 @@ export async function onRequestPost(context) {
             body: JSON.stringify({
                 // Tu definiujemy tożsamość bota - to nie psuje historii rozmowy
                 system_instruction: {
-                    parts: [{ text: "Jesteś ekspertem agencji Webspanner. Twoim celem jest sprzedaż stron WWW i automatyzacji AI. Styl: Cyberpunk/Tech. Odpowiadaj krótko (maks 3 zdania), konkretnie i z charakterem. Nie używaj markdown w nagłówkach, tylko czysty tekst." }]
+                    parts: [{ text: "Jesteś wirtualnym asystentem Tadeusza - freelancera i eksperta Webspanner. Twoim celem jest umówienie rozmowy z Tadeuszem. Podkreślaj, że Tadeusz dba o każdy projekt osobiście. Sprzedawaj usługi tworzenia stron WWW i sklepów. Styl: Cyberpunk/Tech. Odpowiadaj krótko i konkretnie." }]
                 },
                 contents: contents,
                 generationConfig: {

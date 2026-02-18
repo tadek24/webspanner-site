@@ -2,6 +2,7 @@ import Layout from '../components/Layout'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Rocket, Shield, Cpu, ExternalLink, Zap } from 'lucide-react'
+import Hero3D from '../components/Hero3D'
 
 export default function Home() {
     const portfolioItems = [
@@ -46,9 +47,8 @@ export default function Home() {
         <Layout>
             {/* Hero Section */}
             <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#050512]">
-                <div className="absolute inset-0 z-0">
-                    <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[128px] animate-pulse" />
-                    <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[128px] animate-pulse delay-1000" />
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    <Hero3D />
                 </div>
 
                 <div className="container mx-auto px-6 text-center relative z-10">
@@ -60,11 +60,11 @@ export default function Home() {
                         <h1 className="text-6xl md:text-9xl font-black mb-8 tracking-tighter leading-tight italic">
                             Twój Sklep Śpi.<br />
                             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-                                Nasze AI Sprzedaje.
+                                Moje AI Sprzedaje.
                             </span>
                         </h1>
                         <p className="text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-                            Odzyskaj 20h tygodniowo dzięki automatyzacji. Wdrażamy "Cyfrowych Pracowników" do Twojego WordPressa.
+                            Tworzę ultra-szybkie strony na WordPress i sklepy WooCommerce. Bezśrednio, konkretnie, skutecznie. W mojej pracy wykorzystuję AI, aby dostarczać Ci rozwiązania szybciej niż duże zespoły.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6 justify-center">
                             <Link href="/ai-agent">
@@ -82,7 +82,7 @@ export default function Home() {
                                     whileTap={{ scale: 0.95 }}
                                     className="px-12 py-5 glass rounded-2xl font-black text-xl hover:bg-white/10 transition-all border border-white/10 w-full sm:w-auto text-white italic"
                                 >
-                                    Nasze Realizacje
+                                    Moje Realizacje
                                 </motion.button>
                             </Link>
                         </div>
@@ -99,8 +99,8 @@ export default function Home() {
                         viewport={{ once: true }}
                         className="text-center mb-24"
                     >
-                        <h2 className="text-4xl md:text-7xl font-black mb-6 italic">Dlaczego Webspanner?</h2>
-                        <p className="text-xl text-white/30 max-w-2xl mx-auto font-light">Nowoczesne technologie w służbie Twojego sukcesu.</p>
+                        <h2 className="text-4xl md:text-7xl font-black mb-6 italic">Dlaczego Tadeusz?</h2>
+                        <p className="text-xl text-white/30 max-w-2xl mx-auto font-light">Nie płacisz za biuro i menadżerów. Płacisz za mój kod i doświadczenie.</p>
                     </motion.div>
 
                     <div className="grid md:grid-cols-3 gap-8">
@@ -134,6 +134,81 @@ export default function Home() {
                                 <p className="text-white/40 leading-relaxed font-light">{item.desc}</p>
                             </motion.div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Marketplace Section */}
+            <section className="py-32 relative bg-[#0A0A1B]">
+                <div className="container mx-auto px-6">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-24"
+                    >
+                        <h2 className="text-4xl md:text-7xl font-black mb-6 italic">Marketplace & Integracje</h2>
+                        <p className="text-xl text-white/30 max-w-2xl mx-auto font-light">Pomogę Ci wyjść z ofertą na największe platformy.</p>
+                    </motion.div>
+
+                    <div className="grid md:grid-cols-2 gap-16">
+                        {/* Wdrożenia */}
+                        <div className="glass p-10 rounded-[40px] border border-white/5 break-words">
+                            <h3 className="text-3xl font-black mb-8 text-blue-400">Wdrożenia</h3>
+                            <ul className="space-y-6">
+                                <li className="flex justify-between items-center border-b border-white/10 pb-4">
+                                    <span className="text-xl font-bold">Allegro</span>
+                                    <span className="text-2xl font-black text-white/80">499 PLN</span>
+                                </li>
+                                <li className="flex justify-between items-center border-b border-white/10 pb-4">
+                                    <span className="text-xl font-bold">Erli</span>
+                                    <span className="text-2xl font-black text-white/80">399 PLN</span>
+                                </li>
+                                <li className="flex justify-between items-center border-b border-white/10 pb-4">
+                                    <span className="text-xl font-bold">Emag</span>
+                                    <span className="text-2xl font-black text-white/80">599 PLN</span>
+                                </li>
+                                <li className="flex justify-between items-center border-b border-white/10 pb-4">
+                                    <span className="text-xl font-bold">Amazon</span>
+                                    <span className="text-2xl font-black text-white/80">2499 PLN</span>
+                                </li>
+                                <li className="flex justify-between items-center pt-2">
+                                    <span className="text-xl font-bold text-white/50">Inne</span>
+                                    <span className="text-lg font-bold text-white/50">Wycena indywidualna</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/* Wystawianie Produktów */}
+                        <div className="glass p-10 rounded-[40px] border border-white/5 relative overflow-hidden break-words">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px]" />
+                            <h3 className="text-3xl font-black mb-8 text-purple-400">Moje Wsparcie</h3>
+                            <p className="text-white/40 mb-8 font-light">W cenie: edycja zdjęć, opis SEO, parametryzacja. Robię to osobiście lub z pomocą moich narzędzi AI.</p>
+
+                            <div className="grid grid-cols-1 gap-4">
+                                <div className="p-6 bg-white/5 rounded-2xl border border-white/10 flex justify-between items-center">
+                                    <div>
+                                        <div className="font-bold text-xl">Start</div>
+                                        <div className="text-sm text-white/40">1-50 szt.</div>
+                                    </div>
+                                    <div className="text-3xl font-black">15 PLN<span className="text-sm text-white/30 font-normal">/szt</span></div>
+                                </div>
+                                <div className="p-6 bg-white/5 rounded-2xl border border-white/10 flex justify-between items-center border-l-4 border-l-purple-500">
+                                    <div>
+                                        <div className="font-bold text-xl">Growth</div>
+                                        <div className="text-sm text-white/40">51-200 szt.</div>
+                                    </div>
+                                    <div className="text-3xl font-black">10 PLN<span className="text-sm text-white/30 font-normal">/szt</span></div>
+                                </div>
+                                <div className="p-6 bg-white/5 rounded-2xl border border-white/10 flex justify-between items-center">
+                                    <div>
+                                        <div className="font-bold text-xl">Scale</div>
+                                        <div className="text-sm text-white/40">+200 szt.</div>
+                                    </div>
+                                    <div className="text-3xl font-black">7 PLN<span className="text-sm text-white/30 font-normal">/szt</span></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

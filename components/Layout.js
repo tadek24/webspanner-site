@@ -60,7 +60,7 @@ export default function Layout({ children }) {
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="md:hidden glass absolute top-full w-full py-6 flex flex-col items-center gap-4"
+                        className="md:hidden absolute top-full w-full py-6 flex flex-col items-center gap-4 bg-slate-900/95 backdrop-blur-md border-b border-white/10 shadow-xl"
                     >
                         {navLinks.map((link) => (
                             <Link

@@ -5,7 +5,7 @@ import { Send, User, Bot, Sparkles } from 'lucide-react'
 
 export default function AIAgent() {
     const [messages, setMessages] = useState([
-        { role: 'bot', content: 'Cześć! Jestem Twoim osobistym doradcą Webspanner AI. W czym mogę Ci dzisiaj pomóc?' },
+        { role: 'bot', content: 'Cześć! Jestem wirtualnym asystentem Tadeusza. Pomogę Ci wstępnie omówić projekt, zanim przekażę go w jego ręce.' },
     ])
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
