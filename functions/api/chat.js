@@ -2,43 +2,72 @@ export async function onRequestPost(context) {
     const { request, env } = context;
 
     try {
+        // 1. Walidacja klucza
         if (!env.GEMINI_API_KEY) {
-            return new Response(JSON.stringify({ error: "Brak klucza API" }), { status: 500 });
+            return new Response(JSON.stringify({ error: "Brak klucza API w konfiguracji." }), { status: 500 });
         }
 
-        // Zamiast generować treść, pobieramy listę dostępnych modeli
-        const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${env.GEMINI_API_KEY}`;
+        // 2. Walidacja wiadomości
+        const { message, history } = await request.json();
+        if (!message) {
+            return new Response(JSON.stringify({ error: "Wiadomość jest pusta." }), { status: 400 });
+        }
 
-        // Pobranie listy modeli wymaga metody GET
+        // 3. Budowanie historii (format Gemini REST)
+        const contents = [];
+
+        // System instruction (jako pierwsza wiadomość user - najbezpieczniejsza metoda)
+        contents.push({
+            role: "user",
+            parts: [{ text: "SYSTEM: Jesteś ekspertem agencji Webspanner. Sprzedajesz strony WWW i automatyzacje AI. Odpowiadaj krótko, konkretnie i w stylu Cyberpunk/Tech." }]
+        });
+
+        // Dodanie historii rozmowy
+        if (history && Array.isArray(history)) {
+            history.forEach(msg => {
+                contents.push({
+                    role: msg.role === 'user' ? 'user' : 'model',
+                    parts: [{ text: msg.message || msg.text }]
+                });
+            });
+        }
+
+        // Dodanie aktualnej wiadomości
+        contents.push({
+            role: "user",
+            parts: [{ text: message }]
+        });
+
+        // 4. KLUCZOWA ZMIANA: Używamy modelu 'gemini-2.0-flash', który jest dostępny na liście
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`;
+
         const response = await fetch(url, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: contents,
+                generationConfig: {
+                    maxOutputTokens: 500,
+                    temperature: 0.7
+                }
+            })
         });
 
         if (!response.ok) {
             const errorData = await response.json();
-            return new Response(JSON.stringify({ error: "Błąd pobierania listy", details: errorData }), { status: 500 });
+            console.error("Gemini API Error:", errorData);
+            return new Response(JSON.stringify({ error: "Błąd API Google", details: errorData }), { status: 500 });
         }
 
         const data = await response.json();
-
-        // Filtrujemy tylko modele, które potrafią generować treść (generateContent)
-        let availableModels = "Brak dostępnych modeli do generowania treści.";
-
-        if (data.models) {
-            availableModels = data.models
-                .filter(m => m.supportedGenerationMethods && m.supportedGenerationMethods.includes("generateContent"))
-                .map(m => m.name) // np. "models/gemini-1.5-flash"
-                .join("\n");
-        }
-
-        const text = "Oto lista modeli dostępnych dla Twojego klucza:\n\n" + availableModels;
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "System zajęty, spróbuj ponownie.";
 
         return new Response(JSON.stringify({ text }), {
             headers: { "Content-Type": "application/json" }
         });
 
     } catch (error) {
+        console.error("Worker Error:", error);
         return new Response(JSON.stringify({ error: error.message }), { status: 500 });
     }
 }
