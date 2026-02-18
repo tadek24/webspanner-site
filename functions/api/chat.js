@@ -2,23 +2,27 @@ export async function onRequestPost(context) {
     const { request, env } = context;
 
     try {
+        // 1. Walidacja klucza
         if (!env.GEMINI_API_KEY) {
             return new Response(JSON.stringify({ error: "Brak klucza API w konfiguracji." }), { status: 500 });
         }
 
+        // 2. Walidacja wiadomości
         const { message, history } = await request.json();
         if (!message) {
             return new Response(JSON.stringify({ error: "Wiadomość jest pusta." }), { status: 400 });
         }
 
+        // 3. Budowanie historii
         const contents = [];
-        // Dodanie System Instruction na początku historii (najbezpieczniejsza metoda dla REST API)
+
+        // System instruction jako pierwsza wiadomość od użytkownika (kompatybilność z gemini-pro)
         contents.push({
             role: "user",
-            parts: [{ text: "SYSTEM INSTRUCTION: Jesteś ekspertem agencji Webspanner. Twoim celem jest sprzedaż stron WWW. Odpowiadaj krótko, konkretnie i w stylu Cyberpunk/Tech." }]
+            parts: [{ text: "SYSTEM: Jesteś ekspertem agencji Webspanner. Sprzedajesz strony WWW. Odpowiadaj krótko (max 3 zdania) i konkretnie. Styl: Tech/Cyberpunk." }]
         });
 
-        // Mapowanie historii
+        // Dodanie historii rozmowy
         if (history && Array.isArray(history)) {
             history.forEach(msg => {
                 contents.push({
@@ -28,14 +32,14 @@ export async function onRequestPost(context) {
             });
         }
 
-        // Dodanie bieżącej wiadomości
+        // Dodanie aktualnej wiadomości
         contents.push({
             role: "user",
             parts: [{ text: message }]
         });
 
-        // ZMIANA: Używamy 'gemini-1.5-flash-latest'
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${env.GEMINI_API_KEY}`;
+        // 4. ZMIANA: Używamy standardowego modelu 'gemini-pro'
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${env.GEMINI_API_KEY}`;
 
         const response = await fetch(url, {
             method: 'POST',
@@ -52,12 +56,12 @@ export async function onRequestPost(context) {
         if (!response.ok) {
             const errorData = await response.json();
             console.error("Gemini API Error:", errorData);
+            // Zwracamy pełny błąd, żeby łatwiej debugować
             return new Response(JSON.stringify({ error: "Błąd API Google", details: errorData }), { status: 500 });
         }
 
         const data = await response.json();
-        // Zabezpieczenie przed pustą odpowiedzią
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "Przepraszam, nie mogę teraz odpowiedzieć.";
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "Nie udało się wygenerować odpowiedzi.";
 
         return new Response(JSON.stringify({ text }), {
             headers: { "Content-Type": "application/json" }
