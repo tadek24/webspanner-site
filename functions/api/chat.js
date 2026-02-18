@@ -38,8 +38,8 @@ export async function onRequestPost(context) {
             parts: [{ text: message }]
         });
 
-        // 4. KLUCZOWA ZMIANA: Używamy modelu 'gemini-2.0-flash-lite', który jest dostępny w wersji free (rozwiązanie błędu 429)
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${env.GEMINI_API_KEY}`;
+        // 4. KLUCZOWA ZMIANA: Używamy aliasu 'gemini-flash-latest', który powinien wskazywać na stabilną wersję 1.5
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${env.GEMINI_API_KEY}`;
 
         const response = await fetch(url, {
             method: 'POST',
