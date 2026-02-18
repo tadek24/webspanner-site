@@ -226,7 +226,7 @@ export default function Home() {
                             Gotowy na <span className="text-primary">Cyfrową Rewolucję</span>?
                         </h2>
                         <p className="text-xl text-white/60 max-w-2xl mx-auto mb-12">
-                            Nasz AI Agent czeka, aby omówić Twój projekt. Bez kolejek, bez czekania - zacznij rozmowę teraz.
+                            Mój AI Agent czeka, aby omówić Twój projekt. Bez kolejek, bez czekania - zacznij rozmowę teraz.
                         </p>
                         <Link href="/ai-agent">
                             <motion.button
