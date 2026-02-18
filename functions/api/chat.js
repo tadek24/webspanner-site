@@ -2,49 +2,51 @@ export async function onRequestPost(context) {
     const { request, env } = context;
 
     try {
-        // 1. Walidacja klucza
         if (!env.GEMINI_API_KEY) {
-            return new Response(JSON.stringify({ error: "Brak klucza API w konfiguracji." }), { status: 500 });
+            return new Response(JSON.stringify({ error: "Brak klucza API" }), { status: 500 });
         }
 
-        // 2. Walidacja wiadomości
         const { message, history } = await request.json();
-        if (!message) {
-            return new Response(JSON.stringify({ error: "Wiadomość jest pusta." }), { status: 400 });
-        }
 
-        // 3. Budowanie historii (format Gemini REST)
+        // 1. Budowanie czystej historii (bez System Promptu w treści)
         const contents = [];
 
-        // System instruction (jako pierwsza wiadomość user - najbezpieczniejsza metoda)
-        contents.push({
-            role: "user",
-            parts: [{ text: "SYSTEM: Jesteś ekspertem agencji Webspanner. Sprzedajesz strony WWW i automatyzacje AI. Odpowiadaj krótko, konkretnie i w stylu Cyberpunk/Tech." }]
-        });
-
-        // Dodanie historii rozmowy
         if (history && Array.isArray(history)) {
             history.forEach(msg => {
-                contents.push({
-                    role: msg.role === 'user' ? 'user' : 'model',
-                    parts: [{ text: msg.message || msg.text }]
-                });
+                // Upewniamy się, że tekst istnieje i nie jest pusty
+                const textContent = msg.message || msg.text || "";
+
+                if (textContent.trim().length > 0) {
+                    contents.push({
+                        // Mapujemy role: 'me'/'user' -> 'user', reszta -> 'model'
+                        role: (msg.role === 'user' || msg.role === 'me') ? 'user' : 'model',
+                        parts: [{ text: textContent }]
+                    });
+                }
             });
         }
 
-        // Dodanie aktualnej wiadomości
-        contents.push({
-            role: "user",
-            parts: [{ text: message }]
-        });
+        // Dodajemy bieżącą wiadomość
+        if (message && message.trim().length > 0) {
+            contents.push({
+                role: "user",
+                parts: [{ text: message }]
+            });
+        } else {
+            return new Response(JSON.stringify({ error: "Pusta wiadomość" }), { status: 400 });
+        }
 
-        // 4. KLUCZOWA ZMIANA: Używamy aliasu 'gemini-flash-latest', który powinien wskazywać na stabilną wersję 1.5
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${env.GEMINI_API_KEY}`;
+        // 2. Konfiguracja zapytania z osobnym polem system_instruction
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`;
 
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
+                // Tu definiujemy tożsamość bota - to nie psuje historii rozmowy
+                system_instruction: {
+                    parts: [{ text: "Jesteś ekspertem agencji Webspanner. Twoim celem jest sprzedaż stron WWW i automatyzacji AI. Styl: Cyberpunk/Tech. Odpowiadaj krótko (maks 3 zdania), konkretnie i z charakterem. Nie używaj markdown w nagłówkach, tylko czysty tekst." }]
+                },
                 contents: contents,
                 generationConfig: {
                     maxOutputTokens: 500,
@@ -56,18 +58,18 @@ export async function onRequestPost(context) {
         if (!response.ok) {
             const errorData = await response.json();
             console.error("Gemini API Error:", errorData);
-            return new Response(JSON.stringify({ error: "Błąd API Google", details: errorData }), { status: 500 });
+            return new Response(JSON.stringify({ error: "Błąd Google API", details: errorData }), { status: 500 });
         }
 
         const data = await response.json();
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "System zajęty, spróbuj ponownie.";
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "Błąd generowania odpowiedzi.";
 
         return new Response(JSON.stringify({ text }), {
             headers: { "Content-Type": "application/json" }
         });
 
     } catch (error) {
-        console.error("Worker Error:", error);
+        console.error("Server Error:", error);
         return new Response(JSON.stringify({ error: error.message }), { status: 500 });
     }
 }
