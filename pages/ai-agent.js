@@ -156,7 +156,7 @@ export default function AIAgent() {
                     </div>
 
                     <p className="text-center text-white/30 text-xs mt-4">
-                        Agent AI jest w fazie Beta. Mateusz zweryfikuje wszystkie dane przed wdrożeniem.
+                        Agent AI jest w fazie Beta. Tadeusz zweryfikuje wszystkie dane przed wdrożeniem.
                     </p>
                 </div>
             </section>

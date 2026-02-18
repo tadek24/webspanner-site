@@ -4,6 +4,11 @@ export async function onRequestPost(context) {
     const { request, env } = context;
 
     try {
+        // Sprawdzenie klucza
+        if (!env.GEMINI_API_KEY) {
+            throw new Error("Brak klucza GEMINI_API_KEY w zmiennych środowiskowych!");
+        }
+
         const { message, history } = await request.json();
 
         if (!message) {
@@ -14,11 +19,11 @@ export async function onRequestPost(context) {
         }
 
         const genAI = new GoogleGenerativeAI(env.GEMINI_API_KEY);
-        const systemInstruction = "Jesteś ekspertem i wirtualnym doradcą agencji Webspanner. Twoim celem jest sprzedaż usług tworzenia stron WWW i sklepów internetowych. Styl: Profesjonalny, ale luźny i nowoczesny (Cyberpunk/Tech). Wiedza: Specjalizujemy się w łączeniu WordPress/WooCommerce z automatyzacją AI. Zadanie: Zbadaj potrzeby klienta, a następnie zaproponuj rozwiązanie. Nie pisz długich bloków tekstu – bądź konwersacyjny.";
 
+        // Konfiguracja modelu 1.5 Flash
         const model = genAI.getGenerativeModel({
-            model: 'gemini-2.0-flash',
-            systemInstruction: systemInstruction
+            model: 'gemini-1.5-flash',
+            systemInstruction: "Jesteś ekspertem i wirtualnym doradcą agencji Webspanner. Twoim celem jest sprzedaż usług tworzenia stron WWW i sklepów internetowych. Styl: Profesjonalny, ale luźny i nowoczesny (Cyberpunk/Tech). Wiedza: Specjalizujemy się w łączeniu WordPress/WooCommerce z automatyzacją AI. Bądź zwięzły."
         });
 
         const chat = model.startChat({
@@ -34,7 +39,7 @@ export async function onRequestPost(context) {
         });
 
     } catch (error) {
-        console.error('Cloudflare Function Error:', error);
+        console.error('Cloudflare Function Error:', error.message); // To zobaczymy w logach
         return new Response(JSON.stringify({ message: 'Internal server error', error: error.message }), {
             status: 500,
             headers: { "Content-Type": "application/json" }
