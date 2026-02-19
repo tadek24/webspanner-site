@@ -64,7 +64,7 @@ export async function onRequestPost(context) {
         const data = await response.json();
         const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "Błąd generowania odpowiedzi.";
 
-        // --- ZAPIS DO SUPABASE (Opcjonalnie, nie blokuje czatu w razie błędu) ---
+        // Zapis do Supabase
         if (env.SUPABASE_URL && env.SUPABASE_ANON_KEY) {
             try {
                 await fetch(`${env.SUPABASE_URL}/rest/v1/chats`, {
@@ -80,11 +80,11 @@ export async function onRequestPost(context) {
                         bot_response: text
                     })
                 });
+                console.log("Zapisano pomyślnie");
             } catch (dbError) {
                 console.error("Błąd zapisu do bazy:", dbError);
             }
         }
-        // ------------------------------------------------------------------------
 
         return new Response(JSON.stringify({ text }), {
             headers: { "Content-Type": "application/json" }
