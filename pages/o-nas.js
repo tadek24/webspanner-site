@@ -26,9 +26,9 @@ export default function About() {
                             className="glass p-12 rounded-[48px] border border-white/5 md:col-span-2 relative overflow-hidden group"
                         >
                             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px] group-hover:bg-blue-500/20 transition-all" />
-                            <h3 className="text-3xl font-black mb-6">Wizja 2026</h3>
+                            <h3 className="text-3xl font-black mb-6">Architekt, nie tylko programista</h3>
                             <p className="text-white/40 text-lg leading-relaxed font-light">
-                                Wierzę, że przyszłość e-commerce leży w synergii między ludzką kreatywnością a wydajnością sztucznej inteligencji. Moje systemy same optymalizują konwersję, pozwalając Ci skupić się na rozwoju produktu.
+                                Sztuczna Inteligencja to dla mnie potężne narzędzie, jak precyzyjny laser w rękach chirurga. To ja - Tadeusz - projektuję architekturę, dbam o bezpieczeństwo i nadaję unikalny charakter Twojej stronie. AI jest moim asystentem, który pozwala mi pracować szybciej i dokładniej niż całe zespoły deweloperskie, ale to moje doświadczenie gwarantuje sukces Twojego projektu.
                             </p>
                         </motion.div>
 
@@ -41,7 +41,7 @@ export default function About() {
                         >
                             <Zap className="text-blue-500 mb-6" size={48} />
                             <h3 className="text-3xl font-black mb-2">100/100</h3>
-                            <p className="text-white/40 text-sm italic font-bold">Speed Score</p>
+                            <p className="text-white/40 text-sm italic font-bold">Google PageSpeed</p>
                         </motion.div>
 
                         <motion.div
@@ -51,8 +51,8 @@ export default function About() {
                             className="glass p-12 rounded-[48px] border border-white/5 flex flex-col items-center justify-center text-center"
                         >
                             <ShieldCheck className="text-purple-500 mb-6" size={48} />
-                            <h3 className="text-3xl font-black mb-2">Bezpieczeństwo</h3>
-                            <p className="text-white/40 text-sm">Architektura ISO Cloud</p>
+                            <h3 className="text-3xl font-black mb-2">WordPress</h3>
+                            <p className="text-white/40 text-sm">Bezpieczny & Skalowalny</p>
                         </motion.div>
 
                         <motion.div
@@ -66,12 +66,12 @@ export default function About() {
                             <h3 className="text-3xl font-black mb-6">Mój Proces</h3>
                             <div className="grid grid-cols-2 gap-8 text-left">
                                 <div>
-                                    <div className="text-blue-400 font-black mb-2 uppercase tracking-widest text-xs italic">Etap 1</div>
-                                    <p className="text-white/40 text-sm">Analiza Gemini 2.0</p>
+                                    <div className="text-blue-400 font-black mb-2 uppercase tracking-widest text-xs italic">Fundament</div>
+                                    <p className="text-white/40 text-sm">Solidna architektura WordPress/WooCommerce</p>
                                 </div>
                                 <div>
-                                    <div className="text-purple-400 font-black mb-2 uppercase tracking-widest text-xs italic">Etap 2</div>
-                                    <p className="text-white/40 text-sm">Implementacja Next.js</p>
+                                    <div className="text-purple-400 font-black mb-2 uppercase tracking-widest text-xs italic">Przyspieszenie</div>
+                                    <p className="text-white/40 text-sm">Optymalizacja kodu i treści przez AI</p>
                                 </div>
                             </div>
                         </motion.div>

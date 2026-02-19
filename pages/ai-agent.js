@@ -1,15 +1,63 @@
 import Layout from '../components/Layout'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { Send, User, Bot, Sparkles } from 'lucide-react'
+import { Send, Sparkles, Lock, Mail } from 'lucide-react'
+import { supabase } from '../lib/supabase'
 
 export default function AIAgent() {
     const [messages, setMessages] = useState([
-        { role: 'bot', content: 'Cześć! Jestem wirtualnym asystentem Tadeusza. Pomogę Ci wstępnie omówić projekt, zanim przekażę go w jego ręce.' },
+        { role: 'bot', content: 'Cześć! Jestem Tadeuszem, Twoim wirtualnym ekspertem. Opowiedz mi o swojej wymarzonej stronie, a ja przygotuję dla Ciebie plan działania.' },
     ])
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [history, setHistory] = useState([])
+
+    // Auth State
+    const [session, setSession] = useState(null)
+    const [loginEmail, setLoginEmail] = useState('')
+    const [isLoginLoading, setIsLoginLoading] = useState(false)
+    const [loginMessage, setLoginMessage] = useState('')
+
+    useEffect(() => {
+        // Sprawdź aktywną sesję przy starcie
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setSession(session)
+        })
+
+        // Nasłuchuj zmian w autoryzacji
+        const {
+            data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, session) => {
+            setSession(session)
+        })
+
+        return () => subscription.unsubscribe()
+    }, [])
+
+    const handleLogin = async (e) => {
+        e.preventDefault()
+        setIsLoginLoading(true)
+        setLoginMessage('')
+
+        try {
+            const { error } = await supabase.auth.signInWithOtp({
+                email: loginEmail,
+                options: {
+                    emailRedirectTo: typeof window !== 'undefined' ? window.location.href : undefined,
+                },
+            })
+            if (error) throw error
+            setLoginMessage('Wysłano link do logowania na Twój email!')
+        } catch (error) {
+            setLoginMessage('Błąd logowania: ' + error.message)
+        } finally {
+            setIsLoginLoading(false)
+        }
+    }
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut()
+    }
 
     const handleSend = async () => {
         if (!input.trim() || isLoading) return
@@ -50,6 +98,60 @@ export default function AIAgent() {
         }
     }
 
+    if (!session) {
+        return (
+            <Layout>
+                <div className="min-h-[calc(100vh-80px)] flex items-center justify-center p-6">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="glass p-10 rounded-[40px] border border-white/5 max-w-md w-full text-center relative overflow-hidden"
+                    >
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-[60px]" />
+
+                        <div className="w-20 h-20 bg-blue-500/10 rounded-2xl flex items-center justify-center mx-auto mb-8 text-blue-400">
+                            <Lock size={40} />
+                        </div>
+
+                        <h2 className="text-3xl font-black mb-4">Dostęp do Agenta</h2>
+                        <p className="text-white/40 mb-8 font-light">Zaloguj się, aby porozmawiać o Twoim projekcie. Twój brief zostanie bezpiecznie zapisany.</p>
+
+                        <form onSubmit={handleLogin} className="space-y-4">
+                            <div className="relative">
+                                <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-white/30" size={20} />
+                                <input
+                                    type="email"
+                                    placeholder="Twój adres email"
+                                    value={loginEmail}
+                                    onChange={(e) => setLoginEmail(e.target.value)}
+                                    className="w-full bg-black/30 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white placeholder:text-white/20 focus:border-blue-500/50 outline-none transition-all"
+                                    required
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                disabled={isLoginLoading}
+                                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {isLoginLoading ? 'Wysyłanie...' : 'Otrzymaj Link do Logowania'}
+                            </button>
+                        </form>
+
+                        {loginMessage && (
+                            <motion.p
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className={`mt-6 text-sm ${loginMessage.includes('Błąd') ? 'text-red-400' : 'text-green-400 font-bold'}`}
+                            >
+                                {loginMessage}
+                            </motion.p>
+                        )}
+                    </motion.div>
+                </div>
+            </Layout>
+        )
+    }
+
     return (
         <Layout>
             <section className="py-12 min-h-[calc(100vh-80px)] flex flex-col">
@@ -59,6 +161,12 @@ export default function AIAgent() {
                             Twój Wirtualny <br />
                             <span className="text-primary">Pracownik</span>
                         </h1>
+                        <button
+                            onClick={handleLogout}
+                            className="text-white/30 hover:text-white text-sm uppercase tracking-widest font-bold transition-colors"
+                        >
+                            Wyloguj się
+                        </button>
                     </div>
 
                     <div className="grid lg:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">

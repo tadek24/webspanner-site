@@ -100,7 +100,7 @@ export default function Layout({ children }) {
                             />
                         </Link>
                         <p className="text-white/50 text-sm leading-relaxed">
-                            Nowoczesna agencja interaktywna. Łączymy szybkość sztucznej inteligencji z niezawodnością platform WordPress i WooCommerce.
+                            Niezależny Ekspert Web Developmentu. Łączę szybkość sztucznej inteligencji z niezawodnością platform WordPress i WooCommerce.
                         </p>
                     </div>
                     <div className="flex flex-col gap-4">

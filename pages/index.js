@@ -158,25 +158,28 @@ export default function Home() {
                             <ul className="space-y-6">
                                 <li className="flex justify-between items-center border-b border-white/10 pb-4">
                                     <span className="text-xl font-bold">Allegro</span>
-                                    <span className="text-2xl font-black text-white/80">499 PLN</span>
+                                    <span className="text-2xl font-black text-white/80">od 1499 PLN</span>
                                 </li>
                                 <li className="flex justify-between items-center border-b border-white/10 pb-4">
                                     <span className="text-xl font-bold">Erli</span>
-                                    <span className="text-2xl font-black text-white/80">399 PLN</span>
+                                    <span className="text-2xl font-black text-white/80">od 1199 PLN</span>
                                 </li>
                                 <li className="flex justify-between items-center border-b border-white/10 pb-4">
                                     <span className="text-xl font-bold">Emag</span>
-                                    <span className="text-2xl font-black text-white/80">599 PLN</span>
+                                    <span className="text-2xl font-black text-white/80">od 1599 PLN</span>
                                 </li>
                                 <li className="flex justify-between items-center border-b border-white/10 pb-4">
                                     <span className="text-xl font-bold">Amazon</span>
-                                    <span className="text-2xl font-black text-white/80">2499 PLN</span>
+                                    <span className="text-2xl font-black text-white/80">od 2499 PLN</span>
                                 </li>
                                 <li className="flex justify-between items-center pt-2">
                                     <span className="text-xl font-bold text-white/50">Inne</span>
                                     <span className="text-lg font-bold text-white/50">Wycena indywidualna</span>
                                 </li>
                             </ul>
+                            <p className="text-white/20 text-xs mt-6 italic">
+                                *Podane ceny obejmują bazowe wdrożenie techniczne, mapowanie kategorii i konfigurację do 100 produktów. Zaawansowane integracje wyceniane indywidualnie.
+                            </p>
                         </div>
 
                         {/* Wystawianie Produktów */}
@@ -188,21 +191,21 @@ export default function Home() {
                             <div className="grid grid-cols-1 gap-4">
                                 <div className="p-6 bg-white/5 rounded-2xl border border-white/10 flex justify-between items-center">
                                     <div>
-                                        <div className="font-bold text-xl">Start</div>
+                                        <div className="font-bold text-xl">Pakiet Startowy</div>
                                         <div className="text-sm text-white/40">1-50 szt.</div>
                                     </div>
                                     <div className="text-3xl font-black">15 PLN<span className="text-sm text-white/30 font-normal">/szt</span></div>
                                 </div>
                                 <div className="p-6 bg-white/5 rounded-2xl border border-white/10 flex justify-between items-center border-l-4 border-l-purple-500">
                                     <div>
-                                        <div className="font-bold text-xl">Growth</div>
+                                        <div className="font-bold text-xl">Pakiet Profesjonalny</div>
                                         <div className="text-sm text-white/40">51-200 szt.</div>
                                     </div>
                                     <div className="text-3xl font-black">10 PLN<span className="text-sm text-white/30 font-normal">/szt</span></div>
                                 </div>
                                 <div className="p-6 bg-white/5 rounded-2xl border border-white/10 flex justify-between items-center">
                                     <div>
-                                        <div className="font-bold text-xl">Scale</div>
+                                        <div className="font-bold text-xl">Pakiet Premium</div>
                                         <div className="text-sm text-white/40">+200 szt.</div>
                                     </div>
                                     <div className="text-3xl font-black">7 PLN<span className="text-sm text-white/30 font-normal">/szt</span></div>
