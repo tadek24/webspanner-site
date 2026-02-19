@@ -37,7 +37,7 @@ export async function onRequestPost(context) {
         }
 
         // 2. Konfiguracja zapytania z osobnym polem system_instruction
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${env.GEMINI_API_KEY}`;
 
         const response = await fetch(url, {
             method: 'POST',
