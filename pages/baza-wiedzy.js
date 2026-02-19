@@ -1,4 +1,4 @@
-```javascript
+
 import Layout from '../components/Layout'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BookOpen, X } from 'lucide-react'
@@ -92,13 +92,13 @@ export default function KnowledgeBase() {
                                     className="bg-[#0D0221] border border-white/10 p-8 md:p-12 rounded-[32px] max-w-2xl w-full relative shadow-2xl"
                                     onClick={(e) => e.stopPropagation()}
                                 >
-                                    <button 
+                                    <button
                                         onClick={() => setSelectedArticle(null)}
                                         className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors"
                                     >
                                         <X size={32} />
                                     </button>
-                                    
+
                                     <span className="text-blue-500 text-xs font-black uppercase tracking-widest mb-4 block">
                                         {selectedArticle.category}
                                     </span>
@@ -110,8 +110,8 @@ export default function KnowledgeBase() {
                                             {selectedArticle.content}
                                         </p>
                                     </div>
-                                    
-                                    <button 
+
+                                    <button
                                         onClick={() => setSelectedArticle(null)}
                                         className="mt-10 px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-sm font-bold transition-all w-full md:w-auto"
                                     >
