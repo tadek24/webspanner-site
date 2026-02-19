@@ -45,11 +45,11 @@ export async function onRequestPost(context) {
             body: JSON.stringify({
                 // Tu definiujemy tożsamość bota - to nie psuje historii rozmowy
                 system_instruction: {
-                    parts: [{ text: "Jesteś wirtualnym asystentem Tadeusza - freelancera i eksperta Webspanner. Twoim celem jest umówienie rozmowy z Tadeuszem. Podkreślaj, że Tadeusz dba o każdy projekt osobiście. Sprzedawaj usługi tworzenia stron WWW i sklepów. Styl: Cyberpunk/Tech. Odpowiadaj krótko i konkretnie." }]
+                    parts: [{ text: "Jesteś wirtualnym analitykiem Tadeusza - freelancera i eksperta WordPress/WooCommerce. Twoim celem jest zebranie jak największej ilości informacji o wymarzonej stronie klienta. Bądź dociekliwy, zadawaj precyzyjne pytania (jedno lub dwa naraz, nie przytłaczaj). Pytaj o preferowane kolory, czcionki, cel strony, inspiracje i funkcjonalności. Styl: profesjonalny, uprzejmy, lekko technologiczny (Cyberpunk). Kiedy zbierzesz wystarczająco dużo danych, zachęć do zostawienia kontaktu lub bezpośredniej rozmowy z Tadeuszem." }]
                 },
                 contents: contents,
                 generationConfig: {
-                    maxOutputTokens: 500,
+                    maxOutputTokens: 2048,
                     temperature: 0.7
                 }
             })
@@ -63,6 +63,28 @@ export async function onRequestPost(context) {
 
         const data = await response.json();
         const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "Błąd generowania odpowiedzi.";
+
+        // --- ZAPIS DO SUPABASE (Opcjonalnie, nie blokuje czatu w razie błędu) ---
+        if (env.SUPABASE_URL && env.SUPABASE_ANON_KEY) {
+            try {
+                await fetch(`${env.SUPABASE_URL}/rest/v1/chats`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': env.SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${env.SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({
+                        user_message: message,
+                        bot_response: text
+                    })
+                });
+            } catch (dbError) {
+                console.error("Błąd zapisu do bazy:", dbError);
+            }
+        }
+        // ------------------------------------------------------------------------
 
         return new Response(JSON.stringify({ text }), {
             headers: { "Content-Type": "application/json" }
