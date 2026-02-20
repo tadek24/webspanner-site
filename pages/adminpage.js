@@ -13,8 +13,8 @@ import {
     Tag
 } from 'lucide-react';
 
-// KONFIGURACJA DOSTĘPU - zmień na swój e-mail
-const ALLOWED_EMAILS = ['kontakt@webspanner.pl', 'tadeusz@webspanner.pl'];
+// KONFIGURACJA DOSTĘPU - jedyny uprawniony adres
+const ALLOWED_EMAILS = ['tadekszkola24@gmail.com'];
 
 export default function AdminPage() {
     const [session, setSession] = useState(null);
@@ -26,10 +26,8 @@ export default function AdminPage() {
 
     useEffect(() => {
         checkUser();
-
-        if (currentTab === 'chats') {
-            fetchChats();
-        }
+        // Zawsze pobieraj rozmowy dla Dashboardu lub zakładki Chats
+        fetchChats();
     }, [currentTab]);
 
     async function checkUser() {
@@ -37,7 +35,6 @@ export default function AdminPage() {
 
         if (!session || !ALLOWED_EMAILS.includes(session.user.email)) {
             setLoading(false);
-            // Jeśli użytkownik jest zalogowany ale nie ma uprawnień
             if (session) {
                 setSession(session);
             }
@@ -86,7 +83,7 @@ export default function AdminPage() {
                     </div>
                     <h1 className="text-2xl font-bold text-gray-900 mb-2">Brak dostępu</h1>
                     <p className="text-gray-500 mb-8">
-                        Ten obszar jest zarezerwowany dla administratora. Zaloguj się na uprawnione konto, aby kontynuować.
+                        Ten obszar jest zarezerwowany dla administratora. Zaloguj się na konto <strong>{ALLOWED_EMAILS[0]}</strong>, aby kontynuować.
                     </p>
                     <button
                         onClick={() => router.push('/')}
@@ -102,24 +99,68 @@ export default function AdminPage() {
     return (
         <AdminLayout userEmail={session.user.email}>
             {currentTab === 'dashboard' && (
-                <div className="space-y-6">
+                <div className="space-y-8">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
                             <p className="text-sm font-medium text-gray-500 mb-1">Wszystkie rozmowy</p>
-                            <h3 className="text-3xl font-bold text-gray-900">{chats.length || '...'}</h3>
+                            <h3 className="text-3xl font-bold text-gray-900">{chats.length}</h3>
                         </div>
-                        {/* Statystyki można rozbudować */}
                     </div>
 
                     <div className="bg-blue-600 rounded-3xl p-8 text-white relative overflow-hidden">
                         <div className="relative z-10">
-                            <h2 className="text-2xl font-bold mb-2">Witaj w centrum dowodzenia!</h2>
+                            <h2 className="text-2xl font-bold mb-2">Witaj, Tadeusz!</h2>
                             <p className="text-blue-100 max-w-md">
-                                Tutaj możesz zarządzać treścią strony oraz monitorować interakcje klientów z Twoim AI Agentem.
+                                Twoje centrum dowodzenia Webspanner jest gotowe. Poniżej znajdziesz ostatnie interakcje z Twoim AI Agentem.
                             </p>
                         </div>
                         <div className="absolute top-0 right-0 p-8 opacity-20">
                             <BarChart3 size={120} />
+                        </div>
+                    </div>
+
+                    {/* Sekcja Rozmowy AI bezpośrednio w Dashboardzie */}
+                    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                        <div className="p-6 border-b border-gray-50 flex justify-between items-center">
+                            <h3 className="font-bold text-gray-900">Ostatnie Rozmowy AI</h3>
+                            <button onClick={() => router.push('/adminpage?tab=chats')} className="text-sm text-blue-600 font-bold hover:underline">Zobacz wszystkie</button>
+                        </div>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="bg-gray-50 border-b border-gray-100">
+                                        <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest">Data</th>
+                                        <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest">Użytkownik</th>
+                                        <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest">Wiadomość</th>
+                                        <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest">Odpowiedź</th>
+                                        <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest w-20 text-center">Akcje</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-100">
+                                    {chats.slice(0, 10).map((chat) => (
+                                        <tr key={chat.id} className="hover:bg-gray-50 transition-colors">
+                                            <td className="p-4 text-sm text-gray-500 whitespace-nowrap">
+                                                {new Date(chat.created_at).toLocaleString('pl-PL')}
+                                            </td>
+                                            <td className="p-4 text-sm text-gray-900 font-medium">Klient</td>
+                                            <td className="p-4 text-sm text-gray-600 max-w-xs truncate">
+                                                {chat.user_message}
+                                            </td>
+                                            <td className="p-4 text-sm text-gray-600 max-w-sm truncate">
+                                                {chat.bot_response}
+                                            </td>
+                                            <td className="p-4 text-center">
+                                                <button
+                                                    onClick={() => deleteChat(chat.id)}
+                                                    className="p-2 text-gray-400 hover:text-red-600 transition-colors"
+                                                >
+                                                    <Trash2 size={16} />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
