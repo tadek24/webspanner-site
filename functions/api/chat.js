@@ -80,9 +80,8 @@ export async function onRequestPost(context) {
                         bot_response: text
                     })
                 });
-                console.log("Zapisano pomyślnie");
             } catch (dbError) {
-                console.error("Błąd zapisu do bazy:", dbError);
+                console.error("Błąd zapisu:", dbError);
             }
         }
 

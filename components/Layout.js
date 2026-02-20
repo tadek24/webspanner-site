@@ -17,7 +17,7 @@ export default function Layout({ children }) {
 
     return (
         <div className="min-h-screen flex flex-col bg-[#0D0221]">
-            <header className="fixed top-0 w-full z-50 bg-[#050512]/80 backdrop-blur-md border-b border-white/10">
+            <header className="fixed top-0 left-0 right-0 w-full z-50 bg-[#0D0221] border-b border-white/10">
                 <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
                     <Link href="/" className="group">
                         <Image
@@ -60,7 +60,7 @@ export default function Layout({ children }) {
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="md:hidden fixed inset-0 z-50 flex flex-col items-center justify-center gap-8 bg-slate-900/95 backdrop-blur-xl"
+                        className="md:hidden fixed inset-0 z-[60] flex flex-col items-center justify-center gap-8 bg-[#0D0221]"
                     >
                         {navLinks.map((link) => (
                             <Link

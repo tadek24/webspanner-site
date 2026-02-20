@@ -10,28 +10,32 @@ export default function Portfolio() {
             desc: "Projekt to przykład tego, jak nowoczesny design WordPress może budować nastrój luksusu i spokoju. Platforma została oparta na koncepcji \"Lifestyle UX\". Wykorzystaliśmy wysokiej jakości zdjęcia w układzie full-screen, które w połączeniu z subtelnymi animacjami reveal, tworzą spójną opowieść o komforcie życia na zewnątrz.",
             img: "/sandey.png",
             category: "Health & Beauty",
-            zalety: ["Lifestyle UX", "Full-screen Design", "Mobile-First"]
+            zalety: ["Lifestyle UX", "Full-screen Design", "Mobile-First"],
+            url: "https://sandey.pl"
         },
         {
             title: "Sklep Rapdach - E-commerce",
             desc: "Sklep to technologiczne wyzwanie, któremu sprostaliśmy dzięki głębokiej optymalizacji WooCommerce. System obsługuje tysiące wariantów produktów, zachowując błyskawiczną szybkość ładowania. Wdrożyliśmy zaawansowane mechanizmy filtrowania i zintegrowaliśmy całość z systemami płatności i logistyki.",
             img: "/sklep-rapdach.png",
             category: "Industrial E-commerce",
-            zalety: ["Optymalizacja WooCommerce", "1000+ Wariantów", "Integracje Logistyczne"]
+            zalety: ["Optymalizacja WooCommerce", "1000+ Wariantów", "Integracje Logistyczne"],
+            url: "https://sklep.rapdach.com"
         },
         {
             title: "Rapdach - Strona Korporacyjna",
             desc: "Projekt to manifestacja luksusu w branży przemysłowej. Strona lidera balustrad zaprojektowana w minimalistycznym stylu, podkreślającym surową elegancję stali i szkła. Inżynieryjne podejście do kodu zaowocowało rekordowymi wynikami w Core Web Vitals, co przekłada się na pozycjonowanie B2B.",
             img: "/rapdach.png",
             category: "Corporate B2B",
-            zalety: ["Core Web Vitals", "Minimalizm", "SEO B2B"]
+            zalety: ["Core Web Vitals", "Minimalizm", "SEO B2B"],
+            url: "https://rapdach.com"
         },
         {
             title: "WildHome - Sklep Zoologiczny",
             desc: "Potężna maszyna sprzedażowa operująca na ogromnym asortymencie. Skoncentrowaliśmy się na optymalizacji konwersji poprzez mechanizmy up-sellingu i cross-sellingu wbudowanych w karty produktów. System połączono z platformami opinii i systemem lojalnościowym.",
             img: "/wildhome.png",
             category: "High-Volume Retail",
-            zalety: ["Conversion Rate Optimization", "Cross-selling", "System Lojalnościowy"]
+            zalety: ["Conversion Rate Optimization", "Cross-selling", "System Lojalnościowy"],
+            url: "https://wildhome.pl"
         }
     ]
 
@@ -84,6 +88,16 @@ export default function Portfolio() {
                                             </span>
                                         ))}
                                     </div>
+
+                                    <a
+                                        href={project.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-sm hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all hover:scale-105"
+                                    >
+                                        <ExternalLink size={16} />
+                                        Zobacz projekt
+                                    </a>
                                 </div>
                             </motion.div>
                         ))}
