@@ -36,6 +36,14 @@ export default function Portfolio() {
             category: "High-Volume Retail",
             zalety: ["Conversion Rate Optimization", "Cross-selling", "System Lojalnościowy"],
             url: "https://wildhome.pl"
+        },
+        {
+            title: "Vellisse - Premium E-commerce",
+            desc: "Sklep e-commerce klasy premium z bielizną erotyczną. Projekt skoncentrowany na estetyce, optymalizacji ścieżki zakupowej oraz pełnej responsywności. Dopracowana typografia i galerie produktowe tworzą ekskluzywne doświadczenie zakupowe na każdym urządzeniu.",
+            img: "/vellisse.png",
+            category: "Premium E-commerce",
+            zalety: ["Estetyka Premium", "Optymalizacja Konwersji", "Pełna Responsywność"],
+            url: "https://vellisse.pl"
         }
     ]
 
