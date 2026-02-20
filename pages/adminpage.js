@@ -33,7 +33,7 @@ export default function AdminPage() {
     async function checkUser() {
         const { data: { session } } = await supabase.auth.getSession();
 
-        if (!session || !ALLOWED_EMAILS.includes(session.user.email)) {
+        if (!session || !session.user || !ALLOWED_EMAILS.includes(session.user.email.toLowerCase().trim())) {
             setLoading(false);
             if (session) {
                 setSession(session);
