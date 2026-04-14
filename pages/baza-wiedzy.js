@@ -8,28 +8,16 @@ export default function KnowledgeBase() {
 
     const articles = [
         {
-            title: "Synergia AI i WordPress w 2026",
-            excerpt: "Jak sztuczna inteligencja zmienia zasady gry w tworzeniu stron.",
-            content: "Integracja sztucznej inteligencji z systemem WordPress całkowicie zmienia zasady gry w tworzeniu stron WWW. Wykorzystanie modeli generatywnych pozwala na automatyzację tworzenia treści, inteligentne kategoryzowanie produktów oraz personalizację doświadczeń użytkownika w czasie rzeczywistym. Dzięki API, nowoczesne strony potrafią same optymalizować swój kod pod kątem SEO i analizować zachowania klientów, znacznie odciążając administratorów.",
-            category: "Technologia"
+            title: "BaseLinker vs Apilo - co wybrać dla Twojego biznesu?",
+            excerpt: "Zestawienie najpopularniejszych systemów ERP/Multichannel do obsługi polskiego e-commerce.",
+            content: "Oba systemy – BaseLinker oraz Apilo – oferują potężne narzędzia do automatyzacji sprzedaży na wielu kanałach jednocześnie (Allegro, Amazon, eMAG, własny sklep). \n\nBaseLinker jest niekwestionowanym liderem jeśli chodzi o prostotę integracji, intuicyjność automatyzacji i liczbę dostępnych wtyczek zewnętrznych. Szybko podepniesz tam kurierów i hurtownie. \n\nApilo (wcześniej ErpBox) zyskało uznanie po przejęciu przez Shoper. Wypada znacznie lepiej w firmach o bardzo złożonej i rozbudowanej strukturze magazynowej. Wykazuje większą elastyczność przy specyficznie konfigurowanych produktach oraz zagnieżdżonych strukturach wielkogabarytowych. \n\nWybór powinien być uzależniony od stopnia skomplikowania Twojej gospodarki magazynowej.",
+            category: "Systemy i Integracje"
         },
         {
-            title: "Optymalizacja konwersji dzięki Agentom",
-            excerpt: "Dlaczego tradycyjne chaty to przeszłość.",
-            content: "Tradycyjne chaty tekstowe to przeszłość. Wdrożenie inteligentnych Agentów AI, potrafiących prowadzić naturalną konwersację i analizować intencje zakupowe, drastycznie podnosi współczynnik konwersji (CR). Agent pełni rolę wirtualnego doradcy dostępnego 24/7, który nie tylko odpowiada na pytania, ale proaktywnie proponuje rozwiązania, skutecznie zamykając proces sprzedaży.",
-            category: "E-commerce"
-        },
-        {
-            title: "Bezpieczeństwo w chmurze Cloudflare",
-            excerpt: "Fundament stabilnego biznesu online.",
-            content: "W dobie zaawansowanych cyberataków, oparcie infrastruktury o globalną sieć Cloudflare to fundament stabilnego biznesu online. Zastosowanie mechanizmów Edge Computing, WAF (Web Application Firewall) oraz automatycznej ochrony przed atakami DDoS gwarantuje, że Twój sklep WooCommerce wytrzyma każde obciążenie i odpór złośliwego ruchu, zanim dotrze on do Twojego serwera.",
-            category: "Security"
-        },
-        {
-            title: "E-commerce nowej generacji",
-            excerpt: "Headless WordPress i szybkość poniżej 1 sekundy.",
-            content: "Nowoczesny handel w internecie wymaga elastyczności, jakiej nie dają klasyczne szablony. Przejście na architekturę opartą o szybkie frameworki frontendowe spięte z backendem WooCommerce (podejście headless) pozwala na osiągnięcie ładowania strony poniżej 1 sekundy. W dobie mobile-first, to właśnie ekstremalna wydajność i natychmiastowa reakcja interfejsu decydują o przewadze nad konkurencją.",
-            category: "Architektura"
+            title: "Ekspansja na Marketplace: Allegro, Amazon, eMAG i Erli - kompletny przewodnik",
+            excerpt: "Gdy polski sklep to za mało. Jak mądrze skalować biznes dzięki platformom sprzedażowym.",
+            content: "Wyjście poza własny sklep to naturalny krok rozwoju każdego e-commerce. W Polsce bazą i must-have pozostaje Allegro, które pomimo wysokich prowizji, generuje ułamkową barierę wejścia dla kupujących z pakietem Smart. \n\nRosnącym w siłę rywalem jest Erli - oferujące mniejsze opłaty dla sprzedawców, dzięki czemu firmy dysponujące minimalną marżą mogą tu odetchnąć. \n\nW przypadku planowania ekspansji w regionie CEE (Central and Eastern Europe) niezastąpiony staje się eMAG (lider w Rumunii, rosnący w Bułgarii i Węgrzech). \n\nZ kolei Amazon to brama na Europę Zachodnią i USA, wymagająca jednak ekstremalnie pilnego przestrzegania wskaźników jakościowych (Account Health) oraz perfekcyjnego wdrożenia systemów podatkowych OSS. Zdecydowanie nie zaleca się wchodzenia na Amazon \"z marszu\" bez uprzedniej strategii.",
+            category: "Strategia i Skalowanie"
         }
     ]
 
@@ -44,7 +32,7 @@ export default function KnowledgeBase() {
                     >
                         <h1 className="text-5xl md:text-8xl font-black mb-8 italic text-gray-900">Baza Wiedzy</h1>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
-                            Dzielę się tym, co działa. Konkretna wiedza bez lania wody.
+                            Praktyczne poradniki i analizy eksperckie dla świadomych decydentów E-commerce w 2026.
                         </p>
                     </motion.div>
 
@@ -88,33 +76,33 @@ export default function KnowledgeBase() {
                                     initial={{ scale: 0.9, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
                                     exit={{ scale: 0.9, opacity: 0 }}
-                                    className="bg-white border border-gray-200 p-8 md:p-12 rounded-[32px] max-w-2xl w-full relative shadow-2xl"
+                                    className="bg-white border border-gray-200 p-8 md:p-12 rounded-[32px] max-w-3xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl custom-scrollbar"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <button
                                         onClick={() => setSelectedArticle(null)}
-                                        className="absolute top-6 right-6 text-gray-400 hover:text-gray-900 transition-colors"
+                                        className="absolute top-6 right-6 text-gray-400 hover:text-gray-900 transition-colors bg-gray-100 p-2 rounded-full"
                                     >
-                                        <X size={32} />
+                                        <X size={24} />
                                     </button>
 
-                                    <span className="text-blue-600 text-xs font-black uppercase tracking-widest mb-4 block">
+                                    <span className="text-blue-600 text-xs font-black uppercase tracking-widest mb-4 block mt-4">
                                         {selectedArticle.category}
                                     </span>
                                     <h2 className="text-3xl md:text-4xl font-black mb-8 leading-tight text-gray-900">
                                         {selectedArticle.title}
                                     </h2>
-                                    <div className="prose prose-lg max-w-none">
-                                        <p className="text-gray-600 font-light leading-relaxed">
-                                            {selectedArticle.content}
-                                        </p>
+                                    <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                                        {selectedArticle.content.split('\n\n').map((paragraph, i) => (
+                                            <p key={i} className="mb-6">{paragraph}</p>
+                                        ))}
                                     </div>
 
                                     <button
                                         onClick={() => setSelectedArticle(null)}
                                         className="mt-10 px-8 py-3 bg-gray-100 hover:bg-gray-200 border border-gray-200 text-gray-900 rounded-xl text-sm font-bold transition-all w-full md:w-auto"
                                     >
-                                        Zamknij
+                                        Zamknij Panel
                                     </button>
                                 </motion.div>
                             </motion.div>

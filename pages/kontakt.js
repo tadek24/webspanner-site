@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, Loader2, CheckCircle2 } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
 import { useState } from 'react'
 
 export default function Kontakt() {
@@ -120,6 +120,7 @@ export default function Kontakt() {
                                 <input
                                     type="text"
                                     placeholder="Temat"
+                                    required
                                     value={formData.subject}
                                     onChange={e => setFormData({...formData, subject: e.target.value})}
                                     className="w-full bg-white border border-gray-200 rounded-2xl p-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
@@ -135,21 +136,22 @@ export default function Kontakt() {
 
                                 <button 
                                     disabled={status === 'loading'}
-                                    className="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed hover:scale-[1.02] transition-all"
+                                    className="w-full bg-purple-600 hover:bg-blue-700 text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed hover:scale-[1.02] transition-colors"
                                 >
-                                    {status === 'loading' ? <Loader2 size={20} className="animate-spin" /> : <Send size={20} />}
+                                    {status === 'loading' ? <Loader2 size={20} className="animate-spin text-white" /> : <Send size={20} className="text-white" />}
                                     Wyślij Wiadomość
                                 </button>
                                 
                                 {status === 'success' && (
                                     <div className="p-4 bg-green-50 border border-green-200 text-green-700 rounded-2xl flex items-center gap-3 font-medium">
-                                        <CheckCircle2 size={20} />
-                                        Wiadomość została wysłana! Dziękuję za kontakt.
+                                        <CheckCircle2 size={24} className="shrink-0" />
+                                        Wiadomość została pomyślnie wysłana! Odezwiemy się najszybciej jak to możliwe.
                                     </div>
                                 )}
                                 {status === 'error' && (
-                                    <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-2xl text-sm font-medium">
-                                        Wystąpił błąd. Upewnij się, że serwer SMTP jest skofigurowany.
+                                    <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-2xl flex items-center gap-3 text-sm font-medium">
+                                        <AlertCircle size={24} className="shrink-0" />
+                                        Wystąpił problem z połączeniem z serwerem. Upewnij się, że poprawnie wpisałeś dane lub spróbuj ponownie za chwilę.
                                     </div>
                                 )}
                             </form>

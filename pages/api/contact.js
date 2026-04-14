@@ -12,40 +12,37 @@ export default async function handler(req, res) {
     }
 
     try {
-        // Konfiguracja SMTP
-        // W razie problemów testowych wstaw swój pełny testowy email w user i poprawne hasło
         const transporter = nodemailer.createTransport({
             host: 's143.cyber-folks.pl',
             port: 465,
             secure: true,
             auth: {
-                user: process.env.SMTP_USER || 'kontakt@webspanner.pl',
-                pass: process.env.SMTP_PASS || 'athvgK',
+                user: 'kontakt@webspanner.pl',
+                pass: process.env.SMTP_PASS, // Hasło np. athvgK będzie pochodzić z serwera Vercel
             },
         });
 
         const mailOptions = {
-            from: process.env.SMTP_USER || 'kontakt@webspanner.pl',
-            to: process.env.SMTP_USER || 'kontakt@webspanner.pl', // Wysyłasz do siebie
+            from: 'kontakt@webspanner.pl', // SMTP blokuje zewnętrzne wysyłki, więc musimy słać ze swojego konta
+            to: 'kontakt@webspanner.pl',
             replyTo: email,
-            subject: `Nowa wiadomość ze strony: ${subject || 'Brak tematu'}`,
-            text: `Wiadomość od: ${name} (${email})\n\nTreść:\n${message}`,
+            subject: `[Formularz webspanner.pl]: ${subject || 'Nowe zapytanie'}`,
+            text: `Od: ${name} (${email})\n\nTreść:\n${message}`,
             html: `<div style="font-family: sans-serif; padding: 20px;">
-                    <h2>Nowa wiadomość ze strony</h2>
+                    <h2 style="color: #6B21A8;">Nowa wiadomość z formularza kontaktowego</h2>
                     <p><strong>Imię i nazwisko:</strong> ${name}</p>
-                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Email klienta:</strong> ${email}</p>
                     <p><strong>Temat:</strong> ${subject}</p>
                     <hr/>
                     <p><strong>Treść:</strong></p>
-                    <p style="white-space: pre-wrap;">${message}</p>
+                    <p style="white-space: pre-wrap; background: #f9f9f9; padding: 15px; border-left: 4px solid #6B21A8;">${message}</p>
                    </div>`
         };
 
         await transporter.sendMail(mailOptions);
-
         res.status(200).json({ message: 'Wiadomość wysłana pomyślnie!' });
     } catch (error) {
-        console.error('SMTP Error:', error);
-        res.status(500).json({ message: 'Wystąpił błąd podczas wysyłania wiadomości.', error: error.message });
+        console.error('Błąd wysyłania SMTP:', error);
+        res.status(500).json({ message: 'Błąd logowania do serwera SMTP', error: error.message });
     }
 }
