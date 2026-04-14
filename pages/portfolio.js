@@ -6,6 +6,14 @@ import Image from 'next/image'
 export default function Portfolio() {
     const projects = [
         {
+            title: "Z.Rejman - Sklep Meblowy",
+            desc: "Nowoczesny e-commerce z branży meblarskiej, oferujący stylowe łóżka i fotele tapicerowane. Skupienie na UX i wysokiej jakości prezentacji produktów.",
+            img: "/ztrejman-sklep.png",
+            category: "E-commerce & UX",
+            zalety: ["Product Design", "Zoptymalizowany Checkout", "High-End UX"],
+            url: "https://ztrejman-sklep.pl/"
+        },
+        {
             title: "Sandey - Beauty & Spa Booking",
             desc: "Projekt to przykład tego, jak nowoczesny design WordPress może budować nastrój luksusu i spokoju. Platforma została oparta na koncepcji \"Lifestyle UX\". Wykorzystaliśmy wysokiej jakości zdjęcia w układzie full-screen, które w połączeniu z subtelnymi animacjami reveal, tworzą spójną opowieść o komforcie życia na zewnątrz.",
             img: "/sandey.png",
