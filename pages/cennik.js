@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
-import { Check, Columns, Store, Building, Globe, Star, Plus } from 'lucide-react'
+import { Check, Columns, Store, Building, Globe, Star, Plus, PhoneCall } from 'lucide-react'
 
 export default function Pricing() {
     const plans = [
@@ -15,7 +15,7 @@ export default function Pricing() {
                 'Podstawowe SEO',
                 'Optymalizacja szybkości ładowania',
             ],
-            color: 'border-gray-200 bg-white',
+            color: 'border-gray-200 bg-white shadow-sm',
             buttonColor: 'bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-200'
         },
         {
@@ -29,8 +29,8 @@ export default function Pricing() {
                 'Integracja z Google Maps',
                 'Wdrożenie Google Analytics / Tag Manager',
             ],
-            color: 'border-gray-200 bg-white',
-            buttonColor: 'bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200'
+            color: 'border-gray-200 bg-white shadow-sm',
+            buttonColor: 'bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-100'
         },
         {
             name: 'E-commerce Start',
@@ -43,63 +43,87 @@ export default function Pricing() {
                 'Konfiguracja 1 dostawcy/kuriera',
                 'Panel zarządzania produktami CMS',
             ],
-            color: 'border-green-500 border-2 shadow-2xl bg-white scale-100 md:scale-105 z-10 relative',
-            buttonColor: 'bg-green-600 hover:bg-green-700 text-white shadow-lg',
-            popular: true,
+            color: 'border-gray-200 bg-white shadow-sm',
+            buttonColor: 'bg-green-600 hover:bg-green-700 text-white'
         },
         {
             name: 'E-commerce Pro',
             price: 'Od 5990 zł',
             desc: 'Zaawansowany Biznes B2C',
-            icon: <Star className="text-primary" />,
+            icon: <Star className="text-purple-600" />,
             features: [
                 'Sklep o krytycznie wysokiej wydajności',
                 'Zaawansowane mechanizmy filtrowania',
                 'Integracja z systemami fakturowymi (np. Fakturownia)',
                 'Ratowanie porzuconych koszyków',
             ],
-            color: 'border-gray-200 bg-white',
-            buttonColor: 'bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20'
+            color: 'border-[#7C3AED] border-2 shadow-2xl bg-white scale-100 md:scale-105 z-10 relative',
+            buttonColor: 'bg-[#7C3AED] hover:bg-[#6D28D9] text-white shadow-lg',
+            popular: true,
         },
         {
             name: 'Custom Solutions',
             price: 'Indywidualnie',
             desc: 'Dedykowane aplikacje',
-            icon: <Globe className="text-purple-900" />,
+            icon: <Globe className="text-gray-900" />,
             features: [
                 'Dedykowane aplikacje we frameworku Next.js',
                 'Architektura Headless CMS',
                 'Nietypowe integracje oprogramowania PIM/ERP',
                 'Pełna globalna skalowalność',
             ],
-            color: 'border-gray-200 bg-gray-50',
-            buttonColor: 'bg-gray-900 hover:bg-black text-white'
+            color: 'border-gray-200 bg-black shadow-xl text-white',
+            buttonColor: 'bg-white hover:bg-gray-100 text-black border border-gray-200',
+            dark: true
         },
     ]
 
     const addOns = [
-        { title: 'Wdrożenie Marketplace', desc: 'Integracja sprzedaży i przygotowanie ofert na platformach: Allegro, Erli, eMAG, Amazon.' },
-        { title: 'Integracja BaseLinker / Apilo', desc: 'Zaawansowana konfiguracja systemów wspomagających multichannel i automatyzacje logistyczne.' },
-        { title: 'Tworzenie opisów produktów', desc: 'Unikalny, zoptymalizowany pod kątem SEO (copywriting) i konwersji tekst sprzedażowy.' },
-        { title: 'Sesje zdjęciowe produktów', desc: 'Współpraca fotograficzna – tworzenie packshotów i lifestylowych galerii wizualnych asortymentu.' },
+        { title: 'Wdrożenie Allegro / Erli / eMAG', price: 'Od 1499 zł', desc: 'Integracja sprzedaży i przygotowanie bazowych ofert na czołowych platformach w oparciu o regulaminy kanałów.' },
+        { title: 'Pełna obsługa Amazon', price: 'Od 2999 zł', desc: 'Zaawansowane wejście na rynki DE/UK/USA, wsparcie przy Account Health i analizie popytu.' },
+        { title: 'Integracja BaseLinker / Apilo', price: 'Od 999 zł', desc: 'Skomplikowana konfiguracja systemów wspomagających multichannel i tworzenie zautomatyzowanych akcji.' },
+        { title: 'Tworzenie opisów produktów SEO', price: 'Od 49 zł / szt.', desc: 'Unikalny i zoptymalizowany pod kątem strategii pozycjonowania (copywriting) tekst sprzedażowy.' },
     ]
 
     return (
         <Layout>
             <section className="py-24 bg-gray-50 min-h-screen">
                 <div className="container mx-auto px-6">
+                    
+                    {/* Baner Kontaktowy na górze */}
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mb-16 bg-[#7C3AED] text-white p-6 md:p-8 rounded-[32px] flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl"
+                    >
+                        <div className="flex items-center gap-4">
+                             <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shrink-0">
+                                 <PhoneCall size={28} className="text-white" />
+                             </div>
+                             <div>
+                                 <h2 className="text-xl font-bold mb-1">Skonsultuj projekt bez zobowiązań</h2>
+                                 <p className="text-purple-100 font-medium text-sm">Zadzwoń do mnie bezpośrednio na numer komórkowy.</p>
+                             </div>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-4 items-center">
+                            <a href="tel:+48727469410" className="text-2xl font-black whitespace-nowrap">+48 727 469 410</a>
+                            <span className="hidden sm:block text-purple-300">|</span>
+                            <a href="mailto:kontakt@webspanner.pl" className="text-xl font-bold whitespace-nowrap hover:text-purple-200 transition-colors">kontakt@webspanner.pl</a>
+                        </div>
+                    </motion.div>
+
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-center mb-24"
+                        className="text-center mb-20"
                     >
-                        <h1 className="text-5xl md:text-7xl font-black mb-8 italic text-gray-900">Tworzymy Strony i Sklepy</h1>
+                        <h1 className="text-5xl md:text-7xl font-black mb-8 italic text-gray-900">Przemyślane Ceny</h1>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
-                            Bez względu na próg wejścia, otrzymasz produkt zbudowany wedle najwyższych standardów inżynierii i designu.
+                            Bez względu na próg wejścia, otrzymasz stabilny produkt zbudowany wedle rygorów inżynierii programowania.
                         </p>
                     </motion.div>
 
-                    <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-6 items-center mb-32">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 items-center mb-32">
                         {plans.map((plan, index) => (
                             <motion.div
                                 key={plan.name}
@@ -109,24 +133,24 @@ export default function Pricing() {
                                 className={`flex flex-col rounded-3xl p-8 border ${plan.color} h-full`}
                             >
                                 {plan.popular && (
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-1.5 bg-green-500 text-white rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg">
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-1.5 bg-[#7C3AED] text-white rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg whitespace-nowrap">
                                         Najczęstszy Wybór
                                     </div>
                                 )}
-                                <div className="mb-8 mt-2 text-center">
-                                    <div className="w-14 h-14 rounded-2xl bg-white border border-gray-100 flex items-center justify-center mb-6 mx-auto shadow-sm">
+                                <div className="mb-8 mt-4 text-center">
+                                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 mx-auto ${plan.dark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-100 shadow-sm'} `}>
                                         {plan.icon}
                                     </div>
-                                    <h3 className="text-xl font-black mb-2 text-gray-900">{plan.name}</h3>
-                                    <p className="text-gray-500 text-xs mb-6 h-8 flex items-center justify-center">{plan.desc}</p>
-                                    <div className="text-2xl font-black tracking-tighter text-gray-900">{plan.price}</div>
+                                    <h3 className={`text-xl font-black mb-2 ${plan.dark ? 'text-white' : 'text-gray-900'}`}>{plan.name}</h3>
+                                    <p className={`text-xs mb-6 h-8 flex items-center justify-center ${plan.dark ? 'text-gray-400' : 'text-gray-500'}`}>{plan.desc}</p>
+                                    <div className={`text-3xl font-black tracking-tighter ${plan.dark ? 'text-white' : 'text-gray-900'}`}>{plan.price}</div>
                                 </div>
 
-                                <ul className="space-y-4 mb-8 flex-grow">
+                                <ul className="space-y-4 mb-10 flex-grow">
                                     {plan.features.map((feature, i) => (
-                                        <li key={i} className="flex gap-3 text-xs text-gray-600 items-start">
-                                            <div className="w-4 h-4 rounded-full bg-blue-50 flex items-center justify-center shrink-0 mt-0.5">
-                                                <Check size={10} className="text-blue-600" />
+                                        <li key={i} className={`flex gap-3 text-xs items-start font-medium ${plan.dark ? 'text-gray-300' : 'text-gray-600'}`}>
+                                            <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-[-2px] ${plan.dark ? 'bg-gray-800' : 'bg-gray-100'}`}>
+                                                <Check size={12} className={plan.dark ? 'text-white' : 'text-[#7C3AED]'} />
                                             </div>
                                             <span className="leading-snug">{feature}</span>
                                         </li>
@@ -135,33 +159,38 @@ export default function Pricing() {
 
                                 <a href="/kontakt">
                                     <button
-                                        className={`w-full py-4 rounded-xl font-bold transition-all text-sm mt-auto ${plan.buttonColor}`}
+                                        className={`w-full py-4 rounded-xl font-bold transition-all text-sm mt-auto shadow-sm ${plan.buttonColor}`}
                                     >
-                                        Wybierz
+                                        Zamów Wycenę
                                     </button>
                                 </a>
                             </motion.div>
                         ))}
                     </div>
 
-                    {/* Sekcja Usługi Dodatkowe */}
+                    {/* Sekcja Usługi Dodatkowe z Cennikiem */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         className="p-10 md:p-16 bg-white rounded-[40px] border border-gray-200 shadow-xl"
                     >
-                        <h2 className="text-3xl font-black mb-10 text-gray-900 flex items-center gap-4">
-                            <Plus className="text-primary bg-primary/10 rounded-lg p-1" size={36} /> 
-                            Usługi Dodatkowe
+                        <h2 className="text-3xl font-black mb-12 text-gray-900 flex items-center gap-4">
+                            <Plus className="text-white bg-[#7C3AED] rounded-xl p-2 shadow-md" size={40} /> 
+                            Usługi Dodatkowe E-commerce
                         </h2>
                         
-                        <div className="grid md:grid-cols-2 gap-8">
+                        <div className="grid md:grid-cols-2 gap-10">
                             {addOns.map((addon, index) => (
-                                <div key={index} className="flex items-start gap-4">
-                                    <div className="w-2 h-2 rounded-full bg-secondary mt-2.5 shrink-0" />
+                                <div key={index} className="flex items-start gap-4 p-6 bg-gray-50 rounded-3xl border border-gray-100 hover:border-[#7C3AED]/30 transition-all">
+                                    <div className="w-2 h-2 rounded-full bg-[#7C3AED] mt-2.5 shrink-0" />
                                     <div>
-                                        <h4 className="text-lg font-bold text-gray-900 mb-2">{addon.title}</h4>
+                                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
+                                             <h4 className="text-lg font-bold text-gray-900 leading-tight">{addon.title}</h4>
+                                             <span className="inline-block bg-white border border-gray-200 px-3 py-1 rounded-lg text-sm font-black whitespace-nowrap text-[#7C3AED] shadow-sm">
+                                                 {addon.price}
+                                             </span>
+                                        </div>
                                         <p className="text-gray-600 text-sm leading-relaxed">{addon.desc}</p>
                                     </div>
                                 </div>

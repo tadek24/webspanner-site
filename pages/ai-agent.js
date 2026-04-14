@@ -158,7 +158,7 @@ export default function AIAgent() {
                                          <button
                                              type="submit"
                                              disabled={isLoginLoading}
-                                             className="w-full bg-gray-900 hover:bg-black text-white font-bold py-3 rounded-xl transition-all disabled:opacity-50 text-sm shadow-md"
+                                             className="w-full bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold py-3 rounded-xl transition-all disabled:opacity-50 text-sm shadow-md"
                                          >
                                              {isLoginLoading ? 'Wysyłanie...' : 'Otrzymaj Link do Logowania'}
                                          </button>

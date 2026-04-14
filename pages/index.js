@@ -21,7 +21,7 @@ export default function Home() {
                     >
                         <h1 className="text-6xl md:text-9xl font-black mb-8 tracking-tighter leading-tight italic text-gray-900">
                             Twój Sklep Śpi.<br />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                            <span className="text-[#7C3AED]">
                                 Moje AI Sprzedaje.
                             </span>
                         </h1>
@@ -29,20 +29,20 @@ export default function Home() {
                             Tworzę ultra-szybkie strony na WordPress i sklepy WooCommerce. Oraz wdrażam Twoją sprzedaż na największe platformy w Polsce i za granicą.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                            <Link href="/ai-agent">
+                            <Link href="/kontakt">
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="px-12 py-5 bg-gradient-to-r from-primary to-secondary rounded-2xl font-black text-xl hover:shadow-[0_0_40px_rgba(37,99,235,0.4)] transition-all flex items-center justify-center gap-3 w-full sm:w-auto text-white"
+                                    className="px-12 py-5 bg-[#7C3AED] hover:bg-[#6D28D9] rounded-xl font-bold text-xl text-white transition-colors flex items-center justify-center w-full sm:w-auto shadow-lg"
                                 >
-                                    <Rocket size={24} /> Rozpocznij Projekt
+                                    Napisz do mnie
                                 </motion.button>
                             </Link>
                             <Link href="/portfolio">
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="px-12 py-5 glass rounded-2xl font-black text-xl hover:bg-gray-100 transition-all border border-gray-200 w-full sm:w-auto text-gray-900 hover:text-primary italic"
+                                    className="px-12 py-5 bg-white border border-gray-200 hover:bg-gray-50 rounded-xl font-bold text-xl text-gray-900 transition-colors w-full sm:w-auto shadow-sm"
                                 >
                                     Moje Realizacje
                                 </motion.button>
@@ -68,17 +68,17 @@ export default function Home() {
                     <div className="grid md:grid-cols-3 gap-8">
                         {[
                             {
-                                icon: <Zap className="text-blue-500" size={40} />,
+                                icon: <Zap className="text-[#7C3AED]" size={40} />,
                                 title: "Zero-Click Commerce",
                                 desc: "Boty prowadzą klienta od pytania do zakupu. Twoja rola ogranicza się do wysyłki towaru."
                             },
                             {
-                                icon: <Cpu className="text-purple-600" size={40} />,
+                                icon: <Cpu className="text-[#7C3AED]" size={40} />,
                                 title: "WooCommerce na Sterydach",
                                 desc: "Skalowalność bez zatrudniania nowych pracowników. AI obsługuje nieograniczoną liczbę klientów."
                             },
                             {
-                                icon: <Rocket className="text-blue-600" size={40} />,
+                                icon: <Rocket className="text-[#7C3AED]" size={40} />,
                                 title: "Hybrydowa Moc",
                                 desc: "Stabilność WordPressa + Inteligencja LLM. Sprawdzone rozwiązania doprawione wizją jutra."
                             }
@@ -89,7 +89,7 @@ export default function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.2 }}
-                                className="glass p-12 rounded-[48px] border border-gray-100 hover:border-blue-500/30 transition-all group shadow-sm hover:shadow-xl"
+                                className="bg-white p-12 rounded-[48px] border border-gray-100 hover:border-[#7C3AED]/30 transition-all group shadow-sm hover:shadow-xl"
                             >
                                 <div className="mb-6 group-hover:scale-110 transition-transform">{item.icon}</div>
                                 <h3 className="text-2xl font-black mb-4 text-gray-900">{item.title}</h3>
@@ -115,9 +115,9 @@ export default function Home() {
 
                     <div className="grid md:grid-cols-2 gap-10">
                         {/* 1 */}
-                        <motion.div initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} className="glass p-10 rounded-[40px]">
-                             <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center mb-6">
-                                 <ShoppingCart className="text-blue-600" size={32} />
+                        <motion.div initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} className="bg-white p-10 rounded-[40px] shadow-sm border border-gray-100">
+                             <div className="w-16 h-16 rounded-2xl bg-[#7C3AED]/10 flex items-center justify-center mb-6">
+                                 <ShoppingCart className="text-[#7C3AED]" size={32} />
                              </div>
                              <h3 className="text-2xl font-black mb-4 text-gray-900">Marketplace Management</h3>
                              <p className="text-gray-600 leading-relaxed">
@@ -125,9 +125,9 @@ export default function Home() {
                              </p>
                         </motion.div>
                         {/* 2 */}
-                        <motion.div initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} transition={{delay:0.1}} className="glass p-10 rounded-[40px]">
-                             <div className="w-16 h-16 rounded-2xl bg-purple-100 flex items-center justify-center mb-6">
-                                 <Layers className="text-purple-600" size={32} />
+                        <motion.div initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} transition={{delay:0.1}} className="bg-white p-10 rounded-[40px] shadow-sm border border-gray-100">
+                             <div className="w-16 h-16 rounded-2xl bg-[#7C3AED]/10 flex items-center justify-center mb-6">
+                                 <Layers className="text-[#7C3AED]" size={32} />
                              </div>
                              <h3 className="text-2xl font-black mb-4 text-gray-900">Integracje Systemowe</h3>
                              <p className="text-gray-600 leading-relaxed">
@@ -135,9 +135,9 @@ export default function Home() {
                              </p>
                         </motion.div>
                         {/* 3 */}
-                        <motion.div initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} transition={{delay:0.2}} className="glass p-10 rounded-[40px]">
-                             <div className="w-16 h-16 rounded-2xl bg-green-100 flex items-center justify-center mb-6">
-                                 <Truck className="text-green-600" size={32} />
+                        <motion.div initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} transition={{delay:0.2}} className="bg-white p-10 rounded-[40px] shadow-sm border border-gray-100">
+                             <div className="w-16 h-16 rounded-2xl bg-[#7C3AED]/10 flex items-center justify-center mb-6">
+                                 <Truck className="text-[#7C3AED]" size={32} />
                              </div>
                              <h3 className="text-2xl font-black mb-4 text-gray-900">Logistyka i Płatności</h3>
                              <p className="text-gray-600 leading-relaxed">
@@ -145,9 +145,9 @@ export default function Home() {
                              </p>
                         </motion.div>
                         {/* 4 */}
-                        <motion.div initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} transition={{delay:0.3}} className="glass p-10 rounded-[40px]">
-                             <div className="w-16 h-16 rounded-2xl bg-orange-100 flex items-center justify-center mb-6">
-                                 <FileText className="text-orange-600" size={32} />
+                        <motion.div initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} transition={{delay:0.3}} className="bg-white p-10 rounded-[40px] shadow-sm border border-gray-100">
+                             <div className="w-16 h-16 rounded-2xl bg-[#7C3AED]/10 flex items-center justify-center mb-6">
+                                 <FileText className="text-[#7C3AED]" size={32} />
                              </div>
                              <h3 className="text-2xl font-black mb-4 text-gray-900">Content Management</h3>
                              <p className="text-gray-600 leading-relaxed">
@@ -164,18 +164,18 @@ export default function Home() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        className="p-16 md:p-24 rounded-[48px] bg-gradient-to-br from-primary to-secondary text-center relative overflow-hidden shadow-2xl"
+                        className="p-16 md:p-24 rounded-[48px] bg-[#7C3AED] text-center relative overflow-hidden shadow-2xl"
                     >
                         <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight text-white">
-                            Gotowy na <span className="text-blue-200">Cyfrową Rewolucję</span>?
+                            Gotowy na <span className="text-purple-200">Cyfrową Rewolucję</span>?
                         </h2>
-                        <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-12">
+                        <p className="text-xl text-purple-100 max-w-2xl mx-auto mb-12">
                             Mój AI Agent czeka, aby omówić Twój projekt. Bez kolejek, bez czekania - zacznij rozmowę teraz.
                         </p>
                         <Link href="/ai-agent">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
-                                className="px-12 py-5 bg-white text-primary rounded-2xl font-bold text-xl hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] transition-all"
+                                className="px-12 py-5 bg-white text-[#7C3AED] rounded-xl font-bold text-xl transition-all shadow-lg hover:shadow-xl"
                             >
                                 Porozmawiaj z Agentem AI
                             </motion.button>

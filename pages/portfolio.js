@@ -101,7 +101,7 @@ export default function Portfolio() {
                                         href={project.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-secondary text-white font-bold text-sm hover:shadow-lg transition-all hover:scale-105"
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold text-sm hover:shadow-lg transition-all hover:scale-105"
                                     >
                                         <ExternalLink size={16} />
                                         Zobacz projekt

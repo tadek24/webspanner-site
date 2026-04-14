@@ -136,7 +136,7 @@ export default function Kontakt() {
 
                                 <button 
                                     disabled={status === 'loading'}
-                                    className="w-full bg-purple-600 hover:bg-blue-700 text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed hover:scale-[1.02] transition-colors"
+                                    className="w-full bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold py-5 rounded-xl flex items-center justify-center gap-3 hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed hover:scale-[1.02] transition-colors"
                                 >
                                     {status === 'loading' ? <Loader2 size={20} className="animate-spin text-white" /> : <Send size={20} className="text-white" />}
                                     Wyślij Wiadomość
