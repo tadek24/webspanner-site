@@ -11,6 +11,7 @@ export default function Layout({ children }) {
     const navLinks = [
         { name: 'O nas', href: '/o-nas' },
         { name: 'Portfolio', href: '/portfolio' },
+        { name: 'Dema', href: '/dema' },
         { name: 'Cennik', href: '/cennik' },
         { name: 'Baza Wiedzy', href: '/baza-wiedzy' },
         { name: 'Blog', href: '/blog' },

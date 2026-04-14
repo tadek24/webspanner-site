@@ -133,7 +133,7 @@ export default function Pricing() {
                                 className={`flex flex-col rounded-3xl p-8 border ${plan.color} h-full`}
                             >
                                 {plan.popular && (
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-1.5 bg-[#7C3AED] text-white rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg whitespace-nowrap">
+                                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-[#7C3AED] text-white rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg whitespace-nowrap z-20">
                                         Najczęstszy Wybór
                                     </div>
                                 )}
@@ -157,9 +157,9 @@ export default function Pricing() {
                                     ))}
                                 </ul>
 
-                                <a href="/kontakt">
+                                <a href="/kontakt" className="mt-auto">
                                     <button
-                                        className={`w-full py-4 rounded-xl font-bold transition-all text-sm mt-auto shadow-sm ${plan.buttonColor}`}
+                                        className="w-full py-4 rounded-xl font-bold transition-all text-sm shadow-md bg-[#7C3AED] hover:bg-[#6D28D9] text-white"
                                     >
                                         Zamów Wycenę
                                     </button>

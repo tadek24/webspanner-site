@@ -75,7 +75,7 @@ export default function Dema() {
                                             rel="noopener noreferrer"
                                             className="px-6 py-4 rounded-xl bg-[#7C3AED] hover:bg-[#6D28D9] text-white flex items-center gap-2 font-bold transition-colors shadow-md hover:shadow-xl"
                                         >
-                                            Zobacz Demo <ExternalLink size={20} />
+                                            Otwórz Demo <ExternalLink size={20} />
                                         </a>
                                     </div>
                                 </div>

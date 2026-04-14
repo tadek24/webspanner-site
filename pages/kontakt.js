@@ -98,63 +98,21 @@ export default function Kontakt() {
                                 Masz pomysł na projekt? A może potrzebujesz szybkiej konsultacji? Wypełnij formularz, a odpiszę najszybciej jak to możliwe.
                             </p>
 
-                            <form className="space-y-6" onSubmit={handleSubmit}>
-                                <div className="grid grid-cols-2 gap-6">
-                                    <input
-                                        type="text"
-                                        placeholder="Imię"
-                                        required
-                                        value={formData.name}
-                                        onChange={e => setFormData({...formData, name: e.target.value})}
-                                        className="bg-white border border-gray-200 rounded-2xl p-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
-                                    />
-                                    <input
-                                        type="email"
-                                        placeholder="Email"
-                                        required
-                                        value={formData.email}
-                                        onChange={e => setFormData({...formData, email: e.target.value})}
-                                        className="bg-white border border-gray-200 rounded-2xl p-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
-                                    />
+                            <div className="bg-white p-8 md:p-12 border border-[#7C3AED] rounded-[32px] shadow-lg text-center">
+                                <h3 className="text-2xl font-black text-gray-900 mb-6">Czekam na Twoją wiadomość</h3>
+                                <p className="text-xl text-gray-700 font-medium mb-8">
+                                    Skontaktuj się ze mną bezpośrednio:
+                                </p>
+                                <div className="flex flex-col gap-4">
+                                    <a href="tel:+48727469410" className="text-3xl lg:text-4xl font-black text-[#7C3AED] hover:text-[#6D28D9] transition-colors">
+                                        +48 727 469 410
+                                    </a>
+                                    <div className="h-px w-16 bg-gray-200 mx-auto my-2"></div>
+                                    <a href="mailto:kontakt@webspanner.pl" className="text-xl font-bold text-gray-800 hover:text-gray-600 transition-colors">
+                                        kontakt@webspanner.pl
+                                    </a>
                                 </div>
-                                <input
-                                    type="text"
-                                    placeholder="Temat"
-                                    required
-                                    value={formData.subject}
-                                    onChange={e => setFormData({...formData, subject: e.target.value})}
-                                    className="w-full bg-white border border-gray-200 rounded-2xl p-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
-                                />
-                                <textarea
-                                    rows="5"
-                                    required
-                                    placeholder="Treść wiadomości..."
-                                    value={formData.message}
-                                    onChange={e => setFormData({...formData, message: e.target.value})}
-                                    className="w-full bg-white border border-gray-200 rounded-2xl p-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all resize-none shadow-sm"
-                                />
-
-                                <button 
-                                    disabled={status === 'loading'}
-                                    className="w-full bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold py-5 rounded-xl flex items-center justify-center gap-3 hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed hover:scale-[1.02] transition-colors"
-                                >
-                                    {status === 'loading' ? <Loader2 size={20} className="animate-spin text-white" /> : <Send size={20} className="text-white" />}
-                                    Wyślij Wiadomość
-                                </button>
-                                
-                                {status === 'success' && (
-                                    <div className="p-4 bg-green-50 border border-green-200 text-green-700 rounded-2xl flex items-center gap-3 font-medium">
-                                        <CheckCircle2 size={24} className="shrink-0" />
-                                        Wiadomość została pomyślnie wysłana! Odezwiemy się najszybciej jak to możliwe.
-                                    </div>
-                                )}
-                                {status === 'error' && (
-                                    <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-2xl flex items-center gap-3 text-sm font-medium">
-                                        <AlertCircle size={24} className="shrink-0" />
-                                        Wystąpił problem z połączeniem z serwerem. Upewnij się, że poprawnie wpisałeś dane lub spróbuj ponownie za chwilę.
-                                    </div>
-                                )}
-                            </form>
+                            </div>
                         </motion.div>
 
                     </div>
