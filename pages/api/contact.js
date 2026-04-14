@@ -18,7 +18,7 @@ export default async function handler(req, res) {
             secure: true,
             auth: {
                 user: 'kontakt@webspanner.pl',
-                pass: process.env.SMTP_PASS, // Hasło np. athvgK będzie pochodzić z serwera Vercel
+                pass: process.env.SMTP_PASSWORD, // Hasło ustawione w Vercel Environment Variables
             },
         });
 

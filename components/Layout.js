@@ -15,6 +15,7 @@ export default function Layout({ children }) {
         { name: 'Baza Wiedzy', href: '/baza-wiedzy' },
         { name: 'Blog', href: '/blog' },
         { name: 'Kontakt', href: '/kontakt' },
+        { name: 'AI Agent', href: '/ai-agent' },
     ]
 
     // Footer Local Links
