@@ -2,7 +2,7 @@
 
 @layer components {
     .glass {
-        @apply bg-white/5 backdrop-blur-lg border border-white/10;
+        @apply bg-white/80 backdrop-blur-lg border border-gray-200 shadow-xl;
         word-break: break-word;
         overflow-wrap: break-word;
     }

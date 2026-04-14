@@ -11,7 +11,7 @@ export default function Document() {
                 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
                 <link rel="apple-touch-icon" href="/favicon.svg" />
             </Head>
-            <body className="bg-dark text-white selection:bg-primary selection:text-white">
+            <body className="bg-gray-50 text-gray-900 selection:bg-primary selection:text-white">
                 <Main />
                 <NextScript />
             </body>

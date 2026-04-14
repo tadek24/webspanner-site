@@ -6,11 +6,15 @@ import { supabase } from '../lib/supabase'
 
 export default function AIAgent() {
     const [messages, setMessages] = useState([
-        { role: 'bot', content: 'Cześć! Jestem Tadeuszem, Twoim wirtualnym ekspertem. Opowiedz mi o swojej wymarzonej stronie, a ja przygotuję dla Ciebie plan działania.' },
+        { role: 'bot', content: 'Cześć! Jestem Tadeuszem, Twoim wirtualnym ekspertem. Wersja demonstracyjna pozwala na 3 darmowe zapytania. Opowiedz mi o swojej wymarzonej stronie!' },
     ])
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [history, setHistory] = useState([])
+
+    // Demo State
+    const [messageCount, setMessageCount] = useState(0)
+    const DEMO_LIMIT = 3
 
     // Auth State
     const [session, setSession] = useState(null)
@@ -19,12 +23,10 @@ export default function AIAgent() {
     const [loginMessage, setLoginMessage] = useState('')
 
     useEffect(() => {
-        // Sprawdź aktywną sesję przy starcie
         supabase.auth.getSession().then(({ data: { session } }) => {
             setSession(session)
         })
 
-        // Nasłuchuj zmian w autoryzacji
         const {
             data: { subscription },
         } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -62,11 +64,20 @@ export default function AIAgent() {
     const handleSend = async () => {
         if (!input.trim() || isLoading) return
 
+        if (!session && messageCount >= DEMO_LIMIT) {
+             setMessages(prev => [...prev, { role: 'bot', content: 'Wykorzystałeś limit darmowych zapytań w trybie Demo. Zaloguj się w formularzu obok lub użyj zakładki Kontakt, aby kontynuować rozmowę.' }]);
+             return;
+        }
+
         const userMessage = input.trim()
         const newMessages = [...messages, { role: 'user', content: userMessage }]
         setMessages(newMessages)
         setInput('')
         setIsLoading(true)
+
+        if (!session) {
+            setMessageCount(prev => prev + 1)
+        }
 
         try {
             const response = await fetch('/api/chat', {
@@ -98,98 +109,91 @@ export default function AIAgent() {
         }
     }
 
-    if (!session) {
-        return (
-            <Layout>
-                <div className="min-h-[calc(100vh-80px)] flex items-center justify-center p-6">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="glass p-10 rounded-[40px] border border-white/5 max-w-md w-full text-center relative overflow-hidden"
-                    >
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-[60px]" />
-
-                        <div className="w-20 h-20 bg-blue-500/10 rounded-2xl flex items-center justify-center mx-auto mb-8 text-blue-400">
-                            <Lock size={40} />
-                        </div>
-
-                        <h2 className="text-3xl font-black mb-4">Dostęp do Agenta</h2>
-                        <p className="text-white/40 mb-8 font-light">Zaloguj się, aby porozmawiać o Twoim projekcie. Twój brief zostanie bezpiecznie zapisany.</p>
-
-                        <form onSubmit={handleLogin} className="space-y-4">
-                            <div className="relative">
-                                <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-white/30" size={20} />
-                                <input
-                                    type="email"
-                                    placeholder="Twój adres email"
-                                    value={loginEmail}
-                                    onChange={(e) => setLoginEmail(e.target.value)}
-                                    className="w-full bg-black/30 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white placeholder:text-white/20 focus:border-blue-500/50 outline-none transition-all"
-                                    required
-                                />
-                            </div>
-                            <button
-                                type="submit"
-                                disabled={isLoginLoading}
-                                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                                {isLoginLoading ? 'Wysyłanie...' : 'Otrzymaj Link do Logowania'}
-                            </button>
-                        </form>
-
-                        {loginMessage && (
-                            <motion.p
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className={`mt-6 text-sm ${loginMessage.includes('Błąd') ? 'text-red-400' : 'text-green-400 font-bold'}`}
-                            >
-                                {loginMessage}
-                            </motion.p>
-                        )}
-                    </motion.div>
-                </div>
-            </Layout>
-        )
-    }
-
     return (
         <Layout>
-            <section className="py-12 min-h-[calc(100vh-80px)] flex flex-col">
-                <div className="container mx-auto px-6 h-full flex flex-col max-w-6xl">
+            <section className="py-12 min-h-[calc(100vh-80px)] flex flex-col bg-gray-50">
+                <div className="container mx-auto px-6 h-full flex flex-col max-w-7xl">
                     <div className="text-center mb-16">
-                        <h1 className="text-5xl md:text-8xl font-black mb-8 leading-tight">
+                        <h1 className="text-5xl md:text-8xl font-black mb-4 leading-tight text-gray-900">
                             Twój Wirtualny <br />
                             <span className="text-primary">Pracownik</span>
                         </h1>
-                        <button
-                            onClick={handleLogout}
-                            className="text-white/30 hover:text-white text-sm uppercase tracking-widest font-bold transition-colors"
-                        >
-                            Wyloguj się
-                        </button>
+                        {session ? (
+                            <button
+                                onClick={handleLogout}
+                                className="text-gray-500 hover:text-primary text-sm uppercase tracking-widest font-bold transition-colors"
+                            >
+                                Wyloguj się
+                            </button>
+                        ) : (
+                            <p className="text-gray-500 font-medium">Tryb demonstracyjny - wypróbuj możliwości sztucznej inteligencji.</p>
+                        )}
                     </div>
 
-                    <div className="grid lg:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">
+                    <div className="grid lg:grid-cols-12 gap-10 items-start max-w-7xl mx-auto w-full">
+                        
+                        {/* Sidebar */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="space-y-12"
+                            className="space-y-12 lg:col-span-4"
                         >
+                            {!session ? (
+                                <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-xl relative overflow-hidden">
+                                     <div className="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-full blur-[60px]" />
+                                     <h3 className="text-2xl font-black mb-2 text-gray-900">Pełen Dostęp</h3>
+                                     <p className="text-gray-500 mb-6 font-light text-sm">Zaloguj się, aby znieść limity wiadomości i zapisać historię konwersacji do audytu.</p>
+                                     <form onSubmit={handleLogin} className="space-y-4 relative z-10">
+                                         <div className="relative">
+                                             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                                             <input
+                                                 type="email"
+                                                 placeholder="Twój email"
+                                                 value={loginEmail}
+                                                 onChange={(e) => setLoginEmail(e.target.value)}
+                                                 className="w-full bg-gray-50 border border-gray-200 rounded-xl py-3 pl-12 pr-4 text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all text-sm"
+                                                 required
+                                             />
+                                         </div>
+                                         <button
+                                             type="submit"
+                                             disabled={isLoginLoading}
+                                             className="w-full bg-gray-900 hover:bg-black text-white font-bold py-3 rounded-xl transition-all disabled:opacity-50 text-sm shadow-md"
+                                         >
+                                             {isLoginLoading ? 'Wysyłanie...' : 'Otrzymaj Link do Logowania'}
+                                         </button>
+                                     </form>
+                                     {loginMessage && (
+                                         <p className={`mt-4 text-xs font-bold ${loginMessage.includes('Błąd') ? 'text-red-500' : 'text-green-600'}`}>
+                                             {loginMessage}
+                                         </p>
+                                     )}
+                                </div>
+                            ) : (
+                                <div className="bg-white border border-green-200 p-8 rounded-3xl shadow-sm text-center">
+                                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <Lock size={24} className="text-green-600" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-gray-900 mb-2">Zalogowano</h3>
+                                    <p className="text-sm text-gray-500">Korzystasz z pełnej wersji systemu. Twój inteligentny doradca jest gotowy.</p>
+                                </div>
+                            )}
+
                             <div>
-                                <h2 className="text-3xl font-black mb-6 italic">Możliwości Agenta AI:</h2>
+                                <h2 className="text-2xl font-black mb-6 italic text-gray-900">Możliwości Agenta:</h2>
                                 <div className="space-y-6">
                                     {[
-                                        { title: 'Automatyzacja Obsługi', desc: 'Obsługuje setki klientów jednocześnie, 24/7, bez pomyłek.' },
-                                        { title: 'Personalizacja Oferty', desc: 'Dopasowuje produkty w czasie rzeczywistym do potrzeb użytkownika.' },
-                                        { title: 'Inteligentna Analityka', desc: 'Uczy się zachowań Twoich klientów i optymalizuje ścieżkę sprzedaży.' },
+                                        { title: 'Automatyzacja', desc: 'Obsługa setek klientów naraz bez zająknięcia.' },
+                                        { title: 'Personalizacja', desc: 'Dopasowanie do potrzeb i historii użytkownika.' },
+                                        { title: 'Analityka', desc: 'Wyciąga wnioski i optymalizuje lejek.' },
                                     ].map((feature, i) => (
-                                        <div key={i} className="flex gap-6 items-start">
-                                            <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
-                                                <Sparkles className="text-blue-500" size={24} />
+                                        <div key={i} className="flex gap-4 items-start">
+                                            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
+                                                <Sparkles className="text-blue-600" size={20} />
                                             </div>
                                             <div>
-                                                <h4 className="font-extrabold text-xl mb-2">{feature.title}</h4>
-                                                <p className="text-white/40 leading-relaxed font-light">{feature.desc}</p>
+                                                <h4 className="font-extrabold text-lg mb-1 text-gray-900">{feature.title}</h4>
+                                                <p className="text-gray-500 leading-relaxed font-light text-sm">{feature.desc}</p>
                                             </div>
                                         </div>
                                     ))}
@@ -197,21 +201,27 @@ export default function AIAgent() {
                             </div>
                         </motion.div>
 
+                        {/* Chat Interface */}
                         <motion.div
                             initial={{ opacity: 0, x: 30 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="glass rounded-[48px] border border-white/5 overflow-hidden flex flex-col h-[70vh] lg:h-[750px] relative shadow-2xl"
+                            className="bg-white rounded-[40px] border border-gray-200 overflow-hidden flex flex-col h-[70vh] lg:h-[750px] relative shadow-2xl lg:col-span-8"
                         >
-                            <div className="p-8 border-b border-white/5 bg-[#050512]/50 flex items-center gap-4">
+                            <div className="p-6 border-b border-gray-100 bg-gray-50 flex items-center gap-4">
                                 <div className="flex gap-2">
-                                    <div className="w-3 h-3 rounded-full bg-red-500/50" />
-                                    <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-                                    <div className="w-3 h-3 rounded-full bg-green-500/50" />
+                                    <div className="w-3 h-3 rounded-full bg-red-400" />
+                                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                                    <div className="w-3 h-3 rounded-full bg-green-400" />
                                 </div>
-                                <span className="ml-4 text-[10px] font-black uppercase tracking-widest text-white/30">Gemini 2.0 Oracle</span>
+                                <span className="ml-4 text-[10px] font-black uppercase tracking-widest text-gray-500">AI Tadeusz - Gemini 2.0</span>
+                                {!session && (
+                                    <span className="ml-auto text-[10px] font-black uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+                                        Wiadomości: {messageCount}/3
+                                    </span>
+                                )}
                             </div>
 
-                            <div className="flex-grow p-10 overflow-y-auto space-y-8 custom-scrollbar">
+                            <div className="flex-grow p-8 overflow-y-auto space-y-6 bg-white custom-scrollbar">
                                 <AnimatePresence>
                                     {messages.map((msg, i) => (
                                         <motion.div
@@ -220,9 +230,9 @@ export default function AIAgent() {
                                             animate={{ opacity: 1, y: 0 }}
                                             className={`flex ${msg.role === 'bot' ? 'justify-start' : 'justify-end'}`}
                                         >
-                                            <div className={`max-w-[85%] p-6 rounded-[32px] ${msg.role === 'bot'
-                                                ? 'bg-white/5 border border-white/5 text-white/80 font-light'
-                                                : 'bg-gradient-to-br from-blue-600 to-purple-700 text-white font-black shadow-lg shadow-blue-500/20'
+                                            <div className={`max-w-[85%] p-5 rounded-[24px] ${msg.role === 'bot'
+                                                ? 'bg-gray-100 text-gray-800 font-medium'
+                                                : 'bg-gradient-to-br from-primary to-secondary text-white font-medium shadow-md'
                                                 }`}>
                                                 <p className="text-sm leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                                             </div>
@@ -234,28 +244,30 @@ export default function AIAgent() {
                                             animate={{ opacity: 1, scale: 1 }}
                                             className="flex justify-start"
                                         >
-                                            <div className="bg-white/5 border border-white/10 p-6 rounded-[24px] flex gap-2">
-                                                <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" />
-                                                <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.15s]" />
-                                                <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
+                                            <div className="bg-gray-100 p-5 rounded-[24px] flex gap-2">
+                                                <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" />
+                                                <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce [animation-delay:-0.15s]" />
+                                                <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce [animation-delay:-0.3s]" />
                                             </div>
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
                             </div>
 
-                            <div className="p-8 bg-[#050512]/50 border-t border-white/5 relative">
+                            <div className="p-6 bg-gray-50 border-t border-gray-100 relative">
                                 <input
                                     type="text"
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                                    placeholder="Wpisz treść wiadomości..."
-                                    className="w-full bg-black/50 border border-white/10 rounded-[28px] px-8 py-5 outline-none focus:border-blue-500/50 transition-all text-white/80 text-sm font-light pr-16"
+                                    placeholder={!session && messageCount >= DEMO_LIMIT ? "Limit darmowych wiadomości wykorzystany." : "Napisz wiadomość..."}
+                                    disabled={!session && messageCount >= DEMO_LIMIT}
+                                    className="w-full bg-white border border-gray-200 rounded-[28px] px-8 py-4 outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition-all text-gray-900 text-sm font-medium pr-16 disabled:bg-gray-100 disabled:text-gray-400"
                                 />
                                 <button
                                     onClick={handleSend}
-                                    className="absolute right-12 top-1/2 -translate-y-1/2 text-blue-500 hover:text-white transition-colors"
+                                    disabled={!session && messageCount >= DEMO_LIMIT}
+                                    className="absolute right-10 top-1/2 -translate-y-1/2 text-primary hover:text-secondary transition-colors disabled:opacity-50"
                                 >
                                     <Send size={24} />
                                 </button>
@@ -263,9 +275,6 @@ export default function AIAgent() {
                         </motion.div>
                     </div>
 
-                    <p className="text-center text-white/30 text-xs mt-4">
-                        Agent AI jest w fazie Beta. Tadeusz zweryfikuje wszystkie dane przed wdrożeniem.
-                    </p>
                 </div>
             </section>
         </Layout>

@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
-import { Check, ExternalLink } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 
 export default function Portfolio() {
@@ -49,15 +49,15 @@ export default function Portfolio() {
 
     return (
         <Layout>
-            <section className="py-24">
+            <section className="py-24 bg-gray-50 min-h-screen">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="text-center mb-20"
                     >
-                        <h1 className="text-5xl md:text-8xl font-black mb-8 italic">Prawdziwe Realizacje</h1>
-                        <p className="text-xl text-white/40 max-w-2xl mx-auto font-light leading-relaxed">
+                        <h1 className="text-5xl md:text-8xl font-black mb-8 italic text-gray-900">Prawdziwe Realizacje</h1>
+                        <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
                             Projekty, które zmieniły biznesy moich klientów. Kod, design i strategia w jednym.
                         </p>
                     </motion.div>
@@ -73,7 +73,7 @@ export default function Portfolio() {
                                 className="group lg:flex items-center gap-16"
                             >
                                 <div className="lg:w-1/2 mb-12 lg:mb-0 relative">
-                                    <div className="aspect-video relative rounded-[32px] overflow-hidden border border-white/10 shadow-2xl shadow-blue-500/10">
+                                    <div className="aspect-video relative rounded-[32px] overflow-hidden border border-gray-200 shadow-xl">
                                         <Image
                                             src={project.img}
                                             alt={project.title}
@@ -81,17 +81,17 @@ export default function Portfolio() {
                                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
                                     </div>
-                                    <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-2xl -z-10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                    <div className="absolute -inset-4 bg-gradient-to-r from-blue-100 to-purple-100 blur-2xl -z-10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                                 </div>
 
                                 <div className="lg:w-1/2">
-                                    <span className="text-blue-400 text-xs font-black uppercase tracking-[0.2em] mb-4 block">{project.category}</span>
-                                    <h3 className="text-4xl font-black mb-6 leading-tight">{project.title}</h3>
-                                    <p className="text-white/60 leading-relaxed font-light mb-8 text-lg">{project.desc}</p>
+                                    <span className="text-blue-600 text-xs font-black uppercase tracking-[0.2em] mb-4 block">{project.category}</span>
+                                    <h3 className="text-4xl font-black mb-6 leading-tight text-gray-900">{project.title}</h3>
+                                    <p className="text-gray-600 leading-relaxed font-light mb-8 text-lg">{project.desc}</p>
 
                                     <div className="flex flex-wrap gap-3 mb-8">
                                         {project.zalety.map((zaleta) => (
-                                            <span key={zaleta} className="text-xs font-bold px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70">
+                                            <span key={zaleta} className="text-xs font-bold px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm">
                                                 {zaleta}
                                             </span>
                                         ))}
@@ -101,7 +101,7 @@ export default function Portfolio() {
                                         href={project.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-sm hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all hover:scale-105"
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-secondary text-white font-bold text-sm hover:shadow-lg transition-all hover:scale-105"
                                     >
                                         <ExternalLink size={16} />
                                         Zobacz projekt
@@ -111,36 +111,27 @@ export default function Portfolio() {
                         ))}
                     </div>
 
-                    {/* Founder CTA Section */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="mt-40 text-center relative max-w-4xl mx-auto"
+                        className="mt-40 text-center relative max-w-4xl mx-auto p-16 rounded-[48px] bg-white border border-gray-100 shadow-xl"
                     >
-                        <div className="w-32 h-32 mx-auto relative mb-8">
-                            <div className="absolute inset-0 bg-purple-500 rounded-full blur-xl opacity-50 animate-pulse" />
-                            <div className="w-full h-full rounded-full overflow-hidden border-2 border-purple-400 relative z-10 bg-black">
-                                {/* Placeholder for Founder Photo */}
-                                <div className="w-full h-full bg-gradient-to-br from-purple-900 to-black" />
-                            </div>
-                        </div>
+                        <p className="text-secondary font-black tracking-widest text-xs uppercase mb-6">FOUNDER & CEO</p>
 
-                        <p className="text-cyan-400 font-black tracking-widest text-xs uppercase mb-6">FOUNDER & CEO</p>
-
-                        <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                            Twój projekt może być <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">kolejnym sukcesem.</span>
+                        <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight text-gray-900">
+                            Twój projekt może być <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">kolejnym sukcesem.</span>
                         </h2>
 
-                        <p className="text-xl text-white/50 mb-10 font-light max-w-2xl mx-auto">
+                        <p className="text-xl text-gray-500 mb-10 font-light max-w-2xl mx-auto">
                             Porozmawiajmy o konkretach. Zadzwoń bezpośrednio i ustalmy strategię dla Twojego biznesu.
                         </p>
 
                         <div className="flex flex-col items-center gap-6">
-                            <a href="tel:+48727469410" className="text-3xl md:text-4xl font-black text-white hover:text-blue-400 transition-colors">
+                            <a href="tel:+48727469410" className="text-3xl md:text-4xl font-black text-gray-900 hover:text-primary transition-colors">
                                 +48 727 469 410
                             </a>
-                            <a href="/kontakt" className="px-12 py-5 bg-purple-600 hover:bg-purple-500 text-white rounded-2xl font-bold transition-all hover:shadow-[0_0_40px_rgba(147,51,234,0.5)]">
+                            <a href="/kontakt" className="px-12 py-5 bg-gray-900 hover:bg-gray-800 text-white rounded-2xl font-bold transition-all hover:shadow-xl">
                                 DARMOWA KONSULTACJA
                             </a>
                         </div>

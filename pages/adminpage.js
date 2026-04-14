@@ -13,7 +13,7 @@ import {
     Tag
 } from 'lucide-react';
 
-// KONFIGURACJA DOSTĘPU - jedyny uprawniony adres
+// KONFIGURACJA DOSTĘPU - jedyny uprawniony adres tadekszkola24@gmail.com
 const ALLOWED_EMAILS = ['tadekszkola24@gmail.com'];
 
 export default function AdminPage() {
@@ -26,7 +26,6 @@ export default function AdminPage() {
 
     useEffect(() => {
         checkUser();
-        // Zawsze pobieraj rozmowy dla Dashboardu lub zakładki Chats
         fetchChats();
     }, [currentTab]);
 
@@ -51,7 +50,7 @@ export default function AdminPage() {
             .select('*')
             .order('created_at', { ascending: false });
 
-        if (!error) setChats(data);
+        if (!error && data) setChats(data);
     }
 
     async function deleteChat(id) {
@@ -69,7 +68,7 @@ export default function AdminPage() {
     if (loading) {
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-                <Loader2 className="animate-spin text-blue-600" size={32} />
+                <Loader2 className="animate-spin text-primary" size={32} />
             </div>
         );
     }
@@ -77,13 +76,13 @@ export default function AdminPage() {
     if (!session || !ALLOWED_EMAILS.includes(session.user.email)) {
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-                <div className="max-w-md w-full bg-white rounded-3xl shadow-xl p-10 text-center">
+                <div className="max-w-md w-full bg-white rounded-3xl shadow-xl p-10 text-center border border-gray-100">
                     <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-600 mx-auto mb-6">
                         <Lock size={32} />
                     </div>
                     <h1 className="text-2xl font-bold text-gray-900 mb-2">Brak dostępu</h1>
                     <p className="text-gray-500 mb-8">
-                        Ten obszar jest zarezerwowany dla administratora. Zaloguj się na konto <strong>{ALLOWED_EMAILS[0]}</strong>, aby kontynuować.
+                        Ten obszar jest zarezerwowany dla administratora. Odmowa dostępu dla: {session ? session.user.email : 'niezalogowany'}.
                     </p>
                     <button
                         onClick={() => router.push('/')}
@@ -107,7 +106,7 @@ export default function AdminPage() {
                         </div>
                     </div>
 
-                    <div className="bg-blue-600 rounded-3xl p-8 text-white relative overflow-hidden">
+                    <div className="bg-gradient-to-r from-primary to-secondary rounded-3xl p-8 text-white relative overflow-hidden shadow-xl">
                         <div className="relative z-10">
                             <h2 className="text-2xl font-bold mb-2">Witaj, Tadeusz!</h2>
                             <p className="text-blue-100 max-w-md">
@@ -123,7 +122,7 @@ export default function AdminPage() {
                     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                         <div className="p-6 border-b border-gray-50 flex justify-between items-center">
                             <h3 className="font-bold text-gray-900">Ostatnie Rozmowy AI</h3>
-                            <button onClick={() => router.push('/adminpage?tab=chats')} className="text-sm text-blue-600 font-bold hover:underline">Zobacz wszystkie</button>
+                            <button onClick={() => router.push('/adminpage?tab=chats')} className="text-sm text-primary font-bold hover:underline">Zobacz wszystkie</button>
                         </div>
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
@@ -152,7 +151,7 @@ export default function AdminPage() {
                                             <td className="p-4 text-center">
                                                 <button
                                                     onClick={() => deleteChat(chat.id)}
-                                                    className="p-2 text-gray-400 hover:text-red-600 transition-colors"
+                                                    className="p-2 text-gray-400 hover:text-red-500 transition-colors"
                                                 >
                                                     <Trash2 size={16} />
                                                 </button>
@@ -199,7 +198,7 @@ export default function AdminPage() {
                                                 <button
                                                     onClick={() => deleteChat(chat.id)}
                                                     disabled={actionLoading === chat.id}
-                                                    className="p-2 text-gray-400 hover:text-red-600 transition-colors disabled:opacity-50"
+                                                    className="p-2 text-gray-400 hover:text-red-500 transition-colors disabled:opacity-50"
                                                 >
                                                     {actionLoading === chat.id ? <Loader2 className="animate-spin" size={18} /> : <Trash2 size={18} />}
                                                 </button>
@@ -220,35 +219,34 @@ export default function AdminPage() {
                             <h3 className="text-lg font-bold text-gray-900">Zarządzanie Projektami</h3>
                             <p className="text-sm text-gray-500">Dodawaj, edytuj i usuwaj realizacje z sekcji Portfolio.</p>
                         </div>
-                        <button className="px-5 py-2.5 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-gray-800 transition-all flex items-center gap-2">
+                        <button className="px-5 py-2.5 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-gray-800 transition-all flex items-center gap-2 shadow-md">
                             <span>Dodaj Projekt</span>
                         </button>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Przykładowe karty projektów (później pobierane z DB) */}
                         {['Sandey', 'Rapdach', 'Vellisse'].map((proj) => (
-                            <div key={proj} className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex gap-4 group">
+                            <div key={proj} className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex gap-4 group hover:shadow-md transition-shadow">
                                 <div className="w-24 h-24 bg-gray-100 rounded-xl overflow-hidden flex-shrink-0 relative">
-                                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
+                                    <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100" />
                                 </div>
                                 <div className="flex-1 min-w-0">
                                     <h4 className="font-bold text-gray-900 mb-1">{proj}</h4>
                                     <p className="text-xs text-gray-500 line-clamp-2 mb-3">Opis projektu, który wyświetla się na stronie głównej w sekcji realizacje...</p>
-                                    <div className="flex gap-2">
+                                    <div className="flex gap-3">
                                         <button className="text-xs font-bold text-blue-600 hover:text-blue-700">Edytuj</button>
-                                        <button className="text-xs font-bold text-red-600 hover:text-red-700">Usuń</button>
+                                        <button className="text-xs font-bold text-red-500 hover:text-red-700">Usuń</button>
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
 
-                    <div className="bg-yellow-50 border border-yellow-100 rounded-2xl p-6 flex gap-4">
-                        <AlertCircle className="text-yellow-600 flex-shrink-0" size={24} />
+                    <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 flex gap-4 shadow-sm">
+                        <AlertCircle className="text-amber-500 flex-shrink-0" size={24} />
                         <div>
-                            <h4 className="font-bold text-yellow-800 text-sm mb-1">Uwaga: Tryb Podglądu</h4>
-                            <p className="text-yellow-700/80 text-xs leading-relaxed">
+                            <h4 className="font-bold text-amber-900 text-sm mb-1">Uwaga: Tryb Podglądu</h4>
+                            <p className="text-amber-800/80 text-xs leading-relaxed">
                                 Obecnie portfolio jest ładowane z plików statycznych. Po utworzeniu tabeli `content` w Supabase, zmiany będą zapisywane w bazie i widoczne natychmiast dla wszystkich użytkowników.
                             </p>
                         </div>
@@ -262,10 +260,10 @@ export default function AdminPage() {
                         <h3 className="text-lg font-bold text-gray-900 mb-4">Pakiety i Ceny</h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {['Starter', 'Professional', 'Enterprise'].map((tier) => (
-                                <div key={tier} className="p-6 rounded-2xl border border-gray-100 bg-gray-50/50">
+                                <div key={tier} className="p-6 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-gray-100 transition-colors">
                                     <h4 className="font-bold text-gray-900 mb-2">{tier}</h4>
-                                    <div className="text-2xl font-black text-blue-600 mb-4">od 1900 PLN</div>
-                                    <button className="w-full py-2 bg-white border border-gray-200 text-gray-900 rounded-xl text-xs font-bold hover:bg-gray-50 transition-all">
+                                    <div className="text-2xl font-black text-primary mb-4">od 1900 PLN</div>
+                                    <button className="w-full py-2 bg-white border border-gray-200 text-gray-900 rounded-xl text-xs font-bold hover:bg-gray-50 transition-all shadow-sm">
                                         Zmień Cenę
                                     </button>
                                 </div>
@@ -273,9 +271,9 @@ export default function AdminPage() {
                         </div>
                     </div>
 
-                    <div className="flex flex-col items-center justify-center p-12 bg-gray-50 rounded-3xl border border-dashed border-gray-200">
+                    <div className="flex flex-col items-center justify-center p-12 bg-white rounded-3xl border border-dashed border-gray-200 shadow-sm">
                         <Tag className="text-gray-300 mb-4" size={48} />
-                        <p className="text-gray-500 text-sm">Synchronizacja z cennikiem głównym włączona.</p>
+                        <p className="text-gray-500 text-sm font-medium">Synchronizacja z cennikiem głównym włączona.</p>
                     </div>
                 </div>
             )}

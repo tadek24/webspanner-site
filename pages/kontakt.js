@@ -1,12 +1,38 @@
 import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send } from 'lucide-react'
-import Image from 'next/image'
+import { Mail, Phone, MapPin, Send, Loader2, CheckCircle2 } from 'lucide-react'
+import { useState } from 'react'
 
 export default function Kontakt() {
+    const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
+    const [status, setStatus] = useState('idle') // 'idle' | 'loading' | 'success' | 'error'
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setStatus('loading')
+
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            
+            if (res.ok) {
+                setStatus('success');
+                setFormData({ name: '', email: '', subject: '', message: '' });
+            } else {
+                setStatus('error');
+            }
+        } catch (error) {
+            console.error(error);
+            setStatus('error');
+        }
+    }
+
     return (
         <Layout>
-            <section className="py-12 md:py-24 min-h-[90vh] flex items-center">
+            <section className="py-12 md:py-24 min-h-[90vh] flex items-center bg-gray-50">
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
 
@@ -14,51 +40,48 @@ export default function Kontakt() {
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="bg-white/5 p-12 rounded-[48px] border border-white/10 relative overflow-hidden"
+                            className="bg-white p-12 rounded-[48px] border border-gray-100 relative overflow-hidden shadow-xl"
                         >
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px]" />
-
-                            <div className="flex items-center gap-6 mb-8">
-                                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 p-1">
-                                    <div className="w-full h-full rounded-full bg-black overflow-hidden relative">
-                                        {/* Placeholder for Photo */}
-                                        <div className="w-full h-full bg-white/10" />
+                            <div className="flex items-center gap-6 mb-8 relative z-10">
+                                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-secondary p-1">
+                                    <div className="w-full h-full rounded-full bg-white overflow-hidden relative border-2 border-white flex items-center justify-center font-black text-3xl text-primary">
+                                        W
                                     </div>
                                 </div>
                                 <div>
-                                    <h1 className="text-3xl font-black italic">Tadeusz</h1>
-                                    <p className="text-blue-400 font-bold">Niezależny Ekspert</p>
+                                    <h1 className="text-3xl font-black italic text-gray-900">Tadeusz</h1>
+                                    <p className="text-blue-600 font-bold">Niezależny Ekspert</p>
                                 </div>
                             </div>
 
-                            <div className="space-y-8">
+                            <div className="space-y-8 relative z-10">
                                 <a href="tel:+48727469410" className="flex items-center gap-6 group">
-                                    <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition-colors">
-                                        <Phone size={24} className="text-white/60 group-hover:text-white" />
+                                    <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center border border-gray-100 group-hover:bg-blue-50 group-hover:border-blue-200 transition-colors">
+                                        <Phone size={24} className="text-gray-400 group-hover:text-blue-600 transition-colors" />
                                     </div>
                                     <div>
-                                        <p className="text-xs text-white/40 uppercase tracking-widest mb-1">Telefon</p>
-                                        <p className="text-xl font-bold group-hover:text-blue-400 transition-colors">+48 727 469 410</p>
+                                        <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">Telefon</p>
+                                        <p className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">+48 727 469 410</p>
                                     </div>
                                 </a>
 
                                 <a href="mailto:kontakt@webspanner.pl" className="flex items-center gap-6 group">
-                                    <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-purple-600 transition-colors">
-                                        <Mail size={24} className="text-white/60 group-hover:text-white" />
+                                    <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center border border-gray-100 group-hover:bg-purple-50 group-hover:border-purple-200 transition-colors">
+                                        <Mail size={24} className="text-gray-400 group-hover:text-purple-600 transition-colors" />
                                     </div>
                                     <div>
-                                        <p className="text-xs text-white/40 uppercase tracking-widest mb-1">Email</p>
-                                        <p className="text-xl font-bold group-hover:text-purple-400 transition-colors">kontakt@webspanner.pl</p>
+                                        <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">Email</p>
+                                        <p className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">kontakt@webspanner.pl</p>
                                     </div>
                                 </a>
 
                                 <div className="flex items-center gap-6">
-                                    <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center">
-                                        <MapPin size={24} className="text-white/60" />
+                                    <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center border border-gray-100">
+                                        <MapPin size={24} className="text-gray-400" />
                                     </div>
                                     <div>
-                                        <p className="text-xs text-white/40 uppercase tracking-widest mb-1">Obszar Działania</p>
-                                        <p className="text-xl font-bold">Polska / Remote</p>
+                                        <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">Obszar Działania</p>
+                                        <p className="text-xl font-bold text-gray-900">Polska / Remote</p>
                                     </div>
                                 </div>
                             </div>
@@ -70,39 +93,65 @@ export default function Kontakt() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 }}
                         >
-                            <h2 className="text-5xl font-black mb-8 italic">Napisz do mnie</h2>
-                            <p className="text-white/40 text-lg mb-12">
-                                Masz pomysł na projekt? A może potrzebujesz szybkiej konsultacji? Wypełnij formularz, a odpiszę w ciągu 24h.
+                            <h2 className="text-5xl font-black mb-8 italic text-gray-900">Napisz do mnie</h2>
+                            <p className="text-gray-500 text-lg mb-12">
+                                Masz pomysł na projekt? A może potrzebujesz szybkiej konsultacji? Wypełnij formularz, a odpiszę najszybciej jak to możliwe.
                             </p>
 
-                            <form className="space-y-6">
+                            <form className="space-y-6" onSubmit={handleSubmit}>
                                 <div className="grid grid-cols-2 gap-6">
                                     <input
                                         type="text"
                                         placeholder="Imię"
-                                        className="bg-transparent border border-white/10 rounded-2xl p-4 text-white placeholder-white/20 focus:outline-none focus:border-blue-500 focus:bg-white/5 transition-all"
+                                        required
+                                        value={formData.name}
+                                        onChange={e => setFormData({...formData, name: e.target.value})}
+                                        className="bg-white border border-gray-200 rounded-2xl p-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
                                     />
                                     <input
                                         type="email"
                                         placeholder="Email"
-                                        className="bg-transparent border border-white/10 rounded-2xl p-4 text-white placeholder-white/20 focus:outline-none focus:border-blue-500 focus:bg-white/5 transition-all"
+                                        required
+                                        value={formData.email}
+                                        onChange={e => setFormData({...formData, email: e.target.value})}
+                                        className="bg-white border border-gray-200 rounded-2xl p-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
                                     />
                                 </div>
                                 <input
                                     type="text"
                                     placeholder="Temat"
-                                    className="w-full bg-transparent border border-white/10 rounded-2xl p-4 text-white placeholder-white/20 focus:outline-none focus:border-blue-500 focus:bg-white/5 transition-all"
+                                    value={formData.subject}
+                                    onChange={e => setFormData({...formData, subject: e.target.value})}
+                                    className="w-full bg-white border border-gray-200 rounded-2xl p-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
                                 />
                                 <textarea
                                     rows="5"
+                                    required
                                     placeholder="Treść wiadomości..."
-                                    className="w-full bg-transparent border border-white/10 rounded-2xl p-4 text-white placeholder-white/20 focus:outline-none focus:border-blue-500 focus:bg-white/5 transition-all resize-none"
+                                    value={formData.message}
+                                    onChange={e => setFormData({...formData, message: e.target.value})}
+                                    className="w-full bg-white border border-gray-200 rounded-2xl p-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all resize-none shadow-sm"
                                 />
 
-                                <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 hover:shadow-[0_0_40px_rgba(37,99,235,0.4)] hover:scale-[1.02] transition-all">
-                                    <Send size={20} />
+                                <button 
+                                    disabled={status === 'loading'}
+                                    className="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed hover:scale-[1.02] transition-all"
+                                >
+                                    {status === 'loading' ? <Loader2 size={20} className="animate-spin" /> : <Send size={20} />}
                                     Wyślij Wiadomość
                                 </button>
+                                
+                                {status === 'success' && (
+                                    <div className="p-4 bg-green-50 border border-green-200 text-green-700 rounded-2xl flex items-center gap-3 font-medium">
+                                        <CheckCircle2 size={20} />
+                                        Wiadomość została wysłana! Dziękuję za kontakt.
+                                    </div>
+                                )}
+                                {status === 'error' && (
+                                    <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-2xl text-sm font-medium">
+                                        Wystąpił błąd. Upewnij się, że serwer SMTP jest skofigurowany.
+                                    </div>
+                                )}
                             </form>
                         </motion.div>
 

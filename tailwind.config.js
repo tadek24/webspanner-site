@@ -8,8 +8,8 @@ export default {
         extend: {
             colors: {
                 dark: "#0a0a0a",
-                primary: "#7c3aed", // Violet
-                secondary: "#3b82f6", // Blue
+                primary: "#6B21A8", // Mocniejszy fiolet
+                secondary: "#1D4ED8", // Mocniejszy niebieski
                 accent: "#10b981", // Emerald
             },
             fontFamily: {

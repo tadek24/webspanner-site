@@ -11,26 +11,27 @@
     "export": "next build && next export"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "@google/generative-ai": "^0.21.0",
+    "@react-three/drei": "^9.96.0",
+    "@react-three/fiber": "^8.15.0",
+    "@stripe/stripe-js": "latest",
+    "@supabase/supabase-js": "latest",
+    "@tailwindcss/postcss": "^4.0.0",
+    "clsx": "latest",
     "framer-motion": "latest",
     "lucide-react": "latest",
-    "@supabase/supabase-js": "latest",
-    "@stripe/stripe-js": "latest",
-    "clsx": "latest",
+    "next": "latest",
+    "nodemailer": "^8.0.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tailwind-merge": "latest",
-    "@tailwindcss/postcss": "^4.0.0",
-    "@google/generative-ai": "^0.21.0",
-    "three": "^0.160.0",
-    "@react-three/fiber": "^8.15.0",
-    "@react-three/drei": "^9.96.0"
+    "three": "^0.160.0"
   },
   "devDependencies": {
     "autoprefixer": "latest",
-    "postcss": "latest",
-    "tailwindcss": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest"
   }
 }
