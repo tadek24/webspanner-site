@@ -2,8 +2,9 @@ import Layout from '../components/Layout'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Rocket, Shield, Cpu, Zap, ShoppingCart, Layers, Truck, FileText } from 'lucide-react'
-import Hero3D from '../components/Hero3D'
+import dynamic from 'next/dynamic'
 
+const Hero3D = dynamic(() => import('../components/Hero3D'), { ssr: false })
 export default function Home() {
     return (
         <Layout>

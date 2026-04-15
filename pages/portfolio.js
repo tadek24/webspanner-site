@@ -11,7 +11,8 @@ export default function Portfolio() {
             img: "/ztrejman-sklep.png",
             category: "E-commerce & UX",
             zalety: ["Product Design", "Zoptymalizowany Checkout", "High-End UX"],
-            url: "https://ztrejman-sklep.pl/"
+            url: "https://ztrejman-sklep.pl/",
+            priority: true
         },
         {
             title: "Sandey - Beauty & Spa Booking",
@@ -85,8 +86,10 @@ export default function Portfolio() {
                                         <Image
                                             src={project.img}
                                             alt={project.title}
-                                            fill
-                                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                            width={1280}
+                                            height={720}
+                                            priority={project.priority}
+                                            className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
                                     </div>
                                     <div className="absolute -inset-4 bg-gradient-to-r from-blue-100 to-purple-100 blur-2xl -z-10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />

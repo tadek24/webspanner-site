@@ -141,7 +141,8 @@ export default function Blog() {
                                 >
                                     <button
                                         onClick={() => setSelectedPost(null)}
-                                        className="absolute top-6 right-6 text-gray-400 hover:text-gray-900 transition-colors bg-gray-50 p-3 rounded-full hover:bg-gray-100"
+                                        className="absolute top-6 right-6 text-gray-400 hover:text-gray-900 transition-colors bg-gray-50 p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-gray-100"
+                                        aria-label="Zamknij artykuł"
                                     >
                                         <X size={24} />
                                     </button>

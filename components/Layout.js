@@ -57,8 +57,9 @@ export default function Layout({ children }) {
                     </div>
 
                     <button
-                        className="lg:hidden text-gray-900 p-2"
+                        className="lg:hidden text-gray-900 p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        aria-label={isMenuOpen ? "Zamknij menu" : "Otwórz menu"}
                     >
                         {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
                     </button>
@@ -71,7 +72,11 @@ export default function Layout({ children }) {
                         animate={{ opacity: 1, y: 0 }}
                         className="lg:hidden fixed inset-0 z-[60] flex flex-col items-center justify-center gap-8 bg-white overflow-y-auto pt-20 pb-20 shadow-2xl"
                     >
-                        <button className="absolute top-6 right-6 text-gray-900 p-2" onClick={() => setIsMenuOpen(false)}>
+                        <button 
+                           className="absolute top-6 right-6 text-gray-900 p-3 min-w-[44px] min-h-[44px] flex items-center justify-center" 
+                           onClick={() => setIsMenuOpen(false)}
+                           aria-label="Zamknij menu"
+                        >
                             <X size={32} />
                         </button>
                         {navLinks.map((link) => (

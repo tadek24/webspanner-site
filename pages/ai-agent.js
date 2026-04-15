@@ -267,7 +267,8 @@ export default function AIAgent() {
                                 <button
                                     onClick={handleSend}
                                     disabled={!session && messageCount >= DEMO_LIMIT}
-                                    className="absolute right-10 top-1/2 -translate-y-1/2 text-primary hover:text-secondary transition-colors disabled:opacity-50"
+                                    className="absolute right-8 top-1/2 -translate-y-1/2 text-primary hover:text-secondary transition-colors disabled:opacity-50 min-w-[44px] min-h-[44px] flex items-center justify-center"
+                                    aria-label="Wyślij wiadomość"
                                 >
                                     <Send size={24} />
                                 </button>
