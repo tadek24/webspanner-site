@@ -16,7 +16,7 @@ export default function Pricing() {
                 'Optymalizacja szybkości ładowania',
             ],
             color: 'border-gray-200 bg-white shadow-sm',
-            buttonColor: 'bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-200'
+            buttonColor: 'bg-[#7C3AED] hover:bg-[#6D28D9] text-white shadow-md'
         },
         {
             name: 'Business Plus',
@@ -30,7 +30,7 @@ export default function Pricing() {
                 'Wdrożenie Google Analytics / Tag Manager',
             ],
             color: 'border-gray-200 bg-white shadow-sm',
-            buttonColor: 'bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-100'
+            buttonColor: 'bg-[#7C3AED] hover:bg-[#6D28D9] text-white shadow-md'
         },
         {
             name: 'E-commerce Start',
@@ -44,7 +44,7 @@ export default function Pricing() {
                 'Panel zarządzania produktami CMS',
             ],
             color: 'border-gray-200 bg-white shadow-sm',
-            buttonColor: 'bg-green-600 hover:bg-green-700 text-white'
+            buttonColor: 'bg-[#7C3AED] hover:bg-[#6D28D9] text-white shadow-md'
         },
         {
             name: 'E-commerce Pro',
@@ -73,7 +73,7 @@ export default function Pricing() {
                 'Pełna globalna skalowalność',
             ],
             color: 'border-gray-200 bg-black shadow-xl text-white',
-            buttonColor: 'bg-white hover:bg-gray-100 text-black border border-gray-200',
+            buttonColor: 'bg-[#7C3AED] hover:bg-[#6D28D9] text-white shadow-md',
             dark: true
         },
     ]

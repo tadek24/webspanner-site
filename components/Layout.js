@@ -114,7 +114,7 @@ export default function Layout({ children }) {
                     <div className="flex flex-col gap-4">
                         <h4 className="font-bold text-lg text-gray-900 mb-2">Nawigacja</h4>
                         {navLinks.map((link) => (
-                            <Link key={link.name} href={link.href} className="text-gray-500 text-sm font-medium hover:text-[#7C3AED] transition-colors">
+                            <Link key={link.name} href={link.href} className="text-gray-500 text-sm font-medium hover:text-[#7C3AED] transition-colors" title={`Przejdź do: ${link.name}`}>
                                 {link.name}
                             </Link>
                         ))}
@@ -125,7 +125,7 @@ export default function Layout({ children }) {
                         <ul className="grid grid-cols-2 gap-2 text-sm text-gray-500">
                             {localLinks.map((loc) => (
                                 <li key={loc.name}>
-                                    <Link href={loc.href} className="hover:text-[#7C3AED] font-medium transition-colors">
+                                    <Link href={loc.href} className="hover:text-[#7C3AED] font-medium transition-colors" title={`Strony internetowe ${loc.name}`}>
                                         • {loc.name}
                                     </Link>
                                 </li>

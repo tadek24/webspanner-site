@@ -8,6 +8,11 @@ export default function Document() {
                 <link rel="apple-touch-icon" href="/favicon.svg" />
             </Head>
             <body className="bg-gray-50 text-gray-900 selection:bg-primary selection:text-white">
+                <noscript
+                    dangerouslySetInnerHTML={{
+                        __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKGWHNML" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+                    }}
+                />
                 <Main />
                 <NextScript />
             </body>
