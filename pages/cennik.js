@@ -157,13 +157,15 @@ export default function Pricing() {
                                     ))}
                                 </ul>
 
-                                <a href="/kontakt" className="mt-auto">
-                                    <button
-                                        className="w-full py-4 rounded-xl font-bold transition-all text-sm shadow-md bg-[#7C3AED] hover:bg-[#6D28D9] text-white"
-                                    >
-                                        Zamów Wycenę
-                                    </button>
-                                </a>
+                                <div className="mt-auto pt-8">
+                                    <a href="/kontakt" className="block w-full">
+                                        <button
+                                            className={`w-full py-4 rounded-xl font-bold transition-all text-sm shadow-md ${plan.buttonColor}`}
+                                        >
+                                            Zamów Wycenę
+                                        </button>
+                                    </a>
+                                </div>
                             </motion.div>
                         ))}
                     </div>

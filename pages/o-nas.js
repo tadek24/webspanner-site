@@ -12,9 +12,9 @@ export default function About() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-center mb-20"
                     >
-                        <h1 className="text-5xl md:text-8xl font-black mb-8 italic text-gray-900">Cześć, jestem Tadeusz</h1>
+                        <h1 className="text-5xl md:text-8xl font-black mb-8 italic text-gray-900">Tadeusz – Architekt Twojej Sprzedaży w Internecie.</h1>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
-                            Jestem ekspertem WordPress i pasjonatem AI. Łączę programowanie z automatyzacją, aby dostarczać rozwiązania jutra już dziś.
+                            Mam 25 lat i od blisko dekady (ponad 7 lat) buduję cyfrowe fundamenty dla biznesów. Moja przygoda z kodem zaczęła się wcześnie, ale to, co wyróżnia Webspanner, to unikalne połączenie technologii z praktyką handlową.
                         </p>
                     </motion.div>
 
@@ -25,9 +25,9 @@ export default function About() {
                             viewport={{ once: true }}
                             className="bg-white p-12 rounded-[48px] border border-gray-100 md:col-span-2 relative overflow-hidden group shadow-sm hover:shadow-lg transition-all"
                         >
-                            <h3 className="text-3xl font-black mb-6 text-gray-900">Architekt, nie tylko programista</h3>
+                            <h3 className="text-3xl font-black mb-6 text-gray-900">Handlowe Doświadczenie</h3>
                             <p className="text-gray-500 text-lg leading-relaxed font-light">
-                                Sztuczna Inteligencja to dla mnie potężne narzędzie, jak precyzyjny laser w rękach chirurga. To ja - Tadeusz - projektuję architekturę, dbam o bezpieczeństwo i nadaję unikalny charakter Twojej stronie. AI jest moim asystentem, który pozwala mi pracować szybciej i dokładniej niż całe zespoły deweloperskie, ale to moje doświadczenie gwarantuje sukces Twojego projektu.
+                                <strong className="text-gray-900">Od 6 lat aktywnie działam w handlu internetowym.</strong> Nie tylko tworzę sklepy, ale sam w nich sprzedaję. Wiem, czego oczekują Twoi klienci, na co zwracają uwagę i co sprawia, że porzucają koszyk. Moje projekty to nie tylko kod – to przemyślane maszyny sprzedażowe.
                             </p>
                         </motion.div>
 
@@ -74,6 +74,23 @@ export default function About() {
                             </div>
                         </motion.div>
                         
+                        {/* SEKCJA KONTAKTOWA */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="bg-[#7C3AED] text-white p-12 rounded-[48px] md:col-span-3 mt-8 shadow-xl flex flex-col md:flex-row items-center justify-between gap-10"
+                        >
+                            <div>
+                                <h3 className="text-3xl font-black mb-4">Porozmawiajmy o Twoim projekcie</h3>
+                                <p className="text-purple-100 text-lg">Skontaktuj się ze mną bezpośrednio, aby omówić szczegóły.</p>
+                            </div>
+                            <div className="flex flex-col items-center md:items-end gap-3 font-bold text-2xl">
+                                <a href="tel:+48727469410" className="hover:text-purple-200 transition-colors bg-white/10 px-6 py-3 rounded-2xl w-full text-center">+48 727 469 410</a>
+                                <a href="mailto:kontakt@webspanner.pl" className="hover:text-purple-200 transition-colors bg-white/10 px-6 py-3 rounded-2xl w-full text-center text-xl">kontakt@webspanner.pl</a>
+                            </div>
+                        </motion.div>
+
                         {/* SEKCJA LOKALNE SEO */}
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
