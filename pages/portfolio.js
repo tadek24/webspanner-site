@@ -53,6 +53,22 @@ export default function Portfolio() {
             category: "Premium E-commerce",
             zalety: ["Estetyka Premium", "Optymalizacja Konwersji", "Pełna Responsywność"],
             url: "https://vellisse.pl"
+        },
+        {
+            title: "Skillup - Szkolenia Online",
+            desc: "Nowoczesna platforma e-learningowa do sprzedaży specjalistycznych szkoleń online. Zoptymalizowany proces zakupowy oraz intuicyjny panel zapewniają bezproblemowe doświadczenie edukacyjne i wysoką sprzedaż.",
+            img: "/skillup-szkolenia.png",
+            category: "E-learning & E-commerce",
+            zalety: ["Platforma E-learningowa", "Automatyzacja Sprzedaży", "Panel Kursanta"],
+            url: "https://skillup-szkolenia.pl/"
+        },
+        {
+            title: "Martyna Sprada - Kursy Online",
+            desc: "Autorska strona sprzedażowa oferująca kursy online. Projekt łączy silny personal branding z wysoką konwersją, oferując płynne przejście od zapoznania się z ofertą, przez checkout, aż po realizację kursu.",
+            img: "/martynasprada.png",
+            category: "Personal Branding & E-learning",
+            zalety: ["Personal Branding", "Optymalizacja Konwersji", "System Kursów"],
+            url: "https://martynasprada.pl/"
         }
     ]
 
