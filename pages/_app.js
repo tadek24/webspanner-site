@@ -1,16 +1,14 @@
 import '../styles/globals.css'
 import Head from 'next/head'
 import Script from 'next/script'
-import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin', 'latin-ext'], display: 'swap' })
 
 function MyApp({ Component, pageProps }) {
     return (
-        <div className={inter.className}>
+        <div className="font-sans">
             <Head>
-                <title>Webspanner | Przyszłość Web Developmentu: AI-Driven, WordPress-Powered</title>
-                <meta name="description" content="Nowoczesna agencja interaktywna łącząca szybkość AI z elastycznością WordPress i WooCommerce." />
+                <title>Webspanner | Strony, sklepy, konfiguratory i aplikacje biznesowe</title>
+                <meta name="description" content="Projektowanie i wdrażanie stron internetowych, sklepów, konfiguratorów produktów i aplikacji biznesowych. Bezpośrednia współpraca i indywidualna wycena." />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
 
