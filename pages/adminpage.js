@@ -110,7 +110,7 @@ export default function AdminPage() {
                         <div className="relative z-10">
                             <h2 className="text-2xl font-bold mb-2">Witaj, Tadeusz!</h2>
                             <p className="text-blue-100 max-w-md">
-                                Twoje centrum dowodzenia Webspanner jest gotowe. Poniżej znajdziesz ostatnie interakcje z Twoim AI Agentem.
+                                Panel zarządzania Webspanner.
                             </p>
                         </div>
                         <div className="absolute top-0 right-0 p-8 opacity-20">
@@ -118,10 +118,10 @@ export default function AdminPage() {
                         </div>
                     </div>
 
-                    {/* Sekcja Rozmowy AI bezpośrednio w Dashboardzie */}
+                    {/* Sekcja Historia rozmów bezpośrednio w Dashboardzie */}
                     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                         <div className="p-6 border-b border-gray-50 flex justify-between items-center">
-                            <h3 className="font-bold text-gray-900">Ostatnie Rozmowy AI</h3>
+                            <h3 className="font-bold text-gray-900">Historia rozmów</h3>
                             <button onClick={() => router.push('/adminpage?tab=chats')} className="text-sm text-primary font-bold hover:underline">Zobacz wszystkie</button>
                         </div>
                         <div className="overflow-x-auto">
@@ -173,7 +173,7 @@ export default function AdminPage() {
                                 <tr className="bg-gray-50 border-b border-gray-100">
                                     <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest">Data</th>
                                     <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest">Klient</th>
-                                    <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest">AI Tadeusz</th>
+                                    <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest">Odpowiedź</th>
                                     <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest w-20">Akcje</th>
                                 </tr>
                             </thead>
