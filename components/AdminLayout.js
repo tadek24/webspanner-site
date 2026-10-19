@@ -21,7 +21,7 @@ export default function AdminLayout({ children, userEmail }) {
 
     const navItems = [
         { name: 'Dashboard', icon: BarChart3, path: '/adminpage?tab=dashboard' },
-        { name: 'Rozmowy AI', icon: MessageSquare, path: '/adminpage?tab=chats' },
+        { name: 'Historia rozmów', icon: MessageSquare, path: '/adminpage?tab=chats' },
         { name: 'Portfolio', icon: Briefcase, path: '/adminpage?tab=portfolio' },
         { name: 'Cennik', icon: Tag, path: '/adminpage?tab=pricing' },
     ];
