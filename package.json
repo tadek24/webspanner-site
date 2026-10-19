@@ -11,7 +11,6 @@
     "export": "next build && next export"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.21.0",
     "@react-three/drei": "^9.96.0",
     "@react-three/fiber": "^8.15.0",
     "@stripe/stripe-js": "latest",
