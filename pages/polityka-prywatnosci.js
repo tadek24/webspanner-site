@@ -40,7 +40,7 @@ export default function PolitykaPrywatnosci() {
 
                             <h3 className="text-2xl font-bold mt-10 mb-4 text-gray-900">4. Pliki Cookies (Ciasteczka) i Google Analytics</h3>
                             <p className="mb-6">
-                                Nasza strona internetowa używa plików cookies. Są to niewielkie pliki tekstowe wysyłane przez serwer www i przechowywane przez oprogramowanie komputera przeglądarki. Wykorzystujemy integrację modułu <strong>Google Analytics</strong> w celu analizowania ruchu (ilość odwiedzin, urządzenia itp). Dzięki tym danym projektujemy stronę tak, by była wygodniejsza w obsłudze. Nie profilujemy automatycznie wyceny na podstawie ciasteczek.
+                                Google Analytics uruchamiamy po wyrażeniu zgody na analitykę. Wybór „Tylko niezbędne” pozwala korzystać ze strony bez tego pomiaru. Preferencję zapisujemy lokalnie w przeglądarce na maksymalnie 180 dni; można ją zmienić przyciskiem „Ustawienia prywatności”. Zbieramy statystyki odsłon oraz zdarzenia kontaktu. Zdarzenie skutecznego zapytania zapisujemy po potwierdzeniu przyjęcia wiadomości przez serwer pocztowy. Do Analytics nie przekazujemy treści formularza, imienia, adresu e-mail ani numeru telefonu odwiedzającego. Ustawienia pomiaru nie obejmują reklamowej personalizacji ani Google Signals.
                             </p>
 
                             <h3 className="text-2xl font-bold mt-10 mb-4 text-gray-900">5. Zabezpieczenie danych i prawa użytkownika</h3>
@@ -49,7 +49,7 @@ export default function PolitykaPrywatnosci() {
                             </p>
                             
                             <p className="text-sm text-gray-400 mt-12 italic border-t border-gray-100 pt-6">
-                                Ostatnia aktualizacja reguł prywatności: kwiecień 2026 r.
+                                Ostatnia aktualizacja informacji o analityce: 20 października 2026 r.
                             </p>
                         </div>
                     </motion.div>
