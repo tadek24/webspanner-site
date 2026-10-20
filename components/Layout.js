@@ -71,9 +71,11 @@ export default function Layout({ children }) {
             <div>
               <Link href="/baza-wiedzy">Baza wiedzy</Link>
               <Link href="/blog">Blog</Link>
+              <Link href="/miasta">Obszar współpracy</Link>
               <Link href="/polityka-prywatnosci">Prywatność</Link>
             </div>
           </div>
+          <nav className="ws-location-links ws-footer-cities" aria-label="Strony internetowe według miasta"><Link href="/krakow">Kraków</Link><Link href="/rzeszow">Rzeszów</Link><Link href="/lublin">Lublin</Link><Link href="/poznan">Poznań</Link><Link href="/wroclaw">Wrocław</Link><Link href="/nowy-sacz">Nowy Sącz</Link><Link href="/gorlice">Gorlice</Link><Link href="/jaslo">Jasło</Link><Link href="/miasta">Pozostałe miasta →</Link></nav>
         </div>
       </footer>
     </div>
