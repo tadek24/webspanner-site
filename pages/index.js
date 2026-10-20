@@ -1,19 +1,14 @@
+import Portrait from "../components/Portrait";
+import { articles } from "../lib/articles";
 import Link from "next/link";
 import Layout from "../components/Layout";
-import {
-  Preview,
-  Services,
-  ProjectGrid,
-  ContactBand,
-} from "../components/Showcase";
+import { Services, ProjectGrid, ContactBand } from "../components/Showcase";
 export default function Home() {
   return (
     <Layout>
       <section className="ws-hero ws-wrap">
         <div>
-          <span className="ws-eyebrow">
-            Niezależny partner dla Twojej firmy
-          </span>
+          <span className="ws-eyebrow">Tadeusz Kwoka · Webspanner</span>
           <h1>
             Dobra strona.
             <br />
@@ -37,11 +32,7 @@ export default function Home() {
           </div>
         </div>
         <div className="ws-hero-visual">
-          <Preview />
-          <div className="ws-visual-caption">
-            <span>OD POMYSŁU DO NARZĘDZIA</span>
-            <span>Projekt / Wdrożenie / Rozwój</span>
-          </div>
+          <Portrait priority />
         </div>
       </section>
       <div className="ws-strip">
@@ -117,6 +108,29 @@ export default function Home() {
               <p>{text}</p>
             </article>
           ))}
+        </div>
+      </section>
+      <section className="ws-section ws-tint">
+        <div className="ws-wrap">
+          <span className="ws-eyebrow">Przygotuj się do projektu</span>
+          <h2>Praktyczne wskazówki dla firm.</h2>
+          <div className="ws-blog-grid">
+            {articles.slice(0, 3).map((a) => (
+              <article className="ws-blog-card" key={a.slug}>
+                <span className="ws-eyebrow">{a.category}</span>
+                <h3>
+                  <Link href={"/blog/" + a.slug}>{a.title}</Link>
+                </h3>
+                <p>{a.excerpt}</p>
+                <Link className="ws-text-link" href={"/blog/" + a.slug}>
+                  Czytaj poradnik →
+                </Link>
+              </article>
+            ))}
+          </div>
+          <Link className="ws-text-link ws-more" href="/blog">
+            Zobacz cały blog →
+          </Link>
         </div>
       </section>
       <ContactBand />

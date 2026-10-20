@@ -1,5 +1,3 @@
-import Head from "next/head";
-import Image from "next/image";
 import Layout from "../components/Layout";
 import { ProjectGrid, ContactBand } from "../components/Showcase";
 export default function Portfolio() {
@@ -88,9 +86,6 @@ export default function Portfolio() {
   ];
   return (
     <Layout>
-      <Head>
-        <title>Portfolio — strony i sklepy | Webspanner</title>
-      </Head>
       <section className="ws-section ws-wrap">
         <span className="ws-eyebrow">Dotychczasowe realizacje</span>
         <h1>
@@ -106,13 +101,13 @@ export default function Portfolio() {
           {projects.map((project) => (
             <article className="ws-realization" key={project.url}>
               <div className="ws-realization-image">
-                <Image
+                <img
                   src={project.img}
                   alt={project.title}
                   width={1280}
                   height={720}
                   sizes="(max-width:760px) 100vw, 50vw"
-                  priority={project.priority}
+                  loading={project.priority ? "eager" : "lazy"} decoding="async"
                 />
               </div>
               <div>
