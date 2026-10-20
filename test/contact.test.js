@@ -69,6 +69,15 @@ test("uses TLS and bounded connection timeouts", () => {
   );
   assert.equal(smtpConfig({ ...env, SMTP_PORT: "invalid" }), null);
 });
+test("accepts copied Gmail app-password grouping without changing other SMTP passwords", () => {
+  const grouped = "abcd efgh\nijkl mnop\n";
+  const config = smtpConfig({ SMTP_PASSWORD: grouped, SMTP_HOST: "smtp.gmail.com\n", SMTP_USER: "tadekkw123@gmail.com\n" });
+  assert.equal(config.transport.host, "smtp.gmail.com");
+  assert.equal(config.user, "tadekkw123@gmail.com");
+  assert.equal(config.transport.auth.pass, "abcdefghijklmnop");
+  assert.equal(smtpConfig({ ...env, SMTP_PASSWORD: grouped }).transport.auth.pass, grouped);
+  assert.equal(smtpConfig({ SMTP_PASSWORD: "not-an-app-password\n", SMTP_HOST: "smtp.gmail.com" }).transport.auth.pass, "not-an-app-password\n");
+});
 test("sends reply-to safely and accepts success only after SMTP acceptance", async () => {
   let options;
   let mail;
