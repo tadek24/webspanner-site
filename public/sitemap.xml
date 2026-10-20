@@ -1,28 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://www.webspanner.pl/</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/oferta</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/portfolio</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/dema</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/o-nas</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/kontakt</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/blog</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/baza-wiedzy</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/polityka-prywatnosci</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/krakow</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/nowy-sacz</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/grybow</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/rzeszow</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/kielce</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/warszawa</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/oferta/strony-internetowe</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/oferta/sklepy-internetowe</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/oferta/konfiguratory-produktow</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/oferta/aplikacje-biznesowe</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/blog/jak-przygotowac-brief-strony-internetowej</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/blog/sklep-internetowy-lista-przed-uruchomieniem</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/blog/konfigurator-produktu-dla-producenta</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/blog/crm-na-zamowienie-czy-gotowy-system</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/blog/seo-strony-firmowej-podstawy</loc><lastmod>2026-10-20</lastmod></url>
-<url><loc>https://www.webspanner.pl/blog/integracje-sklepu-i-automatyzacja-zamowien</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/oferta</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/portfolio</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/dema</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/o-nas</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/kontakt</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/blog</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/baza-wiedzy</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/polityka-prywatnosci</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/krakow</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/nowy-sacz</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/grybow</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/rzeszow</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/kielce</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/warszawa</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/oferta/strony-internetowe</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/oferta/sklepy-internetowe</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/oferta/konfiguratory-produktow</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/oferta/aplikacje-biznesowe</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/blog/jak-przygotowac-brief-strony-internetowej</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/blog/sklep-internetowy-lista-przed-uruchomieniem</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/blog/konfigurator-produktu-dla-producenta</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/blog/crm-na-zamowienie-czy-gotowy-system</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/blog/seo-strony-firmowej-podstawy</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/blog/integracje-sklepu-i-automatyzacja-zamowien</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/miasta</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/lublin</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/poznan</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/wroclaw</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/gorlice</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/jaslo</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/tarnow</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/krosno</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/katowice</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/lodz</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/gdansk</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/szczecin</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/bielsko-biala</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/zakopane</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/bialystok</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/torun</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/bydgoszcz</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/opole</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.webspanner.pl/rybnik</loc><lastmod>2026-10-20</lastmod></url>
 </urlset>
