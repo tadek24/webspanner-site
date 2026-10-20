@@ -1,0 +1,8 @@
+import Link from "next/link";
+import Layout from "../components/Layout";
+import { ContactBand } from "../components/Showcase";
+import { locations } from "../lib/locations";
+export default function LocationsPage() {
+  const regions = [...new Set(locations.map(c => c.region))].sort((a,b) => a.localeCompare(b,"pl"));
+  return <Layout><section className="ws-section ws-wrap"><span className="ws-eyebrow">Obszar współpracy · Polska</span><h1>Twój projekt.<br/>Współpraca bez względu na miasto<span className="ws-accent">.</span></h1><p className="ws-lead">Strony internetowe, sklepy, konfiguratory i aplikacje dla firm. Wybierz miejscowość, poznaj przykładowy zakres projektu i sprawdź, co przygotować przed rozmową.</p><p>Możemy współpracować online lub spotkać się w Twojej firmie. Tadeusz Kwoka może podjechać na miejsce po indywidualnym uzgodnieniu terminu i warunków dojazdu. Poniższa lista pokazuje obszar współpracy. Jeśli nie ma tu Twojej miejscowości, również możesz <Link className="ws-text-link" href="/kontakt">napisać o projekcie</Link>.</p></section><section className="ws-section ws-tint"><div className="ws-wrap">{regions.map(region => <div className="ws-region" key={region}><h2>{region}</h2><div className="ws-city-grid">{locations.filter(c => c.region===region).map(c => <article key={c.slug}><h3><Link href={"/"+c.slug}>Strony internetowe — {c.name}</Link></h3><p>Przykładowy zakres: {c.exampleTitle.toLocaleLowerCase("pl")}.</p><Link className="ws-text-link" href={"/"+c.slug}>Poznaj możliwości współpracy →</Link></article>)}</div></div>)}</div></section><ContactBand/></Layout>;
+}

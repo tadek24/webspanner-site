@@ -1200,3 +1200,26 @@
     gap: 0;
   }
 }
+/* Service area pages */
+.ws-location-note { color: #6b7280; font-size: .9rem; max-width: 760px; margin-top: 1.8rem; }
+.ws-location-example { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: start; }
+.ws-location-example p { max-width: 66ch; line-height: 1.8; color: #5b626f; }
+.ws-location-brief { background: #fff; padding: 2rem; border: 1px solid #e8e5ef; border-radius: 8px; }
+.ws-location-brief li { margin: .85rem 0; }
+.ws-location-services, .ws-city-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.5rem; margin-top: 2rem; }
+.ws-location-services article, .ws-city-grid article { padding: 1.75rem; border: 1px solid #e8e5ef; border-radius: 8px; background: #fff; }
+.ws-location-services p { color: #5b626f; line-height: 1.75; }
+.ws-region + .ws-region { margin-top: 3.5rem; }
+.ws-region h2 { font-size: clamp(1.5rem,3vw,2rem); }
+.ws-location-links { display: flex; flex-wrap: wrap; gap: .6rem 1.25rem; margin-top: 1.5rem; font-size: .9rem; }
+.ws-location-links a { text-decoration: underline; text-underline-offset: .25rem; }
+.ws-footer-cities { padding: 1.5rem 0; border-top: 1px solid #e8e5ef; }
+@media(max-width:760px) { .ws-location-example, .ws-location-services, .ws-city-grid { grid-template-columns: 1fr; } .ws-location-brief { padding: 1.5rem; } }
+/* Optional analytics preferences */
+.ws-consent { position:fixed; z-index:100; bottom:1rem; left:1rem; right:1rem; max-width:1100px; margin:auto; padding:1.4rem; background:#fff; color:#111827; box-shadow:0 8px 48px #11182726; border:1px solid #e5e7eb; border-radius:8px; display:flex; gap:1.5rem; align-items:center; }
+.ws-consent p { font-size:.85rem; line-height:1.6; margin:.5rem 0 0; max-width:70ch; }
+.ws-consent a { text-decoration:underline; }
+.ws-consent-actions { display:flex; flex-wrap:wrap; gap:.65rem; flex-shrink:0; }
+.ws-consent .ws-button { font-size:.8rem; padding:.75rem 1rem; cursor:pointer; }
+.ws-consent-settings { position:fixed; bottom:.6rem; left:.6rem; z-index:80; background:#fff; border:1px solid #e5e7eb; border-radius:4px; padding:.4rem .7rem; font-size:.7rem; color:#596273; cursor:pointer; }
+@media(max-width:900px) { .ws-consent { flex-direction:column; align-items:stretch; gap:1rem; } }

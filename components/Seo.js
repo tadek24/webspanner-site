@@ -21,7 +21,7 @@ export default function Seo() {
       ? ["Blog", "/blog"]
       : meta.path.startsWith("/oferta/")
         ? ["Oferta", "/oferta"]
-        : null;
+        : meta.city ? ["Obszar współpracy", "/miasta"] : null;
     const crumbs = [
       ["Strona główna", "/"],
       ...(parent ? [parent] : []),
@@ -63,6 +63,14 @@ export default function Seo() {
       provider: { "@id": organization["@id"] },
       areaServed: { "@type": "Country", name: "Polska" },
     });
+  if (meta.city) graph.push({
+    "@type": "Service", name: "Strony internetowe — " + meta.city.name,
+    serviceType: "Projektowanie stron, sklepów i aplikacji", url,
+    description: meta.description, provider: { "@id": organization["@id"] },
+    areaServed: { "@type": "City", name: meta.city.name, containedInPlace: { "@type": "Country", name: "Polska" } },
+    availableChannel: { "@type": "ServiceChannel", serviceUrl: siteUrl + "/kontakt" },
+  });
+  if (meta.path === "/miasta") graph.push({ "@type": "CollectionPage", name: "Obszar współpracy Webspanner", url, inLanguage: "pl-PL" });
   return (
     <Head>
       <title>{meta.title}</title>

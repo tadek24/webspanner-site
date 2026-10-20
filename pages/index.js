@@ -28,7 +28,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="ws-hero-note">
-            Bezpośredni kontakt. Jasny zakres. Indywidualna wycena.
+            Bezpośredni kontakt. Spotkanie na miejscu lub online. Indywidualna wycena.
           </div>
         </div>
         <div className="ws-hero-visual">

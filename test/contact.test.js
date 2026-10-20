@@ -61,6 +61,7 @@ test("uses TLS and bounded connection timeouts", () => {
   const config = smtpConfig(env);
   assert.equal(config.transport.port, 465);
   assert.equal(config.transport.secure, true);
+  assert.equal(config.transport.authMethod, "LOGIN");
   assert.equal(config.transport.connectionTimeout, 10000);
   assert.equal(
     smtpConfig({ ...env, SMTP_PORT: "587" }).transport.requireTLS,
@@ -90,7 +91,7 @@ test("sends reply-to safely and accepts success only after SMTP acceptance", asy
   assert.equal(result.status, 200);
   assert.equal(mail.replyTo.address, valid.email);
   assert.equal(mail.from.address, "kontakt@webspanner.pl");
-  assert.equal(mail.to, "kontakt@webspanner.pl");
+  assert.equal(mail.to, "tadekkw123@gmail.com");
   assert.equal(mail.html, undefined);
   assert.equal(mail.disableFileAccess, true);
   assert.equal(options.auth.pass, env.SMTP_PASSWORD);
@@ -121,6 +122,22 @@ test("redacts provider error and preserves only diagnostic code in logs", async 
     log: (c) => logs.push(c),
   });
   assert.equal(result.status, 502);
-  assert.deepEqual(logs, ["EAUTH"]);
+  assert.deepEqual(logs, [{ event: "CONTACT_SMTP_FAILURE", code: "EAUTH", responseCode: null, step: "OTHER", authMethod: "LOGIN", passwordFormat: "OK" }]);
   assert.ok(!JSON.stringify(result).includes("sensitive-provider-detail"));
+});
+test("reports password formatting without exposing credentials or provider response", async () => {
+  for (const [password, expected] of [["private-value\n", "LINE_BREAK"], ['"private-value"', "SURROUNDING_QUOTES"]]) {
+    const logs = [];
+    const result = await deliverContact(valid, {
+      env: { SMTP_PASSWORD: password },
+      createTransport: () => ({ sendMail: async () => { throw Object.assign(new Error(password), { code: "unexpected-sensitive-value", response: password, responseCode: 535, command: "AUTH LOGIN" }); }, close() {} }),
+      log: entry => logs.push(entry),
+    });
+    assert.equal(result.status, 502);
+    assert.equal(logs[0].code, "CONTACT_SEND_FAILED");
+    assert.equal(logs[0].responseCode, 535);
+    assert.equal(logs[0].step, "AUTH");
+    assert.equal(logs[0].passwordFormat, expected);
+    assert.ok(!JSON.stringify({ result, logs }).includes("private-value"));
+  }
 });

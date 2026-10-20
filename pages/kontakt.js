@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 import Portrait from "../components/Portrait";
 import { useState, useRef } from "react";
+import { trackContactEvent } from "../lib/analytics";
 export default function Contact() {
   const [status, setStatus] = useState("idle");
   const [notice, setNotice] = useState("");
@@ -33,6 +34,7 @@ export default function Contact() {
         return;
       }
       setStatus("success");
+      if (!data.website) trackContactEvent("generate_lead", "contact_form");
       setNotice(payload.message || "Dziękuję! Wiadomość została wysłana.");
       form.reset();
     } catch {
@@ -65,7 +67,9 @@ export default function Contact() {
             <h2>Rozmawiasz bezpośrednio ze mną.</h2>
             <p>
               Jestem Tadeusz i tworzę Webspanner. Wspólnie ustalimy potrzebne
-              funkcje, materiały i następny krok.
+              funkcje, materiały i następny krok. Możemy porozmawiać online lub
+              spotkać się w Twojej firmie — mogę podjechać po uzgodnieniu miejsca,
+              terminu i warunków dojazdu.
             </p>
             <a
               className="ws-contact-direct"
