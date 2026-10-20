@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Script from "next/script";
 import Link from "next/link";
 import { GA_ID, trackContactEvent } from "../lib/analytics";
+import { pageSeo } from "../lib/seo";
 const STORAGE_KEY = "webspanner-analytics-consent-v1";
 const denied = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
 function clearAnalyticsCookies() {
@@ -28,7 +29,7 @@ export default function Analytics() {
     const path = location.pathname;
     if (lastPath.current === path) return;
     lastPath.current = path;
-    window.gtag("event", "page_view", { page_title: document.title, page_location: location.origin + path });
+    window.gtag("event", "page_view", { page_title: pageSeo(path).title, page_location: location.origin + path });
   }
   function ready() {
     if (!window.__wsAnalyticsConsent) return;
