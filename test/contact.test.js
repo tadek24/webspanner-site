@@ -61,6 +61,7 @@ test("uses TLS and bounded connection timeouts", () => {
   const config = smtpConfig(env);
   assert.equal(config.transport.port, 465);
   assert.equal(config.transport.secure, true);
+  assert.equal(config.transport.authMethod, "LOGIN");
   assert.equal(config.transport.connectionTimeout, 10000);
   assert.equal(
     smtpConfig({ ...env, SMTP_PORT: "587" }).transport.requireTLS,
@@ -121,6 +122,6 @@ test("redacts provider error and preserves only diagnostic code in logs", async 
     log: (c) => logs.push(c),
   });
   assert.equal(result.status, 502);
-  assert.deepEqual(logs, ["EAUTH"]);
+  assert.deepEqual(logs, [{ event: "CONTACT_SMTP_FAILURE", code: "EAUTH", responseCode: null, step: "OTHER", authMethod: "LOGIN", passwordFormat: "OK" }]);
   assert.ok(!JSON.stringify(result).includes("sensitive-provider-detail"));
 });
