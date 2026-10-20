@@ -91,7 +91,7 @@ test("sends reply-to safely and accepts success only after SMTP acceptance", asy
   assert.equal(result.status, 200);
   assert.equal(mail.replyTo.address, valid.email);
   assert.equal(mail.from.address, "kontakt@webspanner.pl");
-  assert.equal(mail.to, "kontakt@webspanner.pl");
+  assert.equal(mail.to, "tadekkw123@gmail.com");
   assert.equal(mail.html, undefined);
   assert.equal(mail.disableFileAccess, true);
   assert.equal(options.auth.pass, env.SMTP_PASSWORD);
@@ -124,4 +124,20 @@ test("redacts provider error and preserves only diagnostic code in logs", async 
   assert.equal(result.status, 502);
   assert.deepEqual(logs, [{ event: "CONTACT_SMTP_FAILURE", code: "EAUTH", responseCode: null, step: "OTHER", authMethod: "LOGIN", passwordFormat: "OK" }]);
   assert.ok(!JSON.stringify(result).includes("sensitive-provider-detail"));
+});
+test("reports password formatting without exposing credentials or provider response", async () => {
+  for (const [password, expected] of [["private-value\n", "LINE_BREAK"], ['"private-value"', "SURROUNDING_QUOTES"]]) {
+    const logs = [];
+    const result = await deliverContact(valid, {
+      env: { SMTP_PASSWORD: password },
+      createTransport: () => ({ sendMail: async () => { throw Object.assign(new Error(password), { code: "unexpected-sensitive-value", response: password, responseCode: 535, command: "AUTH LOGIN" }); }, close() {} }),
+      log: entry => logs.push(entry),
+    });
+    assert.equal(result.status, 502);
+    assert.equal(logs[0].code, "CONTACT_SEND_FAILED");
+    assert.equal(logs[0].responseCode, 535);
+    assert.equal(logs[0].step, "AUTH");
+    assert.equal(logs[0].passwordFormat, expected);
+    assert.ok(!JSON.stringify({ result, logs }).includes("private-value"));
+  }
 });
