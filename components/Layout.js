@@ -5,6 +5,7 @@ const links = [
   ["Oferta", "/oferta"],
   ["Portfolio", "/portfolio"],
   ["Przykłady", "/dema"],
+  ["Blog", "/blog"],
   ["O współpracy", "/o-nas"],
   ["Kontakt", "/kontakt"],
 ];

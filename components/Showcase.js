@@ -1,6 +1,13 @@
 import Link from "next/link";
 export const projects = [
   {
+    name: "Konfigurator konstrukcji — garaże i wiaty",
+    type: "Konfigurator 3D",
+    text: "Własny konfigurator garaży: wymiary konstrukcji, wybór dachu, bram, drzwi i okien oraz podgląd 3D. Przykład narzędzia dla producenta oferującego warianty pod wymiar.",
+    view: "garage",
+    tags: ["Wymiary i dach", "Bramy i otwory", "Wizualizacja 3D"],
+  },
+  {
     name: "Konfigurator ogrodzeń",
     type: "Konfigurator produktu",
     text: "Przykład wyboru wariantów ogrodzenia i przygotowania oferty. Punkt wyjścia do rozmowy o konfiguratorze dla Twojego asortymentu.",
@@ -55,15 +62,33 @@ export function Preview({ kind = "config" }) {
           </div>
           <div className="ws-ui-body">
             <div className="ws-ui-title">
-              {kind === "config"
-                ? "Twój projekt"
-                : kind === "web"
-                  ? "Przestrzeń dla Twojej firmy"
-                  : kind === "chat"
-                    ? "Rozmowy zespołu"
-                    : "Przegląd pracy"}
+              {kind === "garage"
+                ? "Twoja konstrukcja"
+                : kind === "config"
+                  ? "Twój projekt"
+                  : kind === "web"
+                    ? "Przestrzeń dla Twojej firmy"
+                    : kind === "chat"
+                      ? "Rozmowy zespołu"
+                      : "Przegląd pracy"}
             </div>
-            {kind === "config" ? (
+            {kind === "garage" ? (
+              <>
+                <div className="ws-garage-model">
+                  <div className="ws-garage-roof" />
+                  <div className="ws-garage-front">
+                    <i />
+                    <i />
+                  </div>
+                  <div className="ws-garage-side" />
+                </div>
+                <div className="ws-ui-options">
+                  <span>Wymiary</span>
+                  <span>Dach</span>
+                  <span>Bramy</span>
+                </div>
+              </>
+            ) : kind === "config" ? (
               <>
                 <div className="ws-fence">
                   {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
@@ -157,9 +182,38 @@ export function Services() {
         <article key={n}>
           <span className="ws-number">{n}</span>
           <div>
-            <h3>{title}</h3>
+            <h3>
+              <Link
+                href={
+                  "/oferta/" +
+                  [
+                    "strony-internetowe",
+                    "sklepy-internetowe",
+                    "konfiguratory-produktow",
+                    "aplikacje-biznesowe",
+                  ][Number(n) - 1]
+                }
+              >
+                {title}
+              </Link>
+            </h3>
             <p>{text}</p>
             <small>{detail}</small>
+            <br />
+            <Link
+              className="ws-text-link ws-service-link"
+              href={
+                "/oferta/" +
+                [
+                  "strony-internetowe",
+                  "sklepy-internetowe",
+                  "konfiguratory-produktow",
+                  "aplikacje-biznesowe",
+                ][Number(n) - 1]
+              }
+            >
+              Poznaj zakres współpracy →
+            </Link>
           </div>
         </article>
       ))}
