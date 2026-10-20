@@ -1,16 +1,12 @@
 import '../styles/globals.css'
-import Head from 'next/head'
+import Seo from '../components/Seo'
 import Script from 'next/script'
 
 
 function MyApp({ Component, pageProps }) {
     return (
         <div className="font-sans">
-            <Head>
-                <title>Webspanner | Strony, sklepy, konfiguratory i aplikacje biznesowe</title>
-                <meta name="description" content="Projektowanie i wdrażanie stron internetowych, sklepów, konfiguratorów produktów i aplikacji biznesowych. Bezpośrednia współpraca i indywidualna wycena." />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-            </Head>
+            <Seo />
 
             {/* Google Tag Manager - Dodać po otwarciu body znacznik noscript w _document.js */}
             <Script

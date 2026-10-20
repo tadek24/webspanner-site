@@ -2,7 +2,6 @@ import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
 import { MapPin, ArrowRight, Zap, Target, Search } from 'lucide-react'
 import Link from 'next/link'
-import Head from 'next/head'
 
 const CITY_DATA = {
     'krakow': {
@@ -71,10 +70,6 @@ export async function getStaticProps({ params }) {
 export default function LokalnaOferta({ cityCode, data }) {
     return (
         <Layout>
-            <Head>
-                <title>Profesjonalne strony internetowe {data.locative} - Webspanner</title>
-                <meta name="description" content={`Nowoczesne strony WWW i Sklepy e-commerce przygotowane dla firm ${data.genitive}. Odkryj wydajność z Webspanner.`} />
-            </Head>
 
             {/* Hero SEO */}
             <section className="py-24 bg-gray-50 relative overflow-hidden">

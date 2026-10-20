@@ -1,12 +1,8 @@
-import Head from "next/head";
 import Layout from "../components/Layout";
 import { Services, ContactBand } from "../components/Showcase";
 export default function Oferta() {
   return (
     <Layout>
-      <Head>
-        <title>Oferta — strony, sklepy i aplikacje | Webspanner</title>
-      </Head>
       <section className="ws-section ws-wrap">
         <span className="ws-eyebrow">Zakres współpracy</span>
         <h1>
