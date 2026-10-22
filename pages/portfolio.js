@@ -4,7 +4,8 @@ export default function Portfolio() {
   const projects = [
     {
       title: "Z.Rejman - Sklep Meblowy",
-      desc: "Nowoczesny e-commerce z branży meblarskiej, oferujący stylowe łóżka i fotele tapicerowane. Skupienie na UX i wysokiej jakości prezentacji produktów.",
+      id: "z-rejman",
+      desc: "Sklep internetowy z meblami tapicerowanymi. Prezentacja łóżek i foteli oraz ścieżka od karty produktu do zamówienia.",
       img: "/ztrejman-sklep.png",
       category: "E-commerce & UX",
       zalety: ["Product Design", "Zoptymalizowany Checkout", "High-End UX"],
@@ -12,8 +13,8 @@ export default function Portfolio() {
       priority: true,
     },
     {
-      title: "Sandey - Beauty & Spa Booking",
-      desc: 'Projekt to przykład tego, jak nowoczesny design WordPress może budować nastrój luksusu i spokoju. Platforma została oparta na koncepcji "Lifestyle UX". Wykorzystaliśmy wysokiej jakości zdjęcia w układzie full-screen, które w połączeniu z subtelnymi animacjami reveal, tworzą spójną opowieść o komforcie życia na zewnątrz.',
+      title: "Sandey — strona internetowa",
+      desc: "Realizacja strony z rozbudowaną prezentacją zdjęć i oferty. Przykład układu dopasowanego do oglądania na komputerze i telefonie.",
       img: "/sandey.png",
       category: "Health & Beauty",
       zalety: ["Lifestyle UX", "Full-screen Design", "Mobile-First"],
@@ -21,27 +22,29 @@ export default function Portfolio() {
     },
     {
       title: "Sklep Rapdach - E-commerce",
-      desc: "Sklep to technologiczne wyzwanie, któremu sprostaliśmy dzięki głębokiej optymalizacji WooCommerce. System obsługuje tysiące wariantów produktów, zachowując błyskawiczną szybkość ładowania. Wdrożyliśmy zaawansowane mechanizmy filtrowania i zintegrowaliśmy całość z systemami płatności i logistyki.",
+      id: "sklep-rapdach",
+      desc: "Sklep internetowy oparty na WooCommerce. Katalog z wariantami produktów, filtrowanie oraz proces zakupu połączony z płatnościami i dostawami.",
       img: "/sklep-rapdach.png",
       category: "Industrial E-commerce",
       zalety: [
         "Optymalizacja WooCommerce",
-        "1000+ Wariantów",
+        "Warianty produktów",
         "Integracje Logistyczne",
       ],
       url: "https://sklep.rapdach.com",
     },
     {
       title: "Rapdach - Strona Korporacyjna",
-      desc: "Projekt to manifestacja luksusu w branży przemysłowej. Strona lidera balustrad zaprojektowana w minimalistycznym stylu, podkreślającym surową elegancję stali i szkła. Inżynieryjne podejście do kodu zaowocowało rekordowymi wynikami w Core Web Vitals, co przekłada się na pozycjonowanie B2B.",
+      id: "rapdach-strona",
+      desc: "Strona firmowa producenta balustrad. Prezentacja oferty i realizacji z wykorzystaniem zdjęć oraz układu przygotowanego dla odbiorców biznesowych.",
       img: "/rapdach.png",
       category: "Corporate B2B",
-      zalety: ["Core Web Vitals", "Minimalizm", "SEO B2B"],
+      zalety: ["Oferta producenta", "Realizacje", "Kontakt B2B"],
       url: "https://rapdach.com",
     },
     {
       title: "WildHome - Sklep Zoologiczny",
-      desc: "Potężna maszyna sprzedażowa operująca na ogromnym asortymencie. Skoncentrowaliśmy się na optymalizacji konwersji poprzez mechanizmy up-sellingu i cross-sellingu wbudowanych w karty produktów. System połączono z platformami opinii i systemem lojalnościowym.",
+      desc: "Sklep internetowy z produktami dla zwierząt. Realizacja katalogu i kart produktów ze ścieżką zakupową dla klientów detalicznych.",
       img: "/wildhome.png",
       category: "High-Volume Retail",
       zalety: [
@@ -53,7 +56,7 @@ export default function Portfolio() {
     },
     {
       title: "Vellisse - Premium E-commerce",
-      desc: "Sklep e-commerce klasy premium z bielizną erotyczną. Projekt skoncentrowany na estetyce, optymalizacji ścieżki zakupowej oraz pełnej responsywności. Dopracowana typografia i galerie produktowe tworzą ekskluzywne doświadczenie zakupowe na każdym urządzeniu.",
+      desc: "Sklep internetowy z bielizną. Prezentacja kolekcji, galerie produktów i układ dopasowany do urządzeń mobilnych.",
       img: "/vellisse.png",
       category: "Premium E-commerce",
       zalety: [
@@ -65,7 +68,7 @@ export default function Portfolio() {
     },
     {
       title: "Skillup - Szkolenia Online",
-      desc: "Nowoczesna platforma e-learningowa do sprzedaży specjalistycznych szkoleń online. Zoptymalizowany proces zakupowy oraz intuicyjny panel zapewniają bezproblemowe doświadczenie edukacyjne i wysoką sprzedaż.",
+      desc: "Platforma sprzedaży szkoleń online. Połączenie oferty kursów, procesu zakupu i panelu uczestnika.",
       img: "/skillup-szkolenia.png",
       category: "E-learning & E-commerce",
       zalety: [
@@ -77,7 +80,8 @@ export default function Portfolio() {
     },
     {
       title: "Martyna Sprada - Kursy Online",
-      desc: "Autorska strona sprzedażowa oferująca kursy online. Projekt łączy silny personal branding z wysoką konwersją, oferując płynne przejście od zapoznania się z ofertą, przez checkout, aż po realizację kursu.",
+      id: "martyna-sprada",
+      desc: "Strona sprzedażowa z kursami online. Prezentacja autorki i oferty połączona z zakupem oraz dostępem do materiałów kursowych.",
       img: "/martynasprada.png",
       category: "Personal Branding & E-learning",
       zalety: ["Personal Branding", "Optymalizacja Konwersji", "System Kursów"],
@@ -99,7 +103,7 @@ export default function Portfolio() {
         </p>
         <div className="ws-realizations">
           {projects.map((project) => (
-            <article className="ws-realization" key={project.url}>
+            <article className="ws-realization" id={project.id} key={project.url}>
               <div className="ws-realization-image">
                 <img
                   src={project.img}

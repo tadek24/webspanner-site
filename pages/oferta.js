@@ -6,9 +6,9 @@ export default function Oferta() {
       <section className="ws-section ws-wrap">
         <span className="ws-eyebrow">Zakres współpracy</span>
         <h1>
-          Od strony firmowej
+          Strony, sklepy internetowe
           <br />
-          po własne narzędzie<span className="ws-accent">.</span>
+          i aplikacje biznesowe<span className="ws-accent">.</span>
         </h1>
         <p className="ws-lead">
           Zacznijmy od tego, co ma się zmienić w Twojej firmie. Na tej podstawie
