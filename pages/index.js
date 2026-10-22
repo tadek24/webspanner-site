@@ -2,7 +2,7 @@ import Portrait from "../components/Portrait";
 import { articles } from "../lib/articles";
 import Link from "next/link";
 import Layout from "../components/Layout";
-import { Services, ProjectGrid, ContactBand } from "../components/Showcase";
+import { Services, ContactBand } from "../components/Showcase";
 export default function Home() {
   return (
     <Layout>
@@ -10,25 +10,25 @@ export default function Home() {
         <div>
           <span className="ws-eyebrow">Tadeusz Kwoka · Webspanner</span>
           <h1>
-            Dobra strona.
+            Strony i sklepy internetowe.
             <br />
-            Sprawniejszy biznes<span className="ws-accent">.</span>
+            Aplikacje dla Twojej firmy<span className="ws-accent">.</span>
           </h1>
           <p>
-            Projektuję i wdrażam strony, sklepy, konfiguratory produktów oraz
-            aplikacje biznesowe. Od pierwszej rozmowy po narzędzie, z którego
-            korzystasz na co dzień.
+            Projektuję i tworzę strony WWW, sklepy online oraz aplikacje
+            biznesowe. Pomagam pokazać ofertę, uruchomić sprzedaż i uporządkować
+            pracę zespołu. Rozmawiasz bezpośrednio z wykonawcą — Tadeuszem Kwoką.
           </p>
           <div className="ws-actions">
             <Link className="ws-button" href="/kontakt">
               Porozmawiajmy o projekcie ↗
             </Link>
-            <Link className="ws-text-link" href="/dema">
-              Zobacz możliwości →
+            <Link className="ws-text-link" href="/portfolio">
+              Zobacz realizacje →
             </Link>
           </div>
           <div className="ws-hero-note">
-            Bezpośredni kontakt. Spotkanie na miejscu lub online. Indywidualna wycena.
+            Grybów i okolice · dojazd po uzgodnieniu · współpraca online w całej Polsce.
           </div>
         </div>
         <div className="ws-hero-visual">
@@ -37,12 +37,13 @@ export default function Home() {
       </section>
       <div className="ws-strip">
         <div className="ws-wrap">
-          <span>Strony i sklepy</span>
-          <span>Konfiguratory produktów</span>
+          <span>Strony internetowe</span>
+          <span>Sklepy internetowe</span>
           <span>Aplikacje biznesowe</span>
           <span>Integracje systemów</span>
         </div>
       </div>
+      <nav className="ws-wrap ws-focus-links" aria-label="Główne usługi Webspanner"><Link href="/oferta/strony-internetowe">Tworzenie stron internetowych →</Link><Link href="/oferta/sklepy-internetowe">Tworzenie sklepów internetowych →</Link><Link href="/oferta/aplikacje-biznesowe">Aplikacje biznesowe na zamówienie →</Link></nav>
       <section className="ws-section ws-wrap">
         <div className="ws-section-heading">
           <span className="ws-eyebrow">W czym mogę pomóc</span>
@@ -61,22 +62,25 @@ export default function Home() {
       <section className="ws-section ws-tint">
         <div className="ws-wrap">
           <div className="ws-section-heading">
-            <span className="ws-eyebrow">Zobacz, jak to może działać</span>
+            <span className="ws-eyebrow">Dotychczasowe realizacje</span>
             <h2>
-              Mniej obietnic.
+              Strony i sklepy,
               <br />
-              Więcej do sprawdzenia.
+              które już działają.
             </h2>
             <p>
-              Przykłady pokazują kierunki współpracy. Poniższe wizualizacje są
-              schematami interfejsów. O szczegóły i prezentację możesz zapytać
-              bezpośrednio.
+              Zobacz przykłady strony firmowej i sklepu internetowego.
+              W portfolio znajdziesz pełną listę ośmiu realizacji.
             </p>
           </div>
-          <ProjectGrid limit={2} />
-          <Link className="ws-text-link ws-more" href="/dema">
-            Zobacz wszystkie przykłady →
+          <div className="ws-service-evidence">
+            <article><img src="/rapdach.png" alt="Rapdach — strona firmowa producenta" width={1280} height={720} loading="lazy" decoding="async" /><h3><Link href="/portfolio#rapdach-strona">Rapdach — strona firmowa</Link></h3><p>Prezentacja oferty i realizacji producenta. Przykład strony wspierającej kontakt z klientami biznesowymi.</p><Link className="ws-text-link" href="/portfolio#rapdach-strona">Zobacz realizację →</Link></article>
+            <article><img src="/ztrejman-sklep.png" alt="Z.Rejman — sklep internetowy z meblami" width={1280} height={720} loading="lazy" decoding="async" /><h3><Link href="/portfolio#z-rejman">Z.Rejman — sklep internetowy</Link></h3><p>Sklep z meblami tapicerowanymi: katalog produktów i ścieżka od wyboru modelu do zamówienia.</p><Link className="ws-text-link" href="/portfolio#z-rejman">Zobacz realizację →</Link></article>
+          </div>
+          <Link className="ws-text-link ws-more" href="/portfolio">
+            Zobacz wszystkie realizacje →
           </Link>
+          <p className="ws-small">Szukasz aplikacji biznesowej? <Link className="ws-text-link" href="/oferta/aplikacje-biznesowe">Poznaj zakres aplikacji i paneli →</Link></p>
         </div>
       </section>
       <section className="ws-section ws-wrap">

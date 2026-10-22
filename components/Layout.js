@@ -64,8 +64,10 @@ export default function Layout({ children }) {
               <a href="mailto:kontakt@webspanner.pl">kontakt@webspanner.pl</a>
               <br />
               <a href="tel:+48727469410">+48 727 469 410</a>
+              <p className="ws-small">Kontakt telefoniczny: codziennie 7:00–19:00.<br />Spotkania po wcześniejszym umówieniu. Dojazd z okolic Grybowa lub rozmowa online.</p>
             </div>
           </div>
+          <nav className="ws-location-links ws-footer-services" aria-label="Oferta dla firm"><Link href="/oferta/strony-internetowe">Tworzenie stron WWW</Link><Link href="/oferta/sklepy-internetowe">Tworzenie sklepów internetowych</Link><Link href="/oferta/aplikacje-biznesowe">Aplikacje biznesowe</Link></nav>
           <div className="ws-footer-bottom">
             <span>© {new Date().getFullYear()} Webspanner</span>
             <div>

@@ -16,6 +16,12 @@ export default function Seo() {
       publisher: { "@id": organization["@id"] },
     },
   ];
+  if (!meta.noIndex) graph.push({
+    "@type": "WebPage", "@id": url + "#webpage", url,
+    name: meta.title, description: meta.description, inLanguage: "pl-PL",
+    isPartOf: { "@id": siteUrl + "/#website" },
+    about: { "@id": organization["@id"] },
+  });
   if (meta.path !== "/" && !meta.noIndex) {
     const parent = meta.path.startsWith("/blog/")
       ? ["Blog", "/blog"]
@@ -57,10 +63,12 @@ export default function Seo() {
   if (meta.path.startsWith("/oferta/"))
     graph.push({
       "@type": "Service",
+      "@id": url + "#service",
       name: meta.title.split(" | ")[0],
       description: meta.description,
       url,
       provider: { "@id": organization["@id"] },
+      mainEntityOfPage: { "@id": url + "#webpage" },
       areaServed: { "@type": "Country", name: "Polska" },
     });
   if (meta.city) graph.push({

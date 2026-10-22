@@ -81,7 +81,11 @@ export default function Contact() {
               +48 727 469 410
             </a>
             <p className="ws-small">
-              Możesz napisać przez formularz, wysłać e-mail lub zadzwonić.
+              Telefon odbieram codziennie w godzinach 7:00–19:00. Wiadomość
+              przez formularz możesz wysłać w dowolnym momencie. Spotkania
+              odbywają się po wcześniejszym umówieniu; dojeżdżam z okolic Grybowa
+              do miejscowości w regionie, w przybliżeniu do 120 km. Możemy też
+              porozmawiać online.
             </p>
           </aside>
           <div>

@@ -164,15 +164,15 @@ export const services = [
   ],
   [
     "03",
-    "Konfiguratory produktów",
-    "Pomóż klientowi wybrać wariant, określić parametry i wysłać kompletne zapytanie. Reguły konfiguracji dopasowane do produktu.",
-    "Warianty · Zależności · Zapytania ofertowe",
-  ],
-  [
-    "04",
     "Aplikacje biznesowe",
     "Narzędzia do pracy z klientami, ofertami i informacją. Panele oraz integracje, które porządkują konkretny proces w firmie.",
     "CRM · Panele zespołu · Automatyzacja",
+  ],
+  [
+    "04",
+    "Konfiguratory produktów — dodatkowa możliwość",
+    "Pomóż klientowi wybrać wariant, określić parametry i wysłać kompletne zapytanie. Reguły konfiguracji dopasowane do produktu.",
+    "Warianty · Zależności · Zapytania ofertowe",
   ],
 ];
 export function Services() {
@@ -189,8 +189,8 @@ export function Services() {
                   [
                     "strony-internetowe",
                     "sklepy-internetowe",
-                    "konfiguratory-produktow",
                     "aplikacje-biznesowe",
+                    "konfiguratory-produktow",
                   ][Number(n) - 1]
                 }
               >
@@ -207,8 +207,8 @@ export function Services() {
                 [
                   "strony-internetowe",
                   "sklepy-internetowe",
-                  "konfiguratory-produktow",
                   "aplikacje-biznesowe",
+                  "konfiguratory-produktow",
                 ][Number(n) - 1]
               }
             >
