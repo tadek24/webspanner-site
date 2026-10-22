@@ -1,9 +1,19 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
 import Portrait from "../components/Portrait";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/router";
+import { getContactContext } from "../lib/contact-intent";
 import { trackContactEvent } from "../lib/analytics";
 export default function Contact() {
+  const router = useRouter();
+  const context = getContactContext(router.query);
+  const [subject, setSubject] = useState("");
+  const subjectEdited = useRef(false);
+  const suggestedSubject = context?.subject || "";
+  useEffect(() => {
+    if (router.isReady && !subjectEdited.current) setSubject(suggestedSubject);
+  }, [router.isReady, suggestedSubject]);
   const [status, setStatus] = useState("idle");
   const [notice, setNotice] = useState("");
   const pending = useRef(false);
@@ -37,6 +47,8 @@ export default function Contact() {
       if (!data.website) trackContactEvent("generate_lead", "contact_form");
       setNotice(payload.message || "Dziękuję! Wiadomość została wysłana.");
       form.reset();
+      subjectEdited.current = false;
+      setSubject(suggestedSubject);
     } catch {
       setStatus("error");
       setNotice(
@@ -88,8 +100,14 @@ export default function Contact() {
               porozmawiać online.
             </p>
           </aside>
-          <div>
+          <div id="zapytanie" className="ws-inquiry">
             <h2>Opowiedz o projekcie.</h2>
+            {context && <div className="ws-inquiry-context" id="contact-brief">
+              <p><strong>{context.label}</strong>{context.reference && <> · Inspiracja: {context.reference}</>}</p>
+              <p>Wystarczy krótki opis. Pomocne będą odpowiedzi na te pytania:</p>
+              <ul>{context.questions.map((question) => <li key={question}>{question}</li>)}</ul>
+              <small>Nie musisz znać wszystkich odpowiedzi — zakres ustalimy razem. Temat możesz zmienić.</small>
+            </div>}
             <form
               className="ws-form"
               onSubmit={submit}
@@ -118,6 +136,8 @@ export default function Contact() {
                 Temat
                 <input
                   name="subject"
+                  value={subject}
+                  onChange={(event) => { subjectEdited.current = true; setSubject(event.target.value); }}
                   maxLength={200}
                   placeholder="Np. strona firmowa lub konfigurator garaży"
                 />
@@ -128,7 +148,8 @@ export default function Contact() {
                   name="message"
                   required
                   maxLength={10000}
-                  placeholder="Cel projektu, potrzebne funkcje, adres obecnej strony — jeśli ją masz."
+                  aria-describedby={context ? "contact-brief" : undefined}
+                  placeholder={context?.placeholder || "Cel projektu, potrzebne funkcje, adres obecnej strony — jeśli ją masz."}
                 />
               </label>
               <div className="ws-honeypot" aria-hidden="true">

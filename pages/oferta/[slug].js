@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import { ContactBand } from "../../components/Showcase";
 import { services } from "../../lib/services";
 import { articles } from "../../lib/articles";
+import { contactHref } from "../../lib/contact-intent";
 export default function Service({ service }) {
   return (
     <Layout>
@@ -23,7 +24,7 @@ export default function Service({ service }) {
         <p className="ws-lead">{service.forWho}</p>
         {service.intro && <p className="ws-service-intro">{service.intro}</p>}
         <div className="ws-actions">
-          <Link className="ws-button" href="/kontakt">
+          <Link className="ws-button" href={contactHref(service.slug)}>
             Omów zakres projektu ↗
           </Link>
           <Link className="ws-text-link" href="/portfolio">
@@ -74,7 +75,7 @@ export default function Service({ service }) {
             </article>
           ))}
         </div>
-        {service.brief && <section className="ws-notice ws-service-brief"><h2>Co przygotować do wyceny?</h2><ul>{service.brief.map((item) => <li key={item}>{item}</li>)}</ul><p>Nie musisz mieć gotowej specyfikacji. Na podstawie rozmowy ustalimy potrzebne funkcje, materiały i etapy.</p><div className="ws-actions"><Link className="ws-button" href="/kontakt">Poproś o indywidualną wycenę ↗</Link><a className="ws-text-link" href="tel:+48727469410">Zadzwoń: 727 469 410</a></div></section>}
+        {service.brief && <section className="ws-notice ws-service-brief"><h2>Co przygotować do wyceny?</h2><ul>{service.brief.map((item) => <li key={item}>{item}</li>)}</ul><p>Nie musisz mieć gotowej specyfikacji. Na podstawie rozmowy ustalimy potrzebne funkcje, materiały i etapy.</p><div className="ws-actions"><Link className="ws-button" href={contactHref(service.slug)}>Poproś o indywidualną wycenę ↗</Link><a className="ws-text-link" href="tel:+48727469410">Zadzwoń: 727 469 410</a></div></section>}
         <section className="ws-faq">
           <h2>Najczęstsze pytania</h2>
           {[...service.faq, ...(service.faqExtra || [])].map(([q, a]) => (
@@ -102,7 +103,7 @@ export default function Service({ service }) {
           </div>
         </section>
       </section>
-      <ContactBand />
+      <ContactBand serviceSlug={service.slug} />
     </Layout>
   );
 }

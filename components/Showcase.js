@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { contactHref } from "../lib/contact-intent";
 export const projects = [
   {
     name: "Konfigurator konstrukcji — garaże i wiaty",
@@ -140,7 +141,7 @@ export function ProjectGrid({ limit }) {
                 <li key={t}>{t}</li>
               ))}
             </ul>
-            <Link className="ws-text-link" href="/kontakt">
+            <Link className="ws-text-link" href={contactHref({ garage: "konfiguratory-produktow", config: "konfiguratory-produktow", crm: "aplikacje-biznesowe", sales: "aplikacje-biznesowe", web: "strony-internetowe", chat: "aplikacje-biznesowe" }[p.view])}>
               Zapytaj o prezentację →
             </Link>
           </div>
@@ -220,7 +221,7 @@ export function Services() {
     </div>
   );
 }
-export function ContactBand() {
+export function ContactBand({ serviceSlug } = {}) {
   return (
     <section className="ws-contact-band">
       <div className="ws-wrap">
@@ -234,7 +235,7 @@ export function ContactBand() {
             Opisz pomysł lub problem. Wspólnie ustalimy zakres i następny krok.
           </p>
         </div>
-        <Link className="ws-button" href="/kontakt">
+        <Link className="ws-button" href={contactHref(serviceSlug)}>
           Omów projekt ↗
         </Link>
       </div>

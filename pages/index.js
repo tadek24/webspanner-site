@@ -74,8 +74,8 @@ export default function Home() {
             </p>
           </div>
           <div className="ws-service-evidence">
-            <article><img src="/rapdach.png" alt="Rapdach — strona firmowa producenta" width={1280} height={720} loading="lazy" decoding="async" /><h3><Link href="/portfolio#rapdach-strona">Rapdach — strona firmowa</Link></h3><p>Prezentacja oferty i realizacji producenta. Przykład strony wspierającej kontakt z klientami biznesowymi.</p><Link className="ws-text-link" href="/portfolio#rapdach-strona">Zobacz realizację →</Link></article>
-            <article><img src="/ztrejman-sklep.png" alt="Z.Rejman — sklep internetowy z meblami" width={1280} height={720} loading="lazy" decoding="async" /><h3><Link href="/portfolio#z-rejman">Z.Rejman — sklep internetowy</Link></h3><p>Sklep z meblami tapicerowanymi: katalog produktów i ścieżka od wyboru modelu do zamówienia.</p><Link className="ws-text-link" href="/portfolio#z-rejman">Zobacz realizację →</Link></article>
+            <article><img src="/rapdach.webp" alt="Rapdach — strona firmowa producenta" width={1280} height={720} loading="lazy" decoding="async" /><h3><Link href="/portfolio#rapdach-strona">Rapdach — strona firmowa</Link></h3><p>Prezentacja oferty i realizacji producenta. Przykład strony wspierającej kontakt z klientami biznesowymi.</p><Link className="ws-text-link" href="/portfolio#rapdach-strona">Zobacz realizację →</Link></article>
+            <article><img src="/ztrejman-sklep.webp" alt="Z.Rejman — sklep internetowy z meblami" width={1280} height={720} loading="lazy" decoding="async" /><h3><Link href="/portfolio#z-rejman">Z.Rejman — sklep internetowy</Link></h3><p>Sklep z meblami tapicerowanymi: katalog produktów i ścieżka od wyboru modelu do zamówienia.</p><Link className="ws-text-link" href="/portfolio#z-rejman">Zobacz realizację →</Link></article>
           </div>
           <Link className="ws-text-link ws-more" href="/portfolio">
             Zobacz wszystkie realizacje →
