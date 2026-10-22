@@ -21,6 +21,7 @@ export default function Service({ service }) {
         </h1>
         <p className="ws-lead">{service.lead}</p>
         <p className="ws-lead">{service.forWho}</p>
+        {service.intro && <p className="ws-service-intro">{service.intro}</p>}
         <div className="ws-actions">
           <Link className="ws-button" href="/kontakt">
             Omów zakres projektu ↗
@@ -51,6 +52,18 @@ export default function Service({ service }) {
             </p>
           </aside>
         </div>
+        {service.sections && <section className="ws-service-content" aria-label="Szczegóły usługi">
+          {service.sections.map(([title, text]) => <article key={title}><h2>{title}</h2><p>{text}</p></article>)}
+        </section>}
+        {service.examples && <section className="ws-related">
+          <h2>Przykłady z portfolio</h2>
+          <div className="ws-service-evidence">{service.examples.map((example) => <article key={example.anchor}>
+            <img src={example.image} alt={example.title} width={1280} height={720} loading="lazy" decoding="async" />
+            <h3><Link href={"/portfolio#" + example.anchor}>{example.title}</Link></h3><p>{example.text}</p>
+            <Link className="ws-text-link" href={"/portfolio#" + example.anchor}>Zobacz realizację →</Link>
+          </article>)}</div>
+        </section>}
+        {service.slug === "aplikacje-biznesowe" && <section className="ws-related"><h2>Zobacz przykładowe narzędzia</h2><p>Panel relacji z klientami i panel sprzedaży marketplace pokazują możliwe kierunki aplikacji. Są przykładami do omówienia, a nie obietnicą gotowego zakresu Twojego wdrożenia.</p><Link className="ws-text-link" href="/dema">Przykłady aplikacji i prezentacja →</Link></section>}
         <h2>Jak wygląda współpraca</h2>
         <div className="ws-steps">
           {service.process.map(([title, text], i) => (
@@ -61,15 +74,17 @@ export default function Service({ service }) {
             </article>
           ))}
         </div>
+        {service.brief && <section className="ws-notice ws-service-brief"><h2>Co przygotować do wyceny?</h2><ul>{service.brief.map((item) => <li key={item}>{item}</li>)}</ul><p>Nie musisz mieć gotowej specyfikacji. Na podstawie rozmowy ustalimy potrzebne funkcje, materiały i etapy.</p><div className="ws-actions"><Link className="ws-button" href="/kontakt">Poproś o indywidualną wycenę ↗</Link><a className="ws-text-link" href="tel:+48727469410">Zadzwoń: 727 469 410</a></div></section>}
         <section className="ws-faq">
           <h2>Najczęstsze pytania</h2>
-          {service.faq.map(([q, a]) => (
+          {[...service.faq, ...(service.faqExtra || [])].map(([q, a]) => (
             <details key={q}>
               <summary>{q}</summary>
               <p>{a}</p>
             </details>
           ))}
         </section>
+        <section className="ws-related"><h2>Współpraca na miejscu i online</h2><p>Webspanner prowadzę w okolicach Grybowa. Dojeżdżam na uzgodnione spotkania w regionie, a z firmami z całej Polski współpracuję online. Termin i miejsce spotkania ustalamy przed wizytą.</p><nav className="ws-location-links" aria-label="Lokalna współpraca"><Link href="/grybow">Grybów</Link><Link href="/nowy-sacz">Nowy Sącz</Link><Link href="/gorlice">Gorlice</Link><Link href="/jaslo">Jasło</Link><Link href="/miasta">Obszar współpracy →</Link></nav></section>
         <section className="ws-related">
           <h2>Przygotuj się do projektu</h2>
           <div className="ws-blog-grid">
