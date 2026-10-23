@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getContactContext } from "../lib/contact-intent";
 import { trackContactEvent } from "../lib/analytics";
+import { trackMetaLead } from "../lib/meta-pixel";
 export default function Contact() {
   const router = useRouter();
   const context = getContactContext(router.query);
@@ -44,7 +45,10 @@ export default function Contact() {
         return;
       }
       setStatus("success");
-      if (!data.website) trackContactEvent("generate_lead", "contact_form");
+      if (!data.website) {
+        trackContactEvent("generate_lead", "contact_form");
+        trackMetaLead();
+      }
       setNotice(payload.message || "Dziękuję! Wiadomość została wysłana.");
       form.reset();
       subjectEdited.current = false;
