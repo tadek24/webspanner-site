@@ -738,6 +738,34 @@
   }
 }
 
+/* About page. */
+.ws-about-hero { grid-template-columns: 1.2fr 0.9fr; }
+.ws-about-story { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.ws-about-story > div:first-child { max-width: 520px; }
+.ws-about-evidence { display: grid; gap: 28px; }
+.ws-about-evidence article { padding: 0 0 28px; border-bottom: 1px solid var(--ws-line); }
+.ws-about-evidence article:last-child { padding-bottom: 0; border-bottom: 0; }
+.ws-about-evidence .ws-eyebrow { margin-bottom: 10px; }
+.ws-about-evidence h3 { font-size: 25px; }
+.ws-about-evidence p { margin-bottom: 16px; }
+.ws-about-principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 42px; margin-top: 48px; }
+.ws-about-number { display: block; color: var(--ws-green); font-size: 14px; font-weight: 700; padding-top: 18px; border-top: 1px solid var(--ws-line); margin-bottom: 20px; }
+.ws-about-principles h3 { font-size: 24px; }
+.ws-about-location { margin-top: 48px; padding: 32px; background: #f7f5fc; border-radius: 8px; }
+.ws-about-location p { max-width: 800px; }
+@media (max-width: 900px) {
+  .ws-about-hero { gap: 35px; }
+  .ws-about-story { gap: 40px; }
+  .ws-about-principles { gap: 24px; }
+}
+@media (max-width: 760px) {
+  .ws-about-hero, .ws-about-story, .ws-about-principles { grid-template-columns: 1fr; }
+  .ws-about-story { gap: 40px; }
+  .ws-about-story > div:first-child { max-width: none; }
+  .ws-about-principles { gap: 12px; margin-top: 32px; }
+  .ws-about-location { padding: 24px; margin-top: 28px; }
+}
+
 /* Portrait, expanded editorial content and service pages. */
 .ws-portrait {
   margin: 0;

@@ -17,10 +17,18 @@ export default function Seo() {
     },
   ];
   if (!meta.noIndex) graph.push({
-    "@type": "WebPage", "@id": url + "#webpage", url,
+    "@type": meta.path === "/o-nas" ? "AboutPage" : "WebPage", "@id": url + "#webpage", url,
     name: meta.title, description: meta.description, inLanguage: "pl-PL",
     isPartOf: { "@id": siteUrl + "/#website" },
     about: { "@id": organization["@id"] },
+    ...(meta.path === "/o-nas" ? { mainEntity: { "@id": siteUrl + "/o-nas#person" } } : {}),
+  });
+  if (meta.path === "/o-nas") graph.push({
+    "@type": "Person", "@id": siteUrl + "/o-nas#person",
+    name: "Tadeusz Kwoka", url, image: siteUrl + "/tadeusz-kwoka.webp",
+    description: "Twórca Webspanner. Strony internetowe, sklepy i aplikacje biznesowe dla firm.",
+    worksFor: { "@id": organization["@id"] },
+    knowsAbout: ["Tworzenie stron internetowych", "Sklepy internetowe", "Platformy kursowe", "Aplikacje biznesowe"],
   });
   if (meta.path !== "/" && !meta.noIndex) {
     const parent = meta.path.startsWith("/blog/")
