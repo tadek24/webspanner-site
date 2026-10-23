@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import Link from "next/link";
-import { GA_ID, trackContactEvent } from "../lib/analytics";
+import { GA_ID, analyticsPageLocation, trackPageView, trackContactEvent } from "../lib/analytics";
 import { pageSeo } from "../lib/seo";
 const STORAGE_KEY = "webspanner-analytics-consent-v1";
 const denied = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
@@ -18,24 +18,20 @@ export default function Analytics() {
   const [consent, setConsent] = useState(null);
   const [editing, setEditing] = useState(false);
   const [production, setProduction] = useState(false);
-  const lastPath = useRef(null);
+  const lastPageLocation = useRef(null);
   useEffect(() => {
     setProduction(["www.webspanner.pl", "webspanner.pl"].includes(location.hostname) && process.env.NEXT_PUBLIC_DEPLOY_ENV !== "preview");
     try { const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)); if (saved && ["granted", "denied"].includes(saved.value) && Date.now() - saved.savedAt < 180*24*60*60*1000) setConsent(saved.value); } catch {}
   }, []);
   const enabled = production && consent === "granted";
   function pageView() {
-    if (!window.__wsAnalyticsConsent || !window.__wsAnalyticsReady) return;
-    const path = location.pathname;
-    if (lastPath.current === path) return;
-    lastPath.current = path;
-    window.gtag("event", "page_view", { page_title: pageSeo(path).title, page_location: location.origin + path });
+    lastPageLocation.current = trackPageView(pageSeo(location.pathname).title, lastPageLocation.current);
   }
   function ready() {
     if (!window.__wsAnalyticsConsent) return;
     if (!window.__wsAnalyticsReady) {
       window.gtag("js", new Date());
-      window.gtag("config", GA_ID, { send_page_view: false, allow_google_signals: false, allow_ad_personalization_signals: false });
+      window.gtag("config", GA_ID, { send_page_view: false, page_location: analyticsPageLocation(location.href), allow_google_signals: false, allow_ad_personalization_signals: false });
       window.__wsAnalyticsReady = true;
     }
     pageView();
