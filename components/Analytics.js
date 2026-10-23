@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import Link from "next/link";
+import CookieConsent from "./CookieConsent";
 import { GA_ID, analyticsPageLocation, trackPageView, trackContactEvent } from "../lib/analytics";
 import { pageSeo } from "../lib/seo";
-const STORAGE_KEY = "webspanner-analytics-consent-v1";
+import { META_PIXEL_ID, ANALYTICS_CONSENT_KEY, MARKETING_CONSENT_KEY, readPreference, savePreference, setMetaConsent, prepareMetaPixel, trackMetaPageView } from "../lib/meta-pixel";
 const denied = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
 function clearAnalyticsCookies() {
   for (const item of document.cookie.split(";")) {
@@ -16,14 +16,40 @@ function clearAnalyticsCookies() {
 export default function Analytics() {
   const router = useRouter();
   const [consent, setConsent] = useState(null);
+  const [marketingConsent, setMarketingConsent] = useState(null);
+  const [draftAnalytics, setDraftAnalytics] = useState(false);
+  const [draftMarketing, setDraftMarketing] = useState(false);
+  const [metaPrepared, setMetaPrepared] = useState(false);
   const [editing, setEditing] = useState(false);
   const [production, setProduction] = useState(false);
   const lastPageLocation = useRef(null);
+  const lastMetaPath = useRef(null);
   useEffect(() => {
     setProduction(["www.webspanner.pl", "webspanner.pl"].includes(location.hostname) && process.env.NEXT_PUBLIC_DEPLOY_ENV !== "preview");
-    try { const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)); if (saved && ["granted", "denied"].includes(saved.value) && Date.now() - saved.savedAt < 180*24*60*60*1000) setConsent(saved.value); } catch {}
+    function restore() {
+      let analytics = null, marketing = null;
+      try {
+        analytics = readPreference(localStorage, ANALYTICS_CONSENT_KEY);
+        marketing = readPreference(localStorage, MARKETING_CONSENT_KEY);
+      } catch {}
+      setConsent(analytics); setDraftAnalytics(analytics === "granted");
+      setMarketingConsent(marketing); setDraftMarketing(marketing === "granted");
+    }
+    restore();
+    const sync = event => { if (!event.key || [ANALYTICS_CONSENT_KEY, MARKETING_CONSENT_KEY].includes(event.key)) restore(); };
+    window.addEventListener("storage", sync);
+    return () => window.removeEventListener("storage", sync);
   }, []);
   const enabled = production && consent === "granted";
+  const marketingEnabled = production && marketingConsent === "granted" && /^\d+$/.test(META_PIXEL_ID);
+  function metaPageView() { lastMetaPath.current = trackMetaPageView(lastMetaPath.current); }
+  function metaReady() { window.__wsMetaReady = true; metaPageView(); }
+  useEffect(() => {
+    setMetaConsent(marketingEnabled);
+    if (!marketingEnabled) return;
+    if (prepareMetaPixel()) setMetaPrepared(true);
+    metaPageView();
+  }, [marketingEnabled]);
   function pageView() {
     lastPageLocation.current = trackPageView(pageSeo(location.pathname).title, lastPageLocation.current);
   }
@@ -47,7 +73,7 @@ export default function Analytics() {
     if (window.__wsAnalyticsReady) pageView();
   }, [enabled]);
   useEffect(() => {
-    const view = () => requestAnimationFrame(pageView);
+    const view = () => requestAnimationFrame(() => { pageView(); metaPageView(); });
     router.events.on("routeChangeComplete", view);
     const click = event => {
       const link = event.target.closest?.("a[href]");
@@ -59,16 +85,23 @@ export default function Analytics() {
     document.addEventListener("click", click);
     return () => { router.events.off("routeChangeComplete", view); document.removeEventListener("click", click); };
   }, [router.events]);
-  function choose(value) {
-    window.__wsAnalyticsConsent = production && value === "granted";
+  function choose(analytics, marketing) {
+    const value = analytics ? "granted" : "denied";
+    const marketingValue = marketing ? "granted" : "denied";
+    window.__wsAnalyticsConsent = production && analytics;
     window["ga-disable-"+GA_ID] = !window.__wsAnalyticsConsent;
     if (value === "denied") clearAnalyticsCookies();
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({value, savedAt:Date.now()})); } catch {}
-    setConsent(value); setEditing(false);
+    setMetaConsent(production && marketing && /^\d+$/.test(META_PIXEL_ID));
+    try {
+      savePreference(localStorage, ANALYTICS_CONSENT_KEY, value);
+      savePreference(localStorage, MARKETING_CONSENT_KEY, marketingValue);
+    } catch {}
+    setConsent(value); setMarketingConsent(marketingValue);
+    setDraftAnalytics(analytics); setDraftMarketing(marketing); setEditing(false);
   }
   return <>
     {enabled && <Script id="webspanner-ga4" src={"https://www.googletagmanager.com/gtag/js?id="+GA_ID} strategy="afterInteractive" onReady={ready}/>}
-    {(consent === null || editing) && <section className="ws-consent" aria-label="Ustawienia prywatności"><div><strong>Pomóż ulepszać stronę</strong><p>Za Twoją zgodą Google Analytics zbiera statystyki odwiedzin. Możesz korzystać ze strony bez analityki i zmienić wybór w dowolnej chwili. <Link href="/polityka-prywatnosci">Więcej informacji</Link>.</p></div><div className="ws-consent-actions"><button type="button" className="ws-button ws-button-outline" onClick={()=>choose("denied")}>Tylko niezbędne</button><button type="button" className="ws-button" onClick={()=>choose("granted")}>Zgadzam się na analitykę</button></div></section>}
-    {consent !== null && !editing && <button type="button" className="ws-consent-settings" onClick={()=>setEditing(true)}>Ustawienia prywatności</button>}
+    {metaPrepared && <Script id="webspanner-meta-pixel" src="https://connect.facebook.net/en_US/fbevents.js" strategy="afterInteractive" onReady={metaReady}/>}
+    <CookieConsent analytics={consent} marketing={marketingConsent} draftAnalytics={draftAnalytics} draftMarketing={draftMarketing} setDraftAnalytics={setDraftAnalytics} setDraftMarketing={setDraftMarketing} editing={editing} setEditing={setEditing} choose={choose}/>
   </>;
 }
