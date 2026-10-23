@@ -6,7 +6,7 @@ const links = [
   ["Portfolio", "/portfolio"],
   ["Przykłady", "/dema"],
   ["Blog", "/blog"],
-  ["O współpracy", "/o-nas"],
+  ["O mnie", "/o-nas"],
   ["Kontakt", "/kontakt"],
 ];
 export default function Layout({ children }) {
